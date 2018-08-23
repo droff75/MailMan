@@ -6,6 +6,8 @@ class MainRequestView: UIView {
 //    private let mainView = UIView()
     private let toolbarView = ToolbarView()
     private let sendButton = UIButton()
+    private let responseView = UITextView()
+    private let padding: CGFloat = 10
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +21,7 @@ class MainRequestView: UIView {
         
         addSubview(toolbarView)
         addSubview(sendButton)
+        addSubview(responseView)
         
         toolbarView.translatesAutoresizingMaskIntoConstraints = false
         toolbarView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -27,8 +30,14 @@ class MainRequestView: UIView {
         toolbarView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
         sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.topAnchor.constraint(equalTo: toolbarView.bottomAnchor, constant: padding).isActive = true
         sendButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        sendButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
+        responseView.translatesAutoresizingMaskIntoConstraints = false
+        responseView.topAnchor.constraint(equalTo: sendButton.bottomAnchor, constant: padding).isActive = true
+        responseView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
+        responseView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
+        responseView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
         
         translatesAutoresizingMaskIntoConstraints = false
         topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -56,11 +65,19 @@ class MainRequestView: UIView {
         dataTask.resume()
     }
     
+    private func handleData(_ data: Data?) {
+        guard let data = data else { return }
+        DispatchQueue.main.async { [weak self] in
+            let stringData = String(data: data, encoding: .utf8)
+            self?.responseView.text = stringData
+        }
+    }
+    
     private func completion(data: Data?, urlResponse: URLResponse?, error: Error?) {
         if let error = error {
             print(error)
-        } else if let data = data {
-            print(String(data: data, encoding: .utf8))
+        } else {
+            handleData(data)
         }
     }
 }
