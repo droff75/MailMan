@@ -1,9 +1,12 @@
 import UIKit
 
+protocol MainRequestViewDelegate: class {
+    func sendURL(url: String)
+}
+
 class MainRequestView: UIView {
     
-    
-//    private let mainView = UIView()
+    weak var delegate: MainRequestViewDelegate?
     private let toolbarView = ToolbarView()
     private let sendButton = UIButton()
     private let responseView = UITextView()
@@ -52,32 +55,11 @@ class MainRequestView: UIView {
     
     @objc
     private func sendButtonTapped() {
-        print("I tapped the SEND button")
-        sendRequest()
-        
-        
+        delegate?.sendURL(url: "https://postman-echo.com/get?test=MyMessage")
     }
     
-    private func sendRequest() {
-        guard let url = URL(string: "https://postman-echo.com/get?test=MyMessage") else { return }
-        
-        let dataTask = URLSession.shared.dataTask(with: url, completionHandler: completion)
-        dataTask.resume()
+    func update(response: String?) {
+        responseView.text = response
     }
     
-    private func handleData(_ data: Data?) {
-        guard let data = data else { return }
-        DispatchQueue.main.async { [weak self] in
-            let stringData = String(data: data, encoding: .utf8)
-            self?.responseView.text = stringData
-        }
-    }
-    
-    private func completion(data: Data?, urlResponse: URLResponse?, error: Error?) {
-        if let error = error {
-            print(error)
-        } else {
-            handleData(data)
-        }
-    }
 }
