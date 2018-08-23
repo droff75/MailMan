@@ -1,0 +1,606 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CC22FA1A212F1F5E000BC613 /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC22FA19212F1F5E000BC613 /* ToolbarView.swift */; };
+		CC22FA1C212F1F8A000BC613 /* ToolbarViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC22FA1B212F1F8A000BC613 /* ToolbarViewVC.swift */; };
+		CC55B3D720A09D1500C34B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3D620A09D1500C34B4D /* AppDelegate.swift */; };
+		CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3DD20A09D1500C34B4D /* mailman.xcdatamodeld */; };
+		CC55B3E120A09D1700C34B4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC55B3E020A09D1700C34B4D /* Assets.xcassets */; };
+		CC55B3E420A09D1700C34B4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC55B3E220A09D1700C34B4D /* LaunchScreen.storyboard */; };
+		CC55B3EF20A09D1700C34B4D /* mailmanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3EE20A09D1700C34B4D /* mailmanTests.swift */; };
+		CC55B3FA20A09D1700C34B4D /* mailmanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3F920A09D1700C34B4D /* mailmanUITests.swift */; };
+		CC55B40B20A09DF500C34B4D /* MainRequestViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B40A20A09DF500C34B4D /* MainRequestViewVC.swift */; };
+		CC80163C20D954F1008C84A9 /* MainRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80163B20D954F1008C84A9 /* MainRequestView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CC55B3EB20A09D1700C34B4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC55B3CB20A09D1500C34B4D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC55B3D220A09D1500C34B4D;
+			remoteInfo = mailman;
+		};
+		CC55B3F620A09D1700C34B4D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CC55B3CB20A09D1500C34B4D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CC55B3D220A09D1500C34B4D;
+			remoteInfo = mailman;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		CC22FA19212F1F5E000BC613 /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
+		CC22FA1B212F1F8A000BC613 /* ToolbarViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarViewVC.swift; sourceTree = "<group>"; };
+		CC55B3D320A09D1500C34B4D /* mailman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mailman.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC55B3D620A09D1500C34B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		CC55B3DE20A09D1500C34B4D /* mailman.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mailman.xcdatamodel; sourceTree = "<group>"; };
+		CC55B3E020A09D1700C34B4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC55B3E320A09D1700C34B4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CC55B3E520A09D1700C34B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC55B3EA20A09D1700C34B4D /* mailmanTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mailmanTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC55B3EE20A09D1700C34B4D /* mailmanTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mailmanTests.swift; sourceTree = "<group>"; };
+		CC55B3F020A09D1700C34B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC55B3F520A09D1700C34B4D /* mailmanUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mailmanUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC55B3F920A09D1700C34B4D /* mailmanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mailmanUITests.swift; sourceTree = "<group>"; };
+		CC55B3FB20A09D1700C34B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CC55B40A20A09DF500C34B4D /* MainRequestViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequestViewVC.swift; sourceTree = "<group>"; };
+		CC80163B20D954F1008C84A9 /* MainRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequestView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CC55B3D020A09D1500C34B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC55B3E720A09D1700C34B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC55B3F220A09D1700C34B4D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CC55B3CA20A09D1500C34B4D = {
+			isa = PBXGroup;
+			children = (
+				CC55B3D520A09D1500C34B4D /* mailman */,
+				CC55B3ED20A09D1700C34B4D /* mailmanTests */,
+				CC55B3F820A09D1700C34B4D /* mailmanUITests */,
+				CC55B3D420A09D1500C34B4D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CC55B3D420A09D1500C34B4D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC55B3D320A09D1500C34B4D /* mailman.app */,
+				CC55B3EA20A09D1700C34B4D /* mailmanTests.xctest */,
+				CC55B3F520A09D1700C34B4D /* mailmanUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CC55B3D520A09D1500C34B4D /* mailman */ = {
+			isa = PBXGroup;
+			children = (
+				CC55B40A20A09DF500C34B4D /* MainRequestViewVC.swift */,
+				CC80163B20D954F1008C84A9 /* MainRequestView.swift */,
+				CC55B3D620A09D1500C34B4D /* AppDelegate.swift */,
+				CC22FA19212F1F5E000BC613 /* ToolbarView.swift */,
+				CC22FA1B212F1F8A000BC613 /* ToolbarViewVC.swift */,
+				CC55B3E020A09D1700C34B4D /* Assets.xcassets */,
+				CC55B3E220A09D1700C34B4D /* LaunchScreen.storyboard */,
+				CC55B3E520A09D1700C34B4D /* Info.plist */,
+				CC55B3DD20A09D1500C34B4D /* mailman.xcdatamodeld */,
+			);
+			path = mailman;
+			sourceTree = "<group>";
+		};
+		CC55B3ED20A09D1700C34B4D /* mailmanTests */ = {
+			isa = PBXGroup;
+			children = (
+				CC55B3EE20A09D1700C34B4D /* mailmanTests.swift */,
+				CC55B3F020A09D1700C34B4D /* Info.plist */,
+			);
+			path = mailmanTests;
+			sourceTree = "<group>";
+		};
+		CC55B3F820A09D1700C34B4D /* mailmanUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CC55B3F920A09D1700C34B4D /* mailmanUITests.swift */,
+				CC55B3FB20A09D1700C34B4D /* Info.plist */,
+			);
+			path = mailmanUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CC55B3D220A09D1500C34B4D /* mailman */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC55B3FE20A09D1700C34B4D /* Build configuration list for PBXNativeTarget "mailman" */;
+			buildPhases = (
+				CC55B3CF20A09D1500C34B4D /* Sources */,
+				CC55B3D020A09D1500C34B4D /* Frameworks */,
+				CC55B3D120A09D1500C34B4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = mailman;
+			productName = mailman;
+			productReference = CC55B3D320A09D1500C34B4D /* mailman.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CC55B3E920A09D1700C34B4D /* mailmanTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC55B40120A09D1700C34B4D /* Build configuration list for PBXNativeTarget "mailmanTests" */;
+			buildPhases = (
+				CC55B3E620A09D1700C34B4D /* Sources */,
+				CC55B3E720A09D1700C34B4D /* Frameworks */,
+				CC55B3E820A09D1700C34B4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC55B3EC20A09D1700C34B4D /* PBXTargetDependency */,
+			);
+			name = mailmanTests;
+			productName = mailmanTests;
+			productReference = CC55B3EA20A09D1700C34B4D /* mailmanTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CC55B3F420A09D1700C34B4D /* mailmanUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CC55B40420A09D1700C34B4D /* Build configuration list for PBXNativeTarget "mailmanUITests" */;
+			buildPhases = (
+				CC55B3F120A09D1700C34B4D /* Sources */,
+				CC55B3F220A09D1700C34B4D /* Frameworks */,
+				CC55B3F320A09D1700C34B4D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CC55B3F720A09D1700C34B4D /* PBXTargetDependency */,
+			);
+			name = mailmanUITests;
+			productName = mailmanUITests;
+			productReference = CC55B3F520A09D1700C34B4D /* mailmanUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CC55B3CB20A09D1500C34B4D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+				ORGANIZATIONNAME = droff.dev.llc;
+				TargetAttributes = {
+					CC55B3D220A09D1500C34B4D = {
+						CreatedOnToolsVersion = 9.3;
+					};
+					CC55B3E920A09D1700C34B4D = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = CC55B3D220A09D1500C34B4D;
+					};
+					CC55B3F420A09D1700C34B4D = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = CC55B3D220A09D1500C34B4D;
+					};
+				};
+			};
+			buildConfigurationList = CC55B3CE20A09D1500C34B4D /* Build configuration list for PBXProject "mailman" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CC55B3CA20A09D1500C34B4D;
+			productRefGroup = CC55B3D420A09D1500C34B4D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CC55B3D220A09D1500C34B4D /* mailman */,
+				CC55B3E920A09D1700C34B4D /* mailmanTests */,
+				CC55B3F420A09D1700C34B4D /* mailmanUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CC55B3D120A09D1500C34B4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC55B3E420A09D1700C34B4D /* LaunchScreen.storyboard in Resources */,
+				CC55B3E120A09D1700C34B4D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC55B3E820A09D1700C34B4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC55B3F320A09D1700C34B4D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CC55B3CF20A09D1500C34B4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC55B3D720A09D1500C34B4D /* AppDelegate.swift in Sources */,
+				CC22FA1A212F1F5E000BC613 /* ToolbarView.swift in Sources */,
+				CC80163C20D954F1008C84A9 /* MainRequestView.swift in Sources */,
+				CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */,
+				CC55B40B20A09DF500C34B4D /* MainRequestViewVC.swift in Sources */,
+				CC22FA1C212F1F8A000BC613 /* ToolbarViewVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC55B3E620A09D1700C34B4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC55B3EF20A09D1700C34B4D /* mailmanTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC55B3F120A09D1700C34B4D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC55B3FA20A09D1700C34B4D /* mailmanUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CC55B3EC20A09D1700C34B4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC55B3D220A09D1500C34B4D /* mailman */;
+			targetProxy = CC55B3EB20A09D1700C34B4D /* PBXContainerItemProxy */;
+		};
+		CC55B3F720A09D1700C34B4D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CC55B3D220A09D1500C34B4D /* mailman */;
+			targetProxy = CC55B3F620A09D1700C34B4D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		CC55B3E220A09D1700C34B4D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CC55B3E320A09D1700C34B4D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CC55B3FC20A09D1700C34B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		CC55B3FD20A09D1700C34B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CC55B3FF20A09D1700C34B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CNTXQYQXTB;
+				INFOPLIST_FILE = mailman/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.droff.dev.llc.mailman;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		CC55B40020A09D1700C34B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CNTXQYQXTB;
+				INFOPLIST_FILE = mailman/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.droff.dev.llc.mailman;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+		CC55B40220A09D1700C34B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CNTXQYQXTB;
+				INFOPLIST_FILE = mailmanTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.droff.dev.llc.mailmanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mailman.app/mailman";
+			};
+			name = Debug;
+		};
+		CC55B40320A09D1700C34B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CNTXQYQXTB;
+				INFOPLIST_FILE = mailmanTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.droff.dev.llc.mailmanTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mailman.app/mailman";
+			};
+			name = Release;
+		};
+		CC55B40520A09D1700C34B4D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CNTXQYQXTB;
+				INFOPLIST_FILE = mailmanUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.droff.dev.llc.mailmanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = mailman;
+			};
+			name = Debug;
+		};
+		CC55B40620A09D1700C34B4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CNTXQYQXTB;
+				INFOPLIST_FILE = mailmanUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.droff.dev.llc.mailmanUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = mailman;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CC55B3CE20A09D1500C34B4D /* Build configuration list for PBXProject "mailman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC55B3FC20A09D1700C34B4D /* Debug */,
+				CC55B3FD20A09D1700C34B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC55B3FE20A09D1700C34B4D /* Build configuration list for PBXNativeTarget "mailman" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC55B3FF20A09D1700C34B4D /* Debug */,
+				CC55B40020A09D1700C34B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC55B40120A09D1700C34B4D /* Build configuration list for PBXNativeTarget "mailmanTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC55B40220A09D1700C34B4D /* Debug */,
+				CC55B40320A09D1700C34B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CC55B40420A09D1700C34B4D /* Build configuration list for PBXNativeTarget "mailmanUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CC55B40520A09D1700C34B4D /* Debug */,
+				CC55B40620A09D1700C34B4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CC55B3DD20A09D1500C34B4D /* mailman.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CC55B3DE20A09D1500C34B4D /* mailman.xcdatamodel */,
+			);
+			currentVersion = CC55B3DE20A09D1500C34B4D /* mailman.xcdatamodel */;
+			path = mailman.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CC55B3CB20A09D1500C34B4D /* Project object */;
+}
