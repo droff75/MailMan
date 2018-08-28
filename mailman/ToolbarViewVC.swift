@@ -14,6 +14,5 @@ class ToolbarViewVC: UIViewController {
         super.viewDidLoad()
         
         self.view = ToolbarView()
-        // Do any additional setup after loading the view.
     }
 }

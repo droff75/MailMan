@@ -2,6 +2,7 @@ import Foundation
 
 protocol NetworkRequestModelDelegate: class {
     func dataRetrieved(data: Data)
+    func errorRetrieved(error: Error)
 }
 
 class NetworkRequestModel {
@@ -17,7 +18,7 @@ class NetworkRequestModel {
     
     private func completion(data: Data?, urlResponse: URLResponse?, error: Error?) {
         if let error = error {
-            print(error)
+            delegate?.errorRetrieved(error: error)
         } else if let data = data {
             delegate?.dataRetrieved(data: data)
         }

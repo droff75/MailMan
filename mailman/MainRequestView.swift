@@ -4,27 +4,61 @@ protocol MainRequestViewDelegate: class {
     func sendURL(url: String)
 }
 
-class MainRequestView: UIView {
+class MainRequestView: UIView, UITextFieldDelegate {
     
     weak var delegate: MainRequestViewDelegate?
     private let toolbarView = ToolbarView()
     private let sendButton = UIButton()
     private let responseView = UITextView()
+    private let urlTextField = UITextField()
+    private let requestTypePicker = UIPickerView()
+    private let methodTextField = UITextField()
+    fileprivate let methodTypes: [Method] = [.get, .post, .put, .patch, .delete]
     private let padding: CGFloat = 10
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .red
-        toolbarView.backgroundColor = .black
+        backgroundColor = .black
         
+        toolbarView.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+        
+        urlTextField.backgroundColor = .white
+        urlTextField.placeholder = "Enter URL"
+        urlTextField.autocorrectionType = .no
+        urlTextField.keyboardType = .URL
+        urlTextField.layer.cornerRadius = 5
+        urlTextField.clearButtonMode = .whileEditing
+        
+        urlTextField.delegate = self
+        urlTextField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingChanged)
+
         sendButton.setTitle("SEND", for: .normal)
-        sendButton.backgroundColor = .gray
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        sendButton.backgroundColor = .orange
+        sendButton.layer.cornerRadius = 5
+
+        
+        methodTextField.inputView = requestTypePicker
+        methodTextField.backgroundColor = .white
+        methodTextField.text = "GET"
+        methodTextField.textAlignment = .center
+        methodTextField.font = UIFont.boldSystemFont(ofSize: 20)
+        methodTextField.textColor = .orange
+        methodTextField.layer.cornerRadius = 5
+        
+        responseView.font = UIFont.systemFont(ofSize: 20)
+        
+        requestTypePicker.selectRow(0, inComponent: 0, animated: false)
+        
+        requestTypePicker.dataSource = self
+        requestTypePicker.delegate = self
         
         addSubview(toolbarView)
         addSubview(sendButton)
         addSubview(responseView)
+        addSubview(urlTextField)
+        addSubview(methodTextField)
         
         toolbarView.translatesAutoresizingMaskIntoConstraints = false
         toolbarView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -33,20 +67,35 @@ class MainRequestView: UIView {
         toolbarView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
         sendButton.translatesAutoresizingMaskIntoConstraints = false
-        sendButton.topAnchor.constraint(equalTo: toolbarView.bottomAnchor, constant: padding).isActive = true
-        sendButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        
+        sendButton.leadingAnchor.constraint(equalTo: urlTextField.trailingAnchor, constant: padding).isActive = true
+        sendButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
+        sendButton.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
+
         responseView.translatesAutoresizingMaskIntoConstraints = false
         responseView.topAnchor.constraint(equalTo: sendButton.bottomAnchor, constant: padding).isActive = true
         responseView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
         responseView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
         responseView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
         
-        translatesAutoresizingMaskIntoConstraints = false
-        topAnchor.constraint(equalTo: topAnchor).isActive = true
-        bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        urlTextField.translatesAutoresizingMaskIntoConstraints = false
+        urlTextField.topAnchor.constraint(equalTo: toolbarView.bottomAnchor, constant: padding).isActive = true
+        urlTextField.leadingAnchor.constraint(equalTo: methodTextField.trailingAnchor, constant: padding).isActive = true
+        urlTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
+        methodTextField.translatesAutoresizingMaskIntoConstraints = false
+        methodTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        methodTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
+        methodTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        methodTextField.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if (urlTextField.text?.isEmpty)! {
+            sendButton.isEnabled = false
+        } else {
+            sendButton.isEnabled = true
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,11 +104,30 @@ class MainRequestView: UIView {
     
     @objc
     private func sendButtonTapped() {
-        delegate?.sendURL(url: "https://postman-echo.com/get?test=MyMessage")
+        guard let urlText = urlTextField.text else { return }
+        delegate?.sendURL(url: urlText)
     }
     
     func update(response: String?) {
         responseView.text = response
     }
     
+}
+
+extension MainRequestView: UIPickerViewDataSource, UIPickerViewDelegate {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return methodTypes.count
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return methodTypes[row].rawValue
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        methodTextField.text = methodTypes[row].rawValue
+    }
 }

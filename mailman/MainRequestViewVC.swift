@@ -24,6 +24,13 @@ extension MainRequestViewVC: NetworkRequestModelDelegate {
             self?.mainView.update(response: stringData)
         }
     }
+    
+    func errorRetrieved(error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            let stringError = error.localizedDescription
+            self?.mainView.update(response: stringError)
+        }
+    }
 }
 
 extension MainRequestViewVC: MainRequestViewDelegate {
@@ -31,3 +38,5 @@ extension MainRequestViewVC: MainRequestViewDelegate {
         model.sendRequest(urlString: url)
     }
 }
+
+

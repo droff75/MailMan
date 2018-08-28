@@ -9,7 +9,6 @@
 import UIKit
 
 class ToolbarView: UIView {
-    
     private let newButton = UIButton()
     private let importButton = UIButton()
     private let stackView = UIStackView()
@@ -20,10 +19,13 @@ class ToolbarView: UIView {
         
         newButton.setTitle("New", for: .normal)
         newButton.backgroundColor = .orange
-        
+        newButton.addTarget(self, action: #selector(newButtonTapped), for: .touchUpInside)
+        newButton.layer.cornerRadius = 5
+
         importButton.setTitle("Import", for: .normal)
         importButton.backgroundColor = .gray
-        
+        importButton.layer.cornerRadius = 5
+
         labelView.text = "MailMan App"
         labelView.textColor = .white
         labelView.font = UIFont.systemFont(ofSize: 30)
@@ -37,6 +39,9 @@ class ToolbarView: UIView {
         
         stackView.setCustomSpacing(10, after: newButton)
         
+        newButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        importButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         labelView.translatesAutoresizingMaskIntoConstraints = false
         labelView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -44,17 +49,16 @@ class ToolbarView: UIView {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        stackView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        
-
-        
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    @objc
+    private func newButtonTapped() {
+        
+    }
+    
+    
 }

@@ -17,6 +17,7 @@
 		CC55B3EF20A09D1700C34B4D /* mailmanTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3EE20A09D1700C34B4D /* mailmanTests.swift */; };
 		CC55B3FA20A09D1700C34B4D /* mailmanUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3F920A09D1700C34B4D /* mailmanUITests.swift */; };
 		CC55B40B20A09DF500C34B4D /* MainRequestViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B40A20A09DF500C34B4D /* MainRequestViewVC.swift */; };
+		CC70D1C521344CDC0043C201 /* RequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70D1C421344CDC0043C201 /* RequestData.swift */; };
 		CC80163C20D954F1008C84A9 /* MainRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80163B20D954F1008C84A9 /* MainRequestView.swift */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		CC55B3F920A09D1700C34B4D /* mailmanUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mailmanUITests.swift; sourceTree = "<group>"; };
 		CC55B3FB20A09D1700C34B4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC55B40A20A09DF500C34B4D /* MainRequestViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequestViewVC.swift; sourceTree = "<group>"; };
+		CC70D1C421344CDC0043C201 /* RequestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestData.swift; sourceTree = "<group>"; };
 		CC80163B20D954F1008C84A9 /* MainRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 				CC22FA19212F1F5E000BC613 /* ToolbarView.swift */,
 				CC22FA1B212F1F8A000BC613 /* ToolbarViewVC.swift */,
 				CC1C4BF5212F424000869C6F /* NetworkRequestModel.swift */,
+				CC70D1C421344CDC0043C201 /* RequestData.swift */,
 				CC55B3E020A09D1700C34B4D /* Assets.xcassets */,
 				CC55B3E220A09D1700C34B4D /* LaunchScreen.storyboard */,
 				CC55B3E520A09D1700C34B4D /* Info.plist */,
@@ -274,6 +277,7 @@
 				CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */,
 				CC55B40B20A09DF500C34B4D /* MainRequestViewVC.swift in Sources */,
 				CC22FA1C212F1F8A000BC613 /* ToolbarViewVC.swift in Sources */,
+				CC70D1C521344CDC0043C201 /* RequestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
