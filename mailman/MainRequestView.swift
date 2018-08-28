@@ -1,7 +1,8 @@
 import UIKit
 
 protocol MainRequestViewDelegate: class {
-    func sendURL(url: String)
+    func send(requestData: RequestData)
+    func valueChanged(requestData: RequestData)
 }
 
 class MainRequestView: UIView, UITextFieldDelegate {
@@ -29,15 +30,15 @@ class MainRequestView: UIView, UITextFieldDelegate {
         urlTextField.keyboardType = .URL
         urlTextField.layer.cornerRadius = 5
         urlTextField.clearButtonMode = .whileEditing
+        urlTextField.autocapitalizationType = .none
         
         urlTextField.delegate = self
         urlTextField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingChanged)
-
+        
         sendButton.setTitle("SEND", for: .normal)
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
         sendButton.backgroundColor = .orange
         sendButton.layer.cornerRadius = 5
-
         
         methodTextField.inputView = requestTypePicker
         methodTextField.backgroundColor = .white
@@ -71,7 +72,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
         sendButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         sendButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
         sendButton.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
-
+        
         responseView.translatesAutoresizingMaskIntoConstraints = false
         responseView.topAnchor.constraint(equalTo: sendButton.bottomAnchor, constant: padding).isActive = true
         responseView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
@@ -88,28 +89,40 @@ class MainRequestView: UIView, UITextFieldDelegate {
         methodTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
         methodTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         methodTextField.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
+        
+        update(buttonEnabled: false)
     }
     
+
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if (urlTextField.text?.isEmpty)! {
-            sendButton.isEnabled = false
-        } else {
-            sendButton.isEnabled = true
-        }
+        delegate?.valueChanged(requestData: requestDataFromFields())
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func requestDataFromFields() -> RequestData {
+        let method = methodTypes[requestTypePicker.selectedRow(inComponent: 0)]
+        return RequestData(
+            url: urlTextField.text,
+            method: method
+        )
+    }
+    
     @objc
     private func sendButtonTapped() {
-        guard let urlText = urlTextField.text else { return }
-        delegate?.sendURL(url: urlText)
+        delegate?.send(requestData: requestDataFromFields())
     }
     
     func update(response: String?) {
         responseView.text = response
+    }
+    
+    func update(buttonEnabled: Bool) {
+        sendButton.isEnabled = buttonEnabled
+        sendButton.alpha = buttonEnabled ? 1 : 0.5
     }
     
 }

@@ -1,8 +1,8 @@
 import Foundation
 
 struct RequestData {
-    let url: String
-    let method: Method
+    let url: String?
+    let method: Method?
 }
 
 enum Method: String {
