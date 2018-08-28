@@ -33,9 +33,9 @@ class NetworkRequestModel {
     }
     
     static func isValid(requestData: RequestData) -> Bool {
-        guard let text = requestData.url, !text.isEmpty, requestData.method != nil else {
+        guard let text = requestData.url else {
             return false
         }
-        return true
+        return !text.isEmpty && requestData.method != nil
     }
 }
