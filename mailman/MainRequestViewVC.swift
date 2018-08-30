@@ -18,17 +18,26 @@ class MainRequestViewVC: UIViewController {
 }
 
 extension MainRequestViewVC: NetworkRequestModelDelegate {
-    func dataRetrieved(data: Data) {
-        DispatchQueue.main.async { [weak self] in
-            let stringData = String(data: data, encoding: .utf8)
-            self?.mainView.update(response: stringData)
-        }
-    }
+//    func dataRetrieved(data: Data) {
+//        DispatchQueue.main.async { [weak self] in
+//            let stringData = String(data: data, encoding: .utf8)
+//            self?.mainView.update(response: stringData)
+//        }
+//    }
     
     func errorRetrieved(error: Error) {
         DispatchQueue.main.async { [weak self] in
             let stringError = error.localizedDescription
-            self?.mainView.update(response: stringError)
+            self?.mainView.update(errorResponse: stringError)
+        }
+    }
+    
+    func responseRetrieved(urlResponse: URLResponse, data: Data) {
+        DispatchQueue.main.async { [weak self] in
+            let httpResponse = urlResponse as! HTTPURLResponse
+            let statusCode = String(httpResponse.statusCode)
+            let stringData = String(data: data, encoding: .utf8)
+            self?.mainView.update(statusCode: statusCode, response: stringData)
         }
     }
 }

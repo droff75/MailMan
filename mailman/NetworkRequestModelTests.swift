@@ -16,4 +16,11 @@ class NetworkRequestModelTests: XCTestCase {
         XCTAssertTrue(NetworkRequestModel.isValid(requestData: RequestData(url: "http://test.url", method: .get)))
     }
     
+    func testWhenNetworkRequestMadeWithValidRequestDataThatValidResponseReceived() {
+        let requestData = RequestData(url: "https://postman-echo.com/get?test=MyMessage", method: .get)
+        
+        NetworkRequestModel().sendRequest(requestData: requestData)
+        
+    }
+    
 }

@@ -116,8 +116,12 @@ class MainRequestView: UIView, UITextFieldDelegate {
         delegate?.send(requestData: requestDataFromFields())
     }
     
-    func update(response: String?) {
-        responseView.text = response
+    func update(errorResponse: String?) {
+        responseView.text = errorResponse
+    }
+    
+    func update(statusCode: String?, response: String?) {
+        responseView.text = "\(statusCode!) \n\n \(response!)"
     }
     
     func update(buttonEnabled: Bool) {
