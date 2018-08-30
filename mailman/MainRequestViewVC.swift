@@ -17,14 +17,7 @@ class MainRequestViewVC: UIViewController {
     }
 }
 
-extension MainRequestViewVC: NetworkRequestModelDelegate {
-//    func dataRetrieved(data: Data) {
-//        DispatchQueue.main.async { [weak self] in
-//            let stringData = String(data: data, encoding: .utf8)
-//            self?.mainView.update(response: stringData)
-//        }
-//    }
-    
+extension MainRequestViewVC: NetworkRequestModelDelegate {    
     func errorRetrieved(error: Error) {
         DispatchQueue.main.async { [weak self] in
             let stringError = error.localizedDescription

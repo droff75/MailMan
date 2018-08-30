@@ -2,6 +2,7 @@
 import XCTest
 
 class NetworkRequestModelTests: XCTestCase {
+    let session = MockURLSession()
 
     func testIsValidReturnsFalseWhenUrlIsEmpty() {
         XCTAssertFalse(NetworkRequestModel.isValid(requestData: RequestData(url: nil, method: .get)))
@@ -16,11 +17,35 @@ class NetworkRequestModelTests: XCTestCase {
         XCTAssertTrue(NetworkRequestModel.isValid(requestData: RequestData(url: "http://test.url", method: .get)))
     }
     
-    func testWhenNetworkRequestMadeWithValidRequestDataThatValidResponseReceived() {
+    func testWhenSendRequestReceivesValidRequestDataTheCorrectURLIsUsed() {
+        let subject = NetworkRequestModel(session: session)
         let requestData = RequestData(url: "https://postman-echo.com/get?test=MyMessage", method: .get)
         
-        NetworkRequestModel().sendRequest(requestData: requestData)
+        subject.sendRequest(requestData: requestData)
         
+        XCTAssertEqual(session.lastURL?.url?.absoluteString, requestData.url)
     }
+    
+    func testWhenSendRequestCalledRequestIsStarted() {
+        let subject = NetworkRequestModel(session: session)
+        let dataTask = MockURLSessionDataTask()
+        let requestData = RequestData(url: "https://postman-echo.com/get?test=MyMessage", method: .get)
+
+        session.nextDataTask = dataTask
+        
+        subject.sendRequest(requestData: requestData)
+        
+        XCTAssert(dataTask.resumeWasCalled)
+    }
+    
+//    func testWhenSendRequestCalledWithValidRequestDataDataIsReturned() {
+//        let subject = NetworkRequestModel(session: session)
+//        let requestData = RequestData(url: "https://postman-echo.com/get?test=MyMessage", method: .get)
+//        var data: Data?
+//        
+//        subject.sendRequest(requestData: requestData)
+//        
+//        XCTAssertNotNil()
+//    }
     
 }

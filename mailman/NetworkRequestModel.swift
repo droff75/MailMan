@@ -1,7 +1,6 @@
 import Foundation
 
 protocol NetworkRequestModelDelegate: class {
-//    func dataRetrieved(data: Data)
     func errorRetrieved(error: Error)
     func responseRetrieved(urlResponse: URLResponse, data: Data)
 }
@@ -9,6 +8,11 @@ protocol NetworkRequestModelDelegate: class {
 class NetworkRequestModel {
     
     weak var delegate: NetworkRequestModelDelegate?
+    
+    private let session: URLSessionProtocol
+    init(session: URLSessionProtocol = URLSession.shared) {
+        self.session = session
+    }
     
     func sendRequest(requestData: RequestData) {
         guard
@@ -21,7 +25,7 @@ class NetworkRequestModel {
         
         request.httpMethod = method.rawValue
         
-        let dataTask = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: completion)
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completion)
         dataTask.resume()
     }
     
@@ -29,7 +33,6 @@ class NetworkRequestModel {
         if let error = error {
             delegate?.errorRetrieved(error: error)
         } else if let data = data, let urlResponse = urlResponse {
-//            delegate?.dataRetrieved(data: data)
             delegate?.responseRetrieved(urlResponse: urlResponse, data: data)
         }
     }
