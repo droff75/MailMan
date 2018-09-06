@@ -15,15 +15,11 @@ class NetworkRequestModel {
     }
     
     func sendRequest(requestData: RequestData) {
-        guard
-            let text = requestData.url,
-            let url = URL(string: text),
-            let method = requestData.method
-            else { return }
+        guard let url = url(from: requestData) else { return }
+        
         let request = NSMutableURLRequest(url: url)
         
-        
-        request.httpMethod = method.rawValue
+        request.httpMethod = method(from: requestData).rawValue
         
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completion)
         dataTask.resume()
@@ -35,6 +31,19 @@ class NetworkRequestModel {
         } else if let data = data, let urlResponse = urlResponse {
             delegate?.responseRetrieved(urlResponse: urlResponse, data: data)
         }
+    }
+    
+    private func url(from requestData: RequestData) -> URL? {
+        guard
+            let textUrl = requestData.url,
+            let url = URL(string: textUrl)
+            else { return nil }
+        return url
+    }
+    
+    private func method(from requestData: RequestData) -> Method {
+        guard let method = requestData.method else { return .get}
+        return method
     }
     
     static func isValid(requestData: RequestData) -> Bool {

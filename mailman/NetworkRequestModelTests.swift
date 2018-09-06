@@ -40,12 +40,14 @@ class NetworkRequestModelTests: XCTestCase {
     
 //    func testWhenSendRequestCalledWithValidRequestDataDataIsReturned() {
 //        let subject = NetworkRequestModel(session: session)
+//        let dataTask = MockURLSessionDataTask()
 //        let requestData = RequestData(url: "https://postman-echo.com/get?test=MyMessage", method: .get)
-//        var data: Data?
 //        
 //        subject.sendRequest(requestData: requestData)
 //        
-//        XCTAssertNotNil()
+//        session.nextDataTask = dataTask
+//        
+//        
 //    }
     
 }

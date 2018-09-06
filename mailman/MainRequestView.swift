@@ -120,8 +120,17 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseView.text = errorResponse
     }
     
-    func update(statusCode: String?, response: String?) {
-        responseView.text = "\(statusCode!) \n\n \(response!)"
+    func update(statusCode: String?, response: String?) {        
+        switch (statusCode, response) {
+        case (.some(let statusCode), .none):
+            responseView.text = statusCode
+        case (.none, .some(let response)):
+            responseView.text = response
+        case (.some(let statusCode), .some(let response)):
+            responseView.text = "\(statusCode) \n\n \(response)"
+        default:
+            responseView.text = ""
+        }
     }
     
     func update(buttonEnabled: Bool) {
