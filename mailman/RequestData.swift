@@ -3,6 +3,7 @@ import Foundation
 struct RequestData {
     let url: String?
     let method: Method?
+    let headers: [String:String]?
 }
 
 enum Method: String {
