@@ -3,6 +3,7 @@ import Foundation
 struct RequestData {
     let url: String?
     let method: Method?
+    let body: String?
 }
 
 enum Method: String {
@@ -12,3 +13,6 @@ enum Method: String {
     case patch = "PATCH"
     case delete = "DELETE"
 }
+
+let methodTypes: [Method] = [.get, .post, .put, .patch, .delete]
+

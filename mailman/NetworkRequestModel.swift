@@ -9,6 +9,8 @@ class NetworkRequestModel {
     
     weak var delegate: NetworkRequestModelDelegate?
     
+    var requestBody: String?
+        
     private let session: URLSessionProtocol
     init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
@@ -20,6 +22,7 @@ class NetworkRequestModel {
         let request = NSMutableURLRequest(url: url)
         
         request.httpMethod = method(from: requestData).rawValue
+        request.httpBody = body(from: requestData).data(using: .utf8)
         
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completion)
         dataTask.resume()
@@ -44,6 +47,11 @@ class NetworkRequestModel {
     private func method(from requestData: RequestData) -> Method {
         guard let method = requestData.method else { return .get}
         return method
+    }
+    
+    private func body(from requestData: RequestData) -> String {
+        guard let body = requestData.body else { return "" }
+        return body
     }
     
     static func isValid(requestData: RequestData) -> Bool {

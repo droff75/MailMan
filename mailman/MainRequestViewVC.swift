@@ -44,6 +44,11 @@ extension MainRequestViewVC: MainRequestViewDelegate {
     func send(requestData: RequestData) {
         model.sendRequest(requestData: requestData)
     }
+    
+    func showBodyView() {
+        let newViewController = RequestBodyViewVC()
+        self.present(newViewController, animated: true, completion: nil)
+    }
 }
 
 

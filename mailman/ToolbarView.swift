@@ -33,10 +33,8 @@ class ToolbarView: UIView {
         addSubview(labelView)
         addSubview(stackView)
         
-        
         stackView.addArrangedSubview(newButton)
         stackView.addArrangedSubview(importButton)
-        
         stackView.setCustomSpacing(10, after: newButton)
         
         newButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
