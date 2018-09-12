@@ -1,17 +1,15 @@
 import Foundation
 
-protocol NetworkRequestModelDelegate: class {
+protocol NetworkRequestServiceDelegate: class {
     func errorRetrieved(error: Error)
     func responseRetrieved(urlResponse: URLResponse, data: Data)
 }
 
-class NetworkRequestModel {
+class NetworkRequestService {    
+    weak var delegate: NetworkRequestServiceDelegate?
     
-    weak var delegate: NetworkRequestModelDelegate?
-    
-    var requestBody: String?
-        
     private let session: URLSessionProtocol
+    
     init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
     }
@@ -28,7 +26,7 @@ class NetworkRequestModel {
         dataTask.resume()
     }
     
-    private func completion(data: Data?, urlResponse: URLResponse?, error: Error?) {
+    func completion(data: Data?, urlResponse: URLResponse?, error: Error?) {
         if let error = error {
             delegate?.errorRetrieved(error: error)
         } else if let data = data, let urlResponse = urlResponse {

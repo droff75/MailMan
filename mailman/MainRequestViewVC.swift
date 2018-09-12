@@ -2,8 +2,9 @@ import UIKit
 
 class MainRequestViewVC: UIViewController {
     
-    private let model = NetworkRequestModel()
+    private let service = NetworkRequestService()
     fileprivate let mainView = MainRequestView()
+    private let requestModel = RequestModel(networkService: NetworkRequestService())
 
     override func loadView() {
         self.view = mainView
@@ -12,12 +13,12 @@ class MainRequestViewVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model.delegate = self
+        service.delegate = self
         mainView.delegate = self
     }
 }
 
-extension MainRequestViewVC: NetworkRequestModelDelegate {    
+extension MainRequestViewVC: NetworkRequestServiceDelegate {    
     func errorRetrieved(error: Error) {
         DispatchQueue.main.async { [weak self] in
             let stringError = error.localizedDescription
@@ -36,17 +37,22 @@ extension MainRequestViewVC: NetworkRequestModelDelegate {
 }
 
 extension MainRequestViewVC: MainRequestViewDelegate {
-    func valueChanged(requestData: RequestData) {
-        let isValid = NetworkRequestModel.isValid(requestData: requestData)
-        mainView.update(buttonEnabled: isValid)
+    
+    func methodChanged(_ method: Method) {
+        requestModel.method = method
     }
     
-    func send(requestData: RequestData) {
-        model.sendRequest(requestData: requestData)
+    func urlChanged(_ url: String) {
+        requestModel.url = url
+        mainView.update(buttonEnabled: requestModel.url != "")
+    }
+    
+    func send() {
+        requestModel.sendRequest()
     }
     
     func showBodyView() {
-        let newViewController = RequestBodyViewVC()
+        let newViewController = RequestBodyViewVC(requestModel: requestModel)
         self.present(newViewController, animated: true, completion: nil)
     }
 }

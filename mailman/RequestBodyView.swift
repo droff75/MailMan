@@ -2,6 +2,7 @@ import UIKit
 
 protocol RequestBodyViewDelegate: class {
     func dismissBodyView()
+    func bodyChanged(_ body: String)
 }
 
 class RequestBodyView: UIView {
@@ -43,6 +44,7 @@ class RequestBodyView: UIView {
     
     @objc
     func doneButtonTapped() {
+        delegate?.bodyChanged(textView.text)
         delegate?.dismissBodyView()
     }
     

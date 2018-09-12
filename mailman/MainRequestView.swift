@@ -1,9 +1,10 @@
 import UIKit
 
 protocol MainRequestViewDelegate: class {
-    func send(requestData: RequestData)
-    func valueChanged(requestData: RequestData)
+    func send()
     func showBodyView()
+    func methodChanged(_ method: Method)
+    func urlChanged(_ url: String)
 }
 
 class MainRequestView: UIView, UITextFieldDelegate {
@@ -36,7 +37,6 @@ class MainRequestView: UIView, UITextFieldDelegate {
         urlTextField.autocapitalizationType = .none
         
         urlTextField.delegate = self
-        urlTextField.addTarget(self, action: #selector(textFieldDidBeginEditing(_:)), for: .editingChanged)
         
         sendButton.setTitle("SEND", for: .normal)
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
@@ -116,31 +116,31 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
         responseView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
         
-        update(buttonEnabled: false)
+         update(buttonEnabled: false)
     }
     
-
+    func setSubmitEnabled(_ enabled: Bool) {
+        update(buttonEnabled: enabled)
+    }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        delegate?.valueChanged(requestData: requestDataFromFields())
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text,
+            let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange,
+                                                       with: string)
+            delegate?.urlChanged(updatedText)
+        }
+        
+        return true
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func requestDataFromFields() -> RequestData {
-        let method = methodTypes[requestTypePicker.selectedRow(inComponent: 0)]
-        return RequestData(
-            url: urlTextField.text,
-            method: method,
-            body: nil
-        )
-    }
-    
     @objc
     private func sendButtonTapped() {
-        delegate?.send(requestData: requestDataFromFields())
+        delegate?.send()
     }
     
     @objc
@@ -191,6 +191,8 @@ extension MainRequestView: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        methodTextField.text = methodTypes[row].rawValue
+        let method = methodTypes[row]
+        methodTextField.text = method.rawValue
+        delegate?.methodChanged(method)
     }
 }
