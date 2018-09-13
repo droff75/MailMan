@@ -3,18 +3,25 @@ import UIKit
 class MainRequestViewVC: UIViewController {
     
     private let service = NetworkRequestService()
-    fileprivate let mainView = MainRequestView()
-    private let requestModel = RequestModel(networkService: NetworkRequestService())
-
-    override func loadView() {
-        self.view = mainView
+    private var mainView: MainRequestView!
+    private var requestModel: RequestModel!
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+        
+        mainView = MainRequestView()
+        requestModel = RequestModel(networkService: service)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
         service.delegate = self
         mainView.delegate = self
+        
+        view = mainView
     }
 }
 
