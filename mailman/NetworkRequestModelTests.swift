@@ -19,7 +19,7 @@ class NetworkRequestModelTests: XCTestCase {
     
     func testWhenSendRequestReceivesValidRequestDataTheCorrectURLIsUsed() {
         let subject = NetworkRequestService(session: session)
-        let requestData = RequestData(url: "https://postman-echo.com/get?test=MyMessage", method: .get, body: "")
+        let requestData = RequestData(url: "http://test.url", method: .get, body: "")
         
         subject.sendRequest(requestData: requestData)
         
@@ -29,7 +29,7 @@ class NetworkRequestModelTests: XCTestCase {
     func testWhenSendRequestCalledRequestIsStarted() {
         let subject = NetworkRequestService(session: session)
         let dataTask = MockURLSessionDataTask()
-        let requestData = RequestData(url: "https://postman-echo.com/get?test=MyMessage", method: .get, body: "")
+        let requestData = RequestData(url: "http://test.url", method: .get, body: "")
 
         session.nextDataTask = dataTask
         
@@ -38,17 +38,36 @@ class NetworkRequestModelTests: XCTestCase {
         XCTAssert(dataTask.resumeWasCalled)
     }
     
-//    func testWhenSendRequestCalledWithValidRequestDataDataIsReturned() {
-//        let subject = NetworkRequestService(session: session)
-//        let data = "Test Data".data(using: .utf8)
-//        let urlResponse = 
-//        let error =
-//        
-//        subject.completion(data: data, urlResponse: urlResponse, error: error)
-//        
-//        
-//        
-//        
-//    }
+    func testWhenCompletionCalledWithValidDataAndResponseThenCorrectDelegateFunctionIsCalled() {
+        let service = NetworkRequestService(session: session)
+        let testDelegate = MockMainRequestViewVC()
+        service.delegate = testDelegate
+        
+        let data = "Test Data".data(using: .utf8)
+        let urlResponse = URLResponse.init(url: URL(string: "http://test.url")!, mimeType: "testMimeType", expectedContentLength: 1, textEncodingName: "testEncoding")
+        let error = Error?.init(nilLiteral: ())
+        
+        service.completion(data: data, urlResponse: urlResponse, error: error)
+
+        XCTAssertNotNil(MockMainRequestViewVC.data)
+        XCTAssertNotNil(MockMainRequestViewVC.urlResponse)
+        XCTAssertNil(MockMainRequestViewVC.error)
+    }
+    
+    func testWhenCompletionCalledWithErrorThenCorrectDelegateFunctionIsCalled() {
+        let service = NetworkRequestService(session: session)
+        let testDelegate = MockMainRequestViewVC()
+        service.delegate = testDelegate
+        
+        let data = Data?.init(nilLiteral: ())
+        let urlResponse = URLResponse?.init(nilLiteral: ())
+        let error = NSError.init(domain: "testDomain", code: 999, userInfo: nil)
+        
+        service.completion(data: data, urlResponse: urlResponse, error: error)
+        
+        XCTAssertNil(MockMainRequestViewVC.data)
+        XCTAssertNil(MockMainRequestViewVC.urlResponse)
+        XCTAssertNotNil(MockMainRequestViewVC.error)
+    }
     
 }

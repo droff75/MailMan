@@ -3,14 +3,14 @@ import UIKit
 class MainRequestViewVC: UIViewController {
     
     private let service = NetworkRequestService()
-    private var mainView: MainRequestView!
-    private var requestModel: RequestModel!
+    private var mainView: MainRequestView
+    private var requestModel: RequestModel
     
     init() {
-        super.init(nibName: nil, bundle: nil)
-        
         mainView = MainRequestView()
         requestModel = RequestModel(networkService: service)
+        
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
