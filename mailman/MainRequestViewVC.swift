@@ -1,15 +1,14 @@
 import UIKit
 
-class MainRequestViewVC: UIViewController {
-    
+class MainRequestViewVC: UIViewController {    
     private let service = NetworkRequestService()
+    fileprivate var headersModel: HeadersModel?
     private var mainView: MainRequestView
-    private var requestModel: RequestModel
+    fileprivate var requestModel: RequestModel
     
     init() {
         mainView = MainRequestView()
         requestModel = RequestModel(networkService: service)
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -44,7 +43,6 @@ extension MainRequestViewVC: NetworkRequestServiceDelegate {
 }
 
 extension MainRequestViewVC: MainRequestViewDelegate {
-    
     func methodChanged(_ method: Method) {
         requestModel.method = method
     }
@@ -60,8 +58,53 @@ extension MainRequestViewVC: MainRequestViewDelegate {
     
     func showBodyView() {
         let newViewController = RequestBodyViewVC(requestModel: requestModel)
-        self.present(newViewController, animated: true, completion: nil)
+        newViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(bodyDoneButtonTapped))
+        let navController = UINavigationController(rootViewController: newViewController)
+        
+        self.present(navController, animated: true, completion: nil)
     }
+    
+    func showHeadersView() {
+        let headersModel = HeadersModel(headers: requestModel.headers ?? [:])
+        let newViewController = RequestHeadersViewVC(headerModel: headersModel)
+        newViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(headersDoneButtonTapped))
+        newViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(headersCancelButtonTapped))
+        let navController = UINavigationController(rootViewController: newViewController)
+        
+        self.present(navController, animated: true, completion: nil)
+        self.headersModel = headersModel
+    }
+    
+    @objc
+    private func headersDoneButtonTapped() {
+        guard let headersModel = headersModel else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
+        requestModel.headers = headersModel.headers
+        dismiss(animated: true, completion: nil)
+        self.headersModel = nil
+    }
+    
+    @objc
+    private func headersCancelButtonTapped() {
+        dismiss(animated: true, completion: nil)
+        self.headersModel = nil
+    }
+    
+    @objc
+    private func bodyDoneButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension MainRequestViewVC: RequestBodyViewDelegate {
+    func bodyChanged(_ body: String) {
+        
+    }
+    
+    
 }
 
 

@@ -26,10 +26,6 @@ class RequestBodyViewVC: UIViewController {
 }
 
 extension RequestBodyViewVC: RequestBodyViewDelegate {
-    func dismissBodyView() {
-        self.dismiss(animated: true, completion: nil)
-    }
-    
     func bodyChanged(_ body: String) {
         requestModel.body = body
     }

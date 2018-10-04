@@ -21,6 +21,9 @@ class NetworkRequestService {
         
         request.httpMethod = method(from: requestData).rawValue
         request.httpBody = body(from: requestData).data(using: .utf8)
+        if headers(from: requestData) != nil {
+            request.allHTTPHeaderFields = headers(from: requestData)
+        }
         
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completion)
         dataTask.resume()
@@ -50,6 +53,11 @@ class NetworkRequestService {
     private func body(from requestData: RequestData) -> String {
         guard let body = requestData.body else { return "" }
         return body
+    }
+    
+    private func headers(from requestData: RequestData) -> [String:String]? {
+        guard let headers = requestData.headers else { return nil }
+        return headers
     }
     
     static func isValid(requestData: RequestData) -> Bool {

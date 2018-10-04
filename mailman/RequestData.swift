@@ -4,6 +4,7 @@ struct RequestData {
     let url: String?
     let method: Method?
     let body: String?
+    let headers: [String:String]?
 }
 
 enum Method: String {
