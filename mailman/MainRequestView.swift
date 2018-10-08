@@ -139,6 +139,12 @@ class MainRequestView: UIView, UITextFieldDelegate {
         return true
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        urlTextField.resignFirstResponder()
+        sendButtonTapped()
+        return true
+    }
+    
     @objc
     private func sendButtonTapped() {
         delegate?.send()
@@ -158,12 +164,12 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseView.text = errorResponse
     }
     
-    func update(statusCode: String?, response: String?) {        
+    func update(statusCode: String?, response: Any?) {
         switch (statusCode, response) {
         case (.some(let statusCode), .none):
             responseView.text = statusCode
         case (.none, .some(let response)):
-            responseView.text = response
+            responseView.text = response as? String
         case (.some(let statusCode), .some(let response)):
             responseView.text = "\(statusCode) \n\n \(response)"
         default:

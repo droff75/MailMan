@@ -19,6 +19,8 @@ class RequestBodyView: UIView {
         
         self.addSubview(textView)
         
+        textView.font = UIFont.systemFont(ofSize: 20)
+        
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.topAnchor.constraint(equalTo: topAnchor, constant: padding*2).isActive = true
         textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
