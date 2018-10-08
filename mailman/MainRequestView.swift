@@ -63,6 +63,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
         methodTextField.layer.cornerRadius = 5
         
         responseView.font = UIFont.systemFont(ofSize: 20)
+        responseView.isEditable = false
         
         requestTypePicker.selectRow(0, inComponent: 0, animated: false)
         
