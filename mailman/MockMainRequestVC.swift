@@ -9,7 +9,7 @@ public class MockNetworkRequestServiceDelegate: NetworkRequestServiceDelegate {
         MockNetworkRequestServiceDelegate.error = error
     }
 
-    func responseRetrieved(urlResponse: URLResponse, data: Any) {
+    func responseRetrieved(urlResponse: URLResponse, data: Any?) {
         MockNetworkRequestServiceDelegate.urlResponse = urlResponse
         MockNetworkRequestServiceDelegate.data = data
     }

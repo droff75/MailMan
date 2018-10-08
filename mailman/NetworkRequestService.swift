@@ -2,7 +2,7 @@ import Foundation
 
 protocol NetworkRequestServiceDelegate: class {
     func errorRetrieved(error: Error)
-    func responseRetrieved(urlResponse: URLResponse, data: Any)
+    func responseRetrieved(urlResponse: URLResponse, data: Any?)
 }
 
 class NetworkRequestService {    
@@ -30,15 +30,17 @@ class NetworkRequestService {
     }
     
     func completion(data: Data?, urlResponse: URLResponse?, error: Error?) {
+        var jsonResponse: Any?
         if let error = error {
             delegate?.errorRetrieved(error: error)
         } else if let data = data, let urlResponse = urlResponse {
             do {
-                let jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
-                delegate?.responseRetrieved(urlResponse: urlResponse, data: jsonResponse)
+                jsonResponse = try JSONSerialization.jsonObject(with: data, options: [])
             } catch let parsingError {
                 print("Error", parsingError)
             }
+            delegate?.responseRetrieved(urlResponse: urlResponse, data: jsonResponse)
+
         }
         
 //        if let error = error {
