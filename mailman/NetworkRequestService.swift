@@ -21,6 +21,7 @@ class NetworkRequestService {
         
         request.httpMethod = method(from: requestData).rawValue
         request.httpBody = body(from: requestData).data(using: .utf8)
+        
         if headers(from: requestData) != nil {
             request.allHTTPHeaderFields = headers(from: requestData)
         }
