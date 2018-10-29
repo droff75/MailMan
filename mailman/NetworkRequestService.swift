@@ -43,12 +43,6 @@ class NetworkRequestService {
             delegate?.responseRetrieved(urlResponse: urlResponse, data: jsonResponse)
 
         }
-        
-//        if let error = error {
-//            delegate?.errorRetrieved(error: error)
-//        } else if let data = data, let urlResponse = urlResponse {
-//            delegate?.responseRetrieved(urlResponse: urlResponse, data: data)
-//        }
     }
     
     private func url(from requestData: RequestData) -> URL? {

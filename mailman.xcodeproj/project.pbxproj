@@ -26,7 +26,7 @@
 		CC8A6390213850D3009DFC50 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */; };
 		CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A6391213868B3009DFC50 /* MockURLSession.swift */; };
 		CC9B84B8215D2AC5001A5C41 /* HeadersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* HeadersModel.swift */; };
-		CCA2D872214AA7F9008FD431 /* MockMainRequestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2D871214AA7F9008FD431 /* MockMainRequestVC.swift */; };
+		CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */; };
 		CCE73BA8214FF28C00EEBB09 /* RequestHeadersViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewVC.swift */; };
 		CCE73BAC214FF2DF00EEBB09 /* RequestHeaderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE73BAB214FF2DF00EEBB09 /* RequestHeaderTableCell.swift */; };
 /* End PBXBuildFile section */
@@ -74,7 +74,7 @@
 		CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		CC8A6391213868B3009DFC50 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		CC9B84B7215D2AC5001A5C41 /* HeadersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersModel.swift; sourceTree = "<group>"; };
-		CCA2D871214AA7F9008FD431 /* MockMainRequestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMainRequestVC.swift; sourceTree = "<group>"; };
+		CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestServiceDelegate.swift; sourceTree = "<group>"; };
 		CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewVC.swift; sourceTree = "<group>"; };
 		CCE73BAB214FF2DF00EEBB09 /* RequestHeaderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeaderTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,7 +133,7 @@
 				CC22FA19212F1F5E000BC613 /* ToolbarView.swift */,
 				CC22FA1B212F1F8A000BC613 /* ToolbarViewVC.swift */,
 				CC1C4BF5212F424000869C6F /* NetworkRequestService.swift */,
-				CCA2D871214AA7F9008FD431 /* MockMainRequestVC.swift */,
+				CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */,
 				CC8A6391213868B3009DFC50 /* MockURLSession.swift */,
 				CC8A63892135C116009DFC50 /* NetworkRequestModelTests.swift */,
 				CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */,
@@ -306,7 +306,7 @@
 				CC22FA1A212F1F5E000BC613 /* ToolbarView.swift in Sources */,
 				CC1C4BF6212F424000869C6F /* NetworkRequestService.swift in Sources */,
 				CC80163C20D954F1008C84A9 /* MainRequestView.swift in Sources */,
-				CCA2D872214AA7F9008FD431 /* MockMainRequestVC.swift in Sources */,
+				CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */,
 				CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */,
 				CC55B40B20A09DF500C34B4D /* MainRequestViewVC.swift in Sources */,
 				CC9B84B8215D2AC5001A5C41 /* HeadersModel.swift in Sources */,

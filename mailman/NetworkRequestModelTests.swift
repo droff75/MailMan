@@ -2,7 +2,12 @@
 import XCTest
 
 class NetworkRequestModelTests: XCTestCase {
-    let session = MockURLSession()
+    var session: MockURLSession!
+    
+    override func setUp() {
+        super.setUp()
+        session = MockURLSession()
+    }
 
     func testIsValidReturnsFalseWhenUrlIsEmpty() {
         XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: nil, method: .get, body: "", headers: nil)))
@@ -43,15 +48,14 @@ class NetworkRequestModelTests: XCTestCase {
         let testDelegate = MockNetworkRequestServiceDelegate()
         service.delegate = testDelegate
         
-        let data = "Test Data".data(using: .utf8)
+        let data = "{\"test\":\"test1\"}".data(using: .utf8)
         let urlResponse = URLResponse.init(url: URL(string: "http://test.url")!, mimeType: "testMimeType", expectedContentLength: 1, textEncodingName: "testEncoding")
         let error = Error?.init(nilLiteral: ())
         
         service.completion(data: data, urlResponse: urlResponse, error: error)
-        
-        XCTAssertNotNil(MockNetworkRequestServiceDelegate.data)
-        XCTAssertNotNil(MockNetworkRequestServiceDelegate.urlResponse)
-        XCTAssertNil(MockNetworkRequestServiceDelegate.error)
+        XCTAssertNotNil(testDelegate.data)
+        XCTAssertNotNil(testDelegate.urlResponse)
+        XCTAssertNil(testDelegate.error)
     }
     
     func testWhenCompletionCalledWithErrorThenCorrectDelegateFunctionIsCalled() {
@@ -65,9 +69,9 @@ class NetworkRequestModelTests: XCTestCase {
         
         service.completion(data: data, urlResponse: urlResponse, error: error)
         
-        XCTAssertNil(MockNetworkRequestServiceDelegate.data)
-        XCTAssertNil(MockNetworkRequestServiceDelegate.urlResponse)
-        XCTAssertNotNil(MockNetworkRequestServiceDelegate.error)
+        XCTAssertNil(testDelegate.data)
+        XCTAssertNil(testDelegate.urlResponse)
+        XCTAssertNotNil(testDelegate.error)
     }
     
 }
