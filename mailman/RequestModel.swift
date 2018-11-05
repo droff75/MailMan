@@ -18,7 +18,7 @@ class RequestModel {
             url: url,
             method: method,
             body: body,
-            headers: headersDictionary()
+            headers: []
         )
         
         networkService.sendRequest(requestData: requestData)

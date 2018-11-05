@@ -19,12 +19,13 @@ class NetworkRequestService {
         
         let request = NSMutableURLRequest(url: url)
         
-        request.httpMethod = method(from: requestData).rawValue
+        let httpMethod = requestData.method ?? .get
+        request.httpMethod = httpMethod.rawValue
         request.httpBody = body(from: requestData).data(using: .utf8)
         
-        if headers(from: requestData) != nil {
-            request.allHTTPHeaderFields = headers(from: requestData)
-        }
+//        if headers(from: requestData) != nil {
+//            request.allHTTPHeaderFields = requestData.headers
+//        }
         
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completion)
         dataTask.resume()
@@ -53,20 +54,20 @@ class NetworkRequestService {
         return url
     }
     
-    private func method(from requestData: RequestData) -> Method {
-        guard let method = requestData.method else { return .get}
-        return method
-    }
-    
     private func body(from requestData: RequestData) -> String {
         guard let body = requestData.body else { return "" }
         return body
     }
     
-    private func headers(from requestData: RequestData) -> [String:String]? {
-        guard let headers = requestData.headers else { return nil }
-        return headers
-    }
+//    private func headers(from requestData: RequestData) -> [String: String]? {
+//        guard let headers = requestData.headers else { return nil }
+//        var headersDictionary: [String: String] = [:]
+//        headers.forEach { header in
+//            guard let key = header.key else { return }
+//
+//            headersDictionary[key] = header.value
+//        }
+//    }
     
     static func isValid(requestData: RequestData) -> Bool {
         guard let text = requestData.url else {

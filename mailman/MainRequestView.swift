@@ -202,15 +202,15 @@ extension MainRequestView: UIPickerViewDataSource, UIPickerViewDelegate {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return methodTypes.count
+        return Method.types.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return methodTypes[row].rawValue
+        return Method.types[row].rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let method = methodTypes[row]
+        let method = Method.types[row]
         methodTextField.text = method.rawValue
         delegate?.methodChanged(method)
     }
