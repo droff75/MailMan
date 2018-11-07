@@ -16,8 +16,8 @@ class RequestModel {
     }
     
     func sendRequest() {
-        ///////////////////////////////////////////////
-        networkService.sendRequest(urlRequest()!)
+        guard let urlRequest = urlRequest() else { return }
+        networkService.sendRequest(urlRequest)
     }
     
     func urlRequest() -> URLRequest? {
@@ -33,7 +33,9 @@ class RequestModel {
     private func requestHeaders(headers: [Header]?) -> [String:String] {
         var headersDictionary = [String:String]()
         headers?.forEach { header in
-            headersDictionary[header.key!] = header.value
+            if let key = header.key, !key.isEmpty {
+                headersDictionary[key] = header.value ?? ""
+            }
         }
         
         return headersDictionary
