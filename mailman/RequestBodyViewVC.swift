@@ -16,11 +16,7 @@ class RequestBodyViewVC: UIViewController {
     
     override func loadView() {
         self.view = bodyView
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+        bodyView.set(body: requestModel.body)
         bodyView.delegate = self
     }
 }

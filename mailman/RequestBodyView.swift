@@ -26,6 +26,12 @@ class RequestBodyView: UIView {
         textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
         textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
         textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
+        
+        textView.becomeFirstResponder()
+    }
+    
+    func set(body: String?) {
+        textView.text = body
     }
     
     required init?(coder aDecoder: NSCoder) {
