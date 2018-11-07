@@ -30,7 +30,12 @@ class RequestHeadersViewVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: headerCellId, for: indexPath) as! RequestHeaderTableCell
+        let header = headerModel.headers[indexPath.row]
         cell.delegate = self
+        if let header = header {
+            cell.set(key: header.key)
+            cell.set(value: header.value)
+        }
         return cell
     }
 }

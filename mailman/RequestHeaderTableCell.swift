@@ -62,6 +62,14 @@ class RequestHeaderTableCell: UITableViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func set(key: String?) {
+        keyTextField.text = key
+    }
+    
+    func set(value: String?) {
+        valueTextField.text = value
+    }
 }
 
 extension RequestHeaderTableCell: UITextFieldDelegate {
