@@ -2,7 +2,6 @@ import UIKit
 
 class MainRequestViewVC: UIViewController {    
     private let service = NetworkRequestService()
-    fileprivate var headersModel: HeadersModel?
     private var mainView: MainRequestView
     fileprivate var requestModel: RequestModel
     
@@ -64,32 +63,23 @@ extension MainRequestViewVC: MainRequestViewDelegate {
     }
     
     func showHeadersView() {
-        let headersModel = HeadersModel(headers: requestModel.headers ?? [:])
-        let newViewController = RequestHeadersViewVC(headerModel: headersModel)
+        let newViewController = RequestHeadersViewVC(headerModel: requestModel.headersModel)
         newViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(headersDoneButtonTapped))
         newViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(headersCancelButtonTapped))
         let navController = UINavigationController(rootViewController: newViewController)
         
         self.present(navController, animated: true, completion: nil)
-        self.headersModel = headersModel
     }
     
     @objc
     private func headersDoneButtonTapped() {
-        guard let headersModel = headersModel else {
-            dismiss(animated: true, completion: nil)
-            return
-        }
         UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
-        requestModel.headers = headersModel.headers
         dismiss(animated: true, completion: nil)
-        self.headersModel = nil
     }
     
     @objc
     private func headersCancelButtonTapped() {
         dismiss(animated: true, completion: nil)
-        self.headersModel = nil
     }
     
     @objc

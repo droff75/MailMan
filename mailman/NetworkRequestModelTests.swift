@@ -24,21 +24,20 @@ class NetworkRequestModelTests: XCTestCase {
     
     func testWhenSendRequestReceivesValidRequestDataTheCorrectURLIsUsed() {
         let subject = NetworkRequestService(session: session)
-        let requestData = RequestData(url: "http://test.url", method: .get, body: "", headers: nil)
+        let request = URLRequest(url: URL(string: "test.url")!)
         
-        subject.sendRequest(requestData: requestData)
+        subject.sendRequest(request)
         
-        XCTAssertEqual(session.lastURL?.url?.absoluteString, requestData.url)
+        XCTAssertEqual(session.lastURL?.url, request.url)
     }
     
     func testWhenSendRequestCalledRequestIsStarted() {
         let subject = NetworkRequestService(session: session)
         let dataTask = MockURLSessionDataTask()
-        let requestData = RequestData(url: "http://test.url", method: .get, body: "", headers: nil)
-
+        let request = URLRequest(url: URL(string: "test.url")!)
         session.nextDataTask = dataTask
         
-        subject.sendRequest(requestData: requestData)
+        subject.sendRequest(request)
         
         XCTAssert(dataTask.resumeWasCalled)
     }

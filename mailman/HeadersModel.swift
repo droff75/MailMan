@@ -10,7 +10,7 @@ struct Header: Codable, Equatable {
 }
 
 class HeadersModel {
-    var headers: [Int:Header]
+    private(set) var headers: [Int:Header]
     
     init(headers: [Int:Header] = [:]) {
         self.headers = headers

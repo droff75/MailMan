@@ -12,21 +12,7 @@ struct RequestData: Codable {
         case body
         case headers = "header"
     }
-    
-    func urlRequest() -> URLRequest? {
-        guard let urlString = url, let url = URL(string: urlString) else { return nil }
-        var request = URLRequest(url: url)
-        if let method = method {
-            request.httpMethod = method.rawValue
-        } else {
-            request.httpMethod = "GET"
-        }
-        request.httpBody = body?.data(using: .utf8)
-//        request.allHTTPHeaderFields = 
-        return request
-    }
 }
-
 
 enum Method: String, Codable {
     case get = "GET"

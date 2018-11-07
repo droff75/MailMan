@@ -14,20 +14,8 @@ class NetworkRequestService {
         self.session = session
     }
     
-    func sendRequest(requestData: RequestData) {
-        guard let url = url(from: requestData) else { return }
-        
-        let request = NSMutableURLRequest(url: url)
-        
-        let httpMethod = requestData.method ?? .get
-        request.httpMethod = httpMethod.rawValue
-        request.httpBody = body(from: requestData).data(using: .utf8)
-        
-//        if headers(from: requestData) != nil {
-//            request.allHTTPHeaderFields = requestData.headers
-//        }
-        
-        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: completion)
+    func sendRequest(_ request: URLRequest) {        
+        let dataTask = session.dataTask(with: request, completionHandler: completion)
         dataTask.resume()
     }
     
