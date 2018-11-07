@@ -34,29 +34,6 @@ class NetworkRequestService {
         }
     }
     
-    private func url(from requestData: RequestData) -> URL? {
-        guard
-            let textUrl = requestData.url,
-            let url = URL(string: textUrl)
-            else { return nil }
-        return url
-    }
-    
-    private func body(from requestData: RequestData) -> String {
-        guard let body = requestData.body else { return "" }
-        return body
-    }
-    
-//    private func headers(from requestData: RequestData) -> [String: String]? {
-//        guard let headers = requestData.headers else { return nil }
-//        var headersDictionary: [String: String] = [:]
-//        headers.forEach { header in
-//            guard let key = header.key else { return }
-//
-//            headersDictionary[key] = header.value
-//        }
-//    }
-    
     static func isValid(requestData: RequestData) -> Bool {
         guard let text = requestData.url else {
             return false
