@@ -33,11 +33,4 @@ class NetworkRequestService {
 
         }
     }
-    
-    static func isValid(requestData: RequestData) -> Bool {
-        guard let urlText = requestData.url?.raw else {
-            return false
-        }
-        return !urlText.isEmpty && requestData.method != nil
-    }
 }

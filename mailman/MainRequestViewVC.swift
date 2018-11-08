@@ -47,7 +47,7 @@ extension MainRequestViewVC: MainRequestViewDelegate {
     
     func urlChanged(_ url: String) {
         requestModel.url = url
-        mainView.update(buttonEnabled: requestModel.url != "")
+        mainView.update(buttonEnabled: requestModel.isValid())
     }
     
     func send() {

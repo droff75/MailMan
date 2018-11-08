@@ -8,25 +8,6 @@ class NetworkRequestModelTests: XCTestCase {
         super.setUp()
         session = MockURLSession()
     }
-
-    func testIsValidReturnsFalseWhenUrlIsEmpty() {
-        let postmanUrl = PostmanUrl(raw: "", httpProtocol: nil, host: nil, path: nil)
-        
-        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: nil, method: .get, body: nil, headers: nil)))
-        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: postmanUrl, method: .get, body: nil, headers: nil)))
-    }
-    
-    func testIsValidReturnsFalseWhenMethodIsNil() {
-        let postmanUrl = PostmanUrl(raw: "test.url", httpProtocol: nil, host: nil, path: nil)
-
-        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: postmanUrl, method: nil, body: nil, headers: nil)))
-    }
-    
-    func testIsValidReturnsTrueWhenRequestDataIsValid() {
-        let postmanUrl = PostmanUrl(raw: "test.url", httpProtocol: nil, host: nil, path: nil)
-
-        XCTAssertTrue(NetworkRequestService.isValid(requestData: RequestData(url: postmanUrl, method: .get, body: Body(mode: nil, raw: "Test Body"), headers: nil)))
-    }
     
     func testWhenSendRequestReceivesValidRequestDataTheCorrectURLIsUsed() {
         let subject = NetworkRequestService(session: session)

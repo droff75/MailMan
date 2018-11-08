@@ -82,5 +82,19 @@ class RequestModelTests: XCTestCase {
         
         XCTAssertEqual(testObject.urlRequest()?.allHTTPHeaderFields, ["key1":"value1", "key2":"", "key3":"value3"])
     }
+    
+    func testIsValidReturnsTrueIfUrlIsNotEmpty() {
+        let testObject = RequestModel()
+        testObject.url = "test.url"
+        
+        XCTAssertTrue(testObject.isValid())
+    }
+    
+    func testIsValidReturnsFalseIfUrlIsEmpty() {
+        let testObject = RequestModel()
+        testObject.url = ""
+        
+        XCTAssertFalse(testObject.isValid())
+    }
 
 }

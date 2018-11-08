@@ -30,6 +30,10 @@ class RequestModel {
         return request
     }
     
+    func isValid() -> Bool {
+        return !url.isEmpty
+    }
+    
     private func requestHeaders(headers: [Header]?) -> [String:String] {
         var headersDictionary = [String:String]()
         headers?.forEach { header in
