@@ -43,22 +43,6 @@ class HeadersModelTests: XCTestCase {
         
         XCTAssertEqual(testObject.headers, [Int:Header]())
     }
-    
-    func testHeadersArrayReturnsArrayOfHeadersWithEmptyValues() {
-        let expectedHeader = Header(key: "key3", value: "value3")
-        let expectedHeadersArray = [Header.empty, Header.empty, expectedHeader]
-        let testObject = HeadersModel(headers: [2: expectedHeader])
-
-        let actualHeadersArray = testObject.headersArray
-
-        XCTAssertEqual(actualHeadersArray, expectedHeadersArray)
-    }
-    
-    func testHeadersArrayReturnsEmptyArrayWhenNoHeaders() {
-        let testObject = HeadersModel(headers: [:])
-        
-        XCTAssertEqual(testObject.headersArray, [])
-    }
 }
 
 
