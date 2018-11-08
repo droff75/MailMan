@@ -1,0 +1,40 @@
+{
+    "method": "POST",
+    "header": [
+        {
+            "key": "test1",
+            "value": "test11"
+        },
+        {
+            "key": "test2",
+            "value": "test22"
+        },
+        {
+            "key": "",
+            "value": ""
+        },
+        {
+            "key": "",
+            "value": ""
+        },
+        {
+            "key": "test3",
+            "value": ""
+        }
+    ],
+    "body": {
+        "mode": "raw",
+        "raw": "this is a test"
+    },
+    "url": {
+        "raw": "https://postman-echo.com/post",
+        "protocol": "https",
+        "host": [
+            "postman-echo",
+            "com"
+        ],
+        "path": [
+            "post"
+        ]
+    }
+}

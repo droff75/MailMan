@@ -15,6 +15,8 @@
 		CC22FA1C212F1F8A000BC613 /* ToolbarViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC22FA1B212F1F8A000BC613 /* ToolbarViewVC.swift */; };
 		CC2DF1CD218B8625000A0CE8 /* RequestDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1CC218B8625000A0CE8 /* RequestDataTests.swift */; };
 		CC2DF1CF21934031000A0CE8 /* RequestModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1CE21934031000A0CE8 /* RequestModelTests.swift */; };
+		CC2DF1D121937EEB000A0CE8 /* XCTestExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1D021937EEB000A0CE8 /* XCTestExtension.swift */; };
+		CC2DF1D321937F52000A0CE8 /* testJson.json in Resources */ = {isa = PBXBuildFile; fileRef = CC2DF1D221937F52000A0CE8 /* testJson.json */; };
 		CC55B3D720A09D1500C34B4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3D620A09D1500C34B4D /* AppDelegate.swift */; };
 		CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CC55B3DD20A09D1500C34B4D /* mailman.xcdatamodeld */; };
 		CC55B3E120A09D1700C34B4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC55B3E020A09D1700C34B4D /* Assets.xcassets */; };
@@ -60,6 +62,8 @@
 		CC22FA1B212F1F8A000BC613 /* ToolbarViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarViewVC.swift; sourceTree = "<group>"; };
 		CC2DF1CC218B8625000A0CE8 /* RequestDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDataTests.swift; sourceTree = "<group>"; };
 		CC2DF1CE21934031000A0CE8 /* RequestModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModelTests.swift; sourceTree = "<group>"; };
+		CC2DF1D021937EEB000A0CE8 /* XCTestExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestExtension.swift; sourceTree = "<group>"; };
+		CC2DF1D221937F52000A0CE8 /* testJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testJson.json; sourceTree = "<group>"; };
 		CC55B3D320A09D1500C34B4D /* mailman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mailman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC55B3D620A09D1500C34B4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CC55B3DE20A09D1500C34B4D /* mailman.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mailman.xcdatamodel; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				CC2DF1CC218B8625000A0CE8 /* RequestDataTests.swift */,
 				CC1FBEE52142D8FF00DBF93D /* RequestBodyViewVC.swift */,
 				CC1FBEE32142D8D100DBF93D /* RequestBodyView.swift */,
+				CC2DF1D221937F52000A0CE8 /* testJson.json */,
+				CC2DF1D021937EEB000A0CE8 /* XCTestExtension.swift */,
 				CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewVC.swift */,
 				CCE73BAB214FF2DF00EEBB09 /* RequestHeaderTableCell.swift */,
 				CC1FBEE721481C0D00DBF93D /* RequestModel.swift */,
@@ -292,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC2DF1D321937F52000A0CE8 /* testJson.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +344,7 @@
 				CCA406F8218B4D5000F8B0A9 /* HeadersModelTests.swift in Sources */,
 				CC8A638A2135C116009DFC50 /* NetworkRequestModelTests.swift in Sources */,
 				CC55B3EF20A09D1700C34B4D /* mailmanTests.swift in Sources */,
+				CC2DF1D121937EEB000A0CE8 /* XCTestExtension.swift in Sources */,
 				CC2DF1CD218B8625000A0CE8 /* RequestDataTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

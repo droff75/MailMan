@@ -1,9 +1,9 @@
 import Foundation
 
-struct RequestData: Codable {
-    let url: String?
+struct RequestData: Codable, Equatable {
+    let url: PostmanUrl?
     let method: Method?
-    let body: String?
+    let body: Body?
     let headers: [Header]?
     
     enum CodingKeys: String, CodingKey {
@@ -11,6 +11,25 @@ struct RequestData: Codable {
         case method
         case body
         case headers = "header"
+    }
+}
+
+struct Body: Codable, Equatable {
+    let mode: String?
+    let raw: String?
+}
+
+struct PostmanUrl: Codable, Equatable {
+    let raw: String?
+    let httpProtocol: String?
+    let host: [String]?
+    let path: [String]?
+    
+    enum CodingKeys: String, CodingKey {
+        case raw
+        case httpProtocol = "protocol"
+        case host
+        case path
     }
 }
 

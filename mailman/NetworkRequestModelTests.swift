@@ -10,16 +10,22 @@ class NetworkRequestModelTests: XCTestCase {
     }
 
     func testIsValidReturnsFalseWhenUrlIsEmpty() {
-        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: nil, method: .get, body: "", headers: nil)))
-        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: "", method: .get, body: "", headers: nil)))
+        let postmanUrl = PostmanUrl(raw: "", httpProtocol: nil, host: nil, path: nil)
+        
+        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: nil, method: .get, body: nil, headers: nil)))
+        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: postmanUrl, method: .get, body: nil, headers: nil)))
     }
     
     func testIsValidReturnsFalseWhenMethodIsNil() {
-        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: "http://test.url", method: nil, body: "", headers: nil)))
+        let postmanUrl = PostmanUrl(raw: "test.url", httpProtocol: nil, host: nil, path: nil)
+
+        XCTAssertFalse(NetworkRequestService.isValid(requestData: RequestData(url: postmanUrl, method: nil, body: nil, headers: nil)))
     }
     
     func testIsValidReturnsTrueWhenRequestDataIsValid() {
-        XCTAssertTrue(NetworkRequestService.isValid(requestData: RequestData(url: "http://test.url", method: .get, body: "", headers: nil)))
+        let postmanUrl = PostmanUrl(raw: "test.url", httpProtocol: nil, host: nil, path: nil)
+
+        XCTAssertTrue(NetworkRequestService.isValid(requestData: RequestData(url: postmanUrl, method: .get, body: Body(mode: nil, raw: "Test Body"), headers: nil)))
     }
     
     func testWhenSendRequestReceivesValidRequestDataTheCorrectURLIsUsed() {
