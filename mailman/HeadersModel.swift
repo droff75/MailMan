@@ -22,18 +22,5 @@ class HeadersModel {
         } else {
             headers[index] = header
         }
-
-    }
-    
-    var headersArray: [Header] {
-        guard let maxIndex = headers.keys.max() else {
-            return []
-        }
-        var headerArray: [Header] = []
-        for index in 0...maxIndex {
-            headerArray.append(headers[index] ?? Header.empty)
-        }
-        
-        return headerArray
     }
 }
