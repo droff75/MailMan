@@ -1,6 +1,6 @@
 import UIKit
 
-class ToolbarViewVC: UIViewController {
+class ToolbarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

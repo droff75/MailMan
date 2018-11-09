@@ -1,6 +1,6 @@
 import UIKit
 
-class MainRequestViewVC: UIViewController {    
+class MainRequestViewController: UIViewController {    
     private let service = NetworkRequestService()
     private var mainView: MainRequestView
     fileprivate var requestModel: RequestModel
@@ -23,7 +23,7 @@ class MainRequestViewVC: UIViewController {
     }
 }
 
-extension MainRequestViewVC: NetworkRequestServiceDelegate {    
+extension MainRequestViewController: NetworkRequestServiceDelegate {    
     func errorRetrieved(error: Error) {
         DispatchQueue.main.async { [weak self] in
             let stringError = error.localizedDescription
@@ -40,7 +40,7 @@ extension MainRequestViewVC: NetworkRequestServiceDelegate {
     }
 }
 
-extension MainRequestViewVC: MainRequestViewDelegate {
+extension MainRequestViewController: MainRequestViewDelegate {
     func methodChanged(_ method: Method) {
         requestModel.method = method
     }
@@ -55,7 +55,7 @@ extension MainRequestViewVC: MainRequestViewDelegate {
     }
     
     func showBodyView() {
-        let newViewController = RequestBodyViewVC(requestModel: requestModel)
+        let newViewController = RequestBodyViewController(requestModel: requestModel)
         newViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(bodyDoneButtonTapped))
         let navController = UINavigationController(rootViewController: newViewController)
         
@@ -63,7 +63,7 @@ extension MainRequestViewVC: MainRequestViewDelegate {
     }
     
     func showHeadersView() {
-        let newViewController = RequestHeadersViewVC(headerModel: requestModel.headersModel)
+        let newViewController = RequestHeadersViewController(headerModel: requestModel.headersModel)
         newViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(headersDoneButtonTapped))
         newViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(headersCancelButtonTapped))
         let navController = UINavigationController(rootViewController: newViewController)
@@ -88,7 +88,7 @@ extension MainRequestViewVC: MainRequestViewDelegate {
     }
 }
 
-extension MainRequestViewVC: RequestBodyViewDelegate {
+extension MainRequestViewController: RequestBodyViewDelegate {
     func bodyChanged(_ body: String) {
         
     }

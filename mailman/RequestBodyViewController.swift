@@ -1,6 +1,6 @@
 import UIKit
 
-class RequestBodyViewVC: UIViewController {
+class RequestBodyViewController: UIViewController {
     private let requestModel: RequestModel
     private let bodyView = RequestBodyView()
     
@@ -21,7 +21,7 @@ class RequestBodyViewVC: UIViewController {
     }
 }
 
-extension RequestBodyViewVC: RequestBodyViewDelegate {
+extension RequestBodyViewController: RequestBodyViewDelegate {
     func bodyChanged(_ body: String) {
         requestModel.body = body
     }

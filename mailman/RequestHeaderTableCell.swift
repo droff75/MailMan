@@ -2,6 +2,7 @@ import UIKit
 
 protocol RequestHeaderTableCellDelegate: class {
     func headerUpdated(_ header: Header, cell: UITableViewCell)
+    func addRow(cell: UITableViewCell)
 }
 
 class RequestHeaderTableCell: UITableViewCell {
@@ -63,6 +64,11 @@ class RequestHeaderTableCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        keyTextField.text = nil
+        valueTextField.text = nil
+    }
+    
     func set(key: String?) {
         keyTextField.text = key
     }
@@ -77,5 +83,9 @@ extension RequestHeaderTableCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let header = Header(key: keyTextField.text, value: valueTextField.text)
         delegate?.headerUpdated(header, cell: self)
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.addRow(cell: self)
     }
 }
