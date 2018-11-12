@@ -59,4 +59,13 @@ extension RequestHeadersViewController: RequestHeaderTableCellDelegate {
         tableView.endUpdates()
         delegate?.headersUpdated(headers)
     }
+    
+    func removeRow(cell: UITableViewCell) {
+        guard let row = self.tableView.indexPath(for: cell)?.row, headers.count != 1 else { return }
+        headers.remove(at: row)
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [IndexPath(row: row, section: 0)], with: .automatic)
+        tableView.endUpdates()
+        delegate?.headersUpdated(headers)
+    }
 }
