@@ -55,18 +55,19 @@ extension MainRequestViewController: MainRequestViewDelegate {
     }
     
     func showBodyView() {
-        let newViewController = RequestBodyViewController(requestModel: requestModel)
-        newViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(bodyDoneButtonTapped))
-        let navController = UINavigationController(rootViewController: newViewController)
+        let bodyViewController = RequestBodyViewController(requestModel: requestModel)
+        bodyViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(bodyDoneButtonTapped))
+        let navController = UINavigationController(rootViewController: bodyViewController)
         
         self.present(navController, animated: true, completion: nil)
     }
     
     func showHeadersView() {
-        let newViewController = RequestHeadersViewController(headerModel: requestModel.headersModel)
-        newViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(headersDoneButtonTapped))
-        newViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(headersCancelButtonTapped))
-        let navController = UINavigationController(rootViewController: newViewController)
+        let headersViewController = RequestHeadersViewController(headers: requestModel.headers)
+        headersViewController.delegate = self
+        headersViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(headersDoneButtonTapped))
+        headersViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(headersCancelButtonTapped))
+        let navController = UINavigationController(rootViewController: headersViewController)
         
         self.present(navController, animated: true, completion: nil)
     }
@@ -92,8 +93,12 @@ extension MainRequestViewController: RequestBodyViewDelegate {
     func bodyChanged(_ body: String) {
         
     }
-    
-    
+}
+
+extension MainRequestViewController: RequestHeaderViewControllerDelegate {
+    func headersUpdated(_ headers: [Header]) {
+        requestModel.headers = headers
+    }   
 }
 
 

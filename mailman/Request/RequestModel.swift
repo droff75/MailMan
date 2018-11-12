@@ -7,7 +7,7 @@ class RequestModel {
     init(networkService: NetworkRequestService = NetworkRequestService()) {
         self.networkService = networkService
     }
-    let headersModel = HeadersModel()
+    var headers: [Header] = []
     var method: Method = .get
     var url: String = ""
     var body: String?
@@ -33,7 +33,6 @@ class RequestModel {
     
     private func requestHeaders() -> [String:String] {
         var headersDictionary = [String:String]()
-        let headers = headersModel.headers.map{ $0.value }
         headers.forEach { header in
             if let key = header.key, !key.isEmpty {
                 headersDictionary[key] = header.value ?? ""

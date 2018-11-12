@@ -27,12 +27,11 @@
 		CC8104242195EE9500C74148 /* RequestHeadersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8104232195EE9500C74148 /* RequestHeadersViewModel.swift */; };
 		CC8104322195FB1D00C74148 /* RequestDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1CC218B8625000A0CE8 /* RequestDataTests.swift */; };
 		CC8104332195FB3A00C74148 /* NetworkRequestModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A63892135C116009DFC50 /* NetworkRequestModelTests.swift */; };
-		CC8104352195FB6F00C74148 /* HeadersModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA406F7218B4D5000F8B0A9 /* HeadersModelTests.swift */; };
 		CC8104372195FB7D00C74148 /* RequestHeadersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8104252195EF4B00C74148 /* RequestHeadersViewModelTests.swift */; };
 		CC8104382195FB8900C74148 /* RequestModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1CE21934031000A0CE8 /* RequestModelTests.swift */; };
 		CC8A6390213850D3009DFC50 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */; };
 		CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A6391213868B3009DFC50 /* MockURLSession.swift */; };
-		CC9B84B8215D2AC5001A5C41 /* HeadersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* HeadersModel.swift */; };
+		CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* Header.swift */; };
 		CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */; };
 		CCE73BA8214FF28C00EEBB09 /* RequestHeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewController.swift */; };
 		CCE73BAC214FF2DF00EEBB09 /* RequestHeaderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE73BAB214FF2DF00EEBB09 /* RequestHeaderTableCell.swift */; };
@@ -86,9 +85,8 @@
 		CC8A63892135C116009DFC50 /* NetworkRequestModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestModelTests.swift; sourceTree = "<group>"; };
 		CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		CC8A6391213868B3009DFC50 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
-		CC9B84B7215D2AC5001A5C41 /* HeadersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersModel.swift; sourceTree = "<group>"; };
+		CC9B84B7215D2AC5001A5C41 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestServiceDelegate.swift; sourceTree = "<group>"; };
-		CCA406F7218B4D5000F8B0A9 /* HeadersModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadersModelTests.swift; sourceTree = "<group>"; };
 		CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewController.swift; sourceTree = "<group>"; };
 		CCE73BAB214FF2DF00EEBB09 /* RequestHeaderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeaderTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,8 +185,7 @@
 		CC8104282195F95B00C74148 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
-				CC9B84B7215D2AC5001A5C41 /* HeadersModel.swift */,
-				CCA406F7218B4D5000F8B0A9 /* HeadersModelTests.swift */,
+				CC9B84B7215D2AC5001A5C41 /* Header.swift */,
 				CC8104232195EE9500C74148 /* RequestHeadersViewModel.swift */,
 				CC8104252195EF4B00C74148 /* RequestHeadersViewModelTests.swift */,
 				CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewController.swift */,
@@ -380,7 +377,7 @@
 				CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */,
 				CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */,
 				CC55B40B20A09DF500C34B4D /* MainRequestViewController.swift in Sources */,
-				CC9B84B8215D2AC5001A5C41 /* HeadersModel.swift in Sources */,
+				CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */,
 				CC22FA1C212F1F8A000BC613 /* ToolbarViewController.swift in Sources */,
 				CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */,
 				CCE73BA8214FF28C00EEBB09 /* RequestHeadersViewController.swift in Sources */,
@@ -399,7 +396,6 @@
 				CC8104372195FB7D00C74148 /* RequestHeadersViewModelTests.swift in Sources */,
 				CC8104322195FB1D00C74148 /* RequestDataTests.swift in Sources */,
 				CC55B3EF20A09D1700C34B4D /* mailmanTests.swift in Sources */,
-				CC8104352195FB6F00C74148 /* HeadersModelTests.swift in Sources */,
 				CC8104382195FB8900C74148 /* RequestModelTests.swift in Sources */,
 				CC2DF1D121937EEB000A0CE8 /* XCTestExtension.swift in Sources */,
 			);

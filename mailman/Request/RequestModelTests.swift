@@ -50,8 +50,7 @@ class RequestModelTests: XCTestCase {
     func testUrlRequestSetsCorrectHeaders() {
         let testObject = RequestModel()
         testObject.url = "test.url"
-        testObject.headersModel.update(header: Header(key: "key1", value: "value1"), at: 0)
-        testObject.headersModel.update(header: Header(key: "key2", value: "value2"), at: 1)
+        testObject.headers = [Header(key: "key1", value: "value1"), Header(key: "key2", value: "value2")]
         
         XCTAssertEqual(testObject.urlRequest()?.allHTTPHeaderFields, ["key1":"value1", "key2":"value2"])
     }
@@ -66,9 +65,7 @@ class RequestModelTests: XCTestCase {
     func testIfHeaderHasNoKeyHeaderIsNotAddedToDictionary() {
         let testObject = RequestModel()
         testObject.url = "test.url"
-        testObject.headersModel.update(header: Header(key: "key1", value: "value1"), at: 0)
-        testObject.headersModel.update(header: Header.empty, at: 1)
-        testObject.headersModel.update(header: Header(key: "key3", value: "value3"), at: 2)
+        testObject.headers = [Header(key: "key1", value: "value1"), Header.empty, Header(key: "key3", value: "value3")]
 
         XCTAssertEqual(testObject.urlRequest()?.allHTTPHeaderFields, ["key1":"value1", "key3":"value3"])
     }
@@ -76,9 +73,7 @@ class RequestModelTests: XCTestCase {
     func testIfHeaderHasKeyButNoValueHeaderIsAddedToDictionary() {
         let testObject = RequestModel()
         testObject.url = "test.url"
-        testObject.headersModel.update(header: Header(key: "key1", value: "value1"), at: 0)
-        testObject.headersModel.update(header: Header(key: "key2", value: nil), at: 1)
-        testObject.headersModel.update(header: Header(key: "key3", value: "value3"), at: 2)
+        testObject.headers = [Header(key: "key1", value: "value1"), Header(key: "key2", value: nil), Header(key: "key3", value: "value3")]
         
         XCTAssertEqual(testObject.urlRequest()?.allHTTPHeaderFields, ["key1":"value1", "key2":"", "key3":"value3"])
     }
