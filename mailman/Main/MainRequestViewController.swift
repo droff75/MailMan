@@ -40,11 +40,7 @@ extension MainRequestViewController: NetworkRequestServiceDelegate {
     }
 }
 
-extension MainRequestViewController: MainRequestViewDelegate {
-    func methodChanged(_ method: Method) {
-        requestModel.method = method
-    }
-    
+extension MainRequestViewController: MainRequestViewDelegate {    
     func urlChanged(_ url: String) {
         requestModel.url = url
         mainView.update(buttonEnabled: requestModel.isValid())
@@ -52,6 +48,19 @@ extension MainRequestViewController: MainRequestViewDelegate {
     
     func send() {
         requestModel.sendRequest()
+    }
+    
+    func showMethodPopover(sender: UIView) {
+        let methodPopoverViewController = MethodPopoverViewController()
+        methodPopoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
+        methodPopoverViewController.preferredContentSize = CGSize(width: 200, height: 220)
+        methodPopoverViewController.delegate = self
+        
+        self.present(methodPopoverViewController, animated: true, completion: nil)
+        
+        let popoverPresentationController = methodPopoverViewController.popoverPresentationController
+        popoverPresentationController?.sourceView = sender
+        popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: sender.frame.size.width, height: sender.frame.size.height)
     }
     
     func showBodyView() {
@@ -99,6 +108,13 @@ extension MainRequestViewController: RequestHeaderViewControllerDelegate {
     func headersUpdated(_ headers: [Header]) {
         requestModel.headers = headers
     }   
+}
+
+extension MainRequestViewController: MethodPopoverViewControllerDelegate {
+    func update(method: Method) {
+        requestModel.method = method
+        mainView.update(method: method.rawValue)
+    }
 }
 
 

@@ -4,7 +4,7 @@ protocol MainRequestViewDelegate: class {
     func send()
     func showBodyView()
     func showHeadersView()
-    func methodChanged(_ method: Method)
+    func showMethodPopover(sender: UIView)
     func urlChanged(_ url: String)
 }
 
@@ -20,7 +20,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
     private let responseView = UITextView()
     private let urlTextField = UITextField()
     private let requestTypePicker = UIPickerView()
-    private let methodTextField = UITextField()
+    private let methodButton = UIButton()
     private let padding: CGFloat = 10
     
     override init(frame: CGRect) {
@@ -58,27 +58,19 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseCodeLabel.font = UIFont.systemFont(ofSize: 20)
         responseCodeLabel.textColor = UIColor.green
         
-        methodTextField.inputView = requestTypePicker
-        methodTextField.backgroundColor = .white
-        methodTextField.text = "GET"
-        methodTextField.textAlignment = .center
-        methodTextField.font = UIFont.boldSystemFont(ofSize: 20)
-        methodTextField.textColor = .orange
-        methodTextField.layer.cornerRadius = 5
+        methodButton.addTarget(self, action: #selector(methodButtonTapped), for: .touchUpInside)
+        methodButton.setTitle("GET", for: .normal)
+        methodButton.backgroundColor = .orange
+        methodButton.layer.cornerRadius = 5
         
         responseView.font = UIFont.systemFont(ofSize: 20)
         responseView.isEditable = false
-        
-        requestTypePicker.selectRow(0, inComponent: 0, animated: false)
-        
-        requestTypePicker.dataSource = self
-        requestTypePicker.delegate = self
         
         addSubview(toolbarView)
         addSubview(sendButton)
         addSubview(responseView)
         addSubview(urlTextField)
-        addSubview(methodTextField)
+        addSubview(methodButton)
         addSubview(stackView)
         addSubview(responseCodeLabel)
         
@@ -92,15 +84,15 @@ class MainRequestView: UIView, UITextFieldDelegate {
         toolbarView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         toolbarView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
-        methodTextField.translatesAutoresizingMaskIntoConstraints = false
-        methodTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        methodTextField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
-        methodTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        methodTextField.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
+        methodButton.translatesAutoresizingMaskIntoConstraints = false
+        methodButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        methodButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
+        methodButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        methodButton.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
         
         urlTextField.translatesAutoresizingMaskIntoConstraints = false
         urlTextField.topAnchor.constraint(equalTo: toolbarView.bottomAnchor, constant: padding).isActive = true
-        urlTextField.leadingAnchor.constraint(equalTo: methodTextField.trailingAnchor, constant: padding).isActive = true
+        urlTextField.leadingAnchor.constraint(equalTo: methodButton.trailingAnchor, constant: padding).isActive = true
         urlTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         sendButton.translatesAutoresizingMaskIntoConstraints = false
@@ -115,7 +107,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
 
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        stackView.topAnchor.constraint(equalTo: methodTextField.bottomAnchor, constant: padding).isActive = true
+        stackView.topAnchor.constraint(equalTo: methodButton.bottomAnchor, constant: padding).isActive = true
         
         responseCodeLabel.translatesAutoresizingMaskIntoConstraints = false
         responseCodeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
@@ -171,6 +163,11 @@ class MainRequestView: UIView, UITextFieldDelegate {
         delegate?.showBodyView()
     }
     
+    @objc
+    private func methodButtonTapped() {
+        delegate?.showMethodPopover(sender: methodButton)
+    }
+    
     func update(errorResponse: String?) {
         responseView.text = errorResponse
     }
@@ -194,24 +191,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
         sendButton.alpha = buttonEnabled ? 1 : 0.5
     }
     
-}
-
-extension MainRequestView: UIPickerViewDataSource, UIPickerViewDelegate {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return Method.types.count
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return Method.types[row].rawValue
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let method = Method.types[row]
-        methodTextField.text = method.rawValue
-        delegate?.methodChanged(method)
+    func update(method: String?) {
+        methodButton.setTitle(method, for: .normal)
     }
 }

@@ -29,6 +29,8 @@
 		CC8104332195FB3A00C74148 /* NetworkRequestModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A63892135C116009DFC50 /* NetworkRequestModelTests.swift */; };
 		CC8104372195FB7D00C74148 /* RequestHeadersViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8104252195EF4B00C74148 /* RequestHeadersViewModelTests.swift */; };
 		CC8104382195FB8900C74148 /* RequestModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1CE21934031000A0CE8 /* RequestModelTests.swift */; };
+		CC81043A219B3A3D00C74148 /* MethodPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */; };
+		CC81043C219B4B4300C74148 /* MethodPopoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */; };
 		CC8A6390213850D3009DFC50 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */; };
 		CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A6391213868B3009DFC50 /* MockURLSession.swift */; };
 		CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* Header.swift */; };
@@ -82,6 +84,8 @@
 		CC80163B20D954F1008C84A9 /* MainRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequestView.swift; sourceTree = "<group>"; };
 		CC8104232195EE9500C74148 /* RequestHeadersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewModel.swift; sourceTree = "<group>"; };
 		CC8104252195EF4B00C74148 /* RequestHeadersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewModelTests.swift; sourceTree = "<group>"; };
+		CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodPopoverViewController.swift; sourceTree = "<group>"; };
+		CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodPopoverCell.swift; sourceTree = "<group>"; };
 		CC8A63892135C116009DFC50 /* NetworkRequestModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestModelTests.swift; sourceTree = "<group>"; };
 		CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		CC8A6391213868B3009DFC50 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 			children = (
 				CC80163B20D954F1008C84A9 /* MainRequestView.swift */,
 				CC55B40A20A09DF500C34B4D /* MainRequestViewController.swift */,
+				CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */,
+				CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -379,11 +385,13 @@
 				CC55B40B20A09DF500C34B4D /* MainRequestViewController.swift in Sources */,
 				CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */,
 				CC22FA1C212F1F8A000BC613 /* ToolbarViewController.swift in Sources */,
+				CC81043A219B3A3D00C74148 /* MethodPopoverViewController.swift in Sources */,
 				CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */,
 				CCE73BA8214FF28C00EEBB09 /* RequestHeadersViewController.swift in Sources */,
 				CC1FBEE62142D8FF00DBF93D /* RequestBodyViewController.swift in Sources */,
 				CCE73BAC214FF2DF00EEBB09 /* RequestHeaderTableCell.swift in Sources */,
 				CC1FBEE42142D8D100DBF93D /* RequestBodyView.swift in Sources */,
+				CC81043C219B4B4300C74148 /* MethodPopoverCell.swift in Sources */,
 				CC70D1C521344CDC0043C201 /* RequestData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
