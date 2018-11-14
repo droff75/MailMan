@@ -4,6 +4,7 @@ class MainRequestViewController: UIViewController {
     private let service = NetworkRequestService()
     private var mainView: MainRequestView
     fileprivate var requestModel: RequestModel
+    fileprivate var responseCode: Int?
     
     init() {
         mainView = MainRequestView()
@@ -34,14 +35,14 @@ extension MainRequestViewController: NetworkRequestServiceDelegate {
     func responseRetrieved(urlResponse: URLResponse, data: Any?) {
         DispatchQueue.main.async { [weak self] in
             let httpResponse = urlResponse as! HTTPURLResponse
-//            let statusCode = String(httpResponse.statusCode)
             let statusCode = httpResponse.statusCode
+            self?.responseCode = statusCode
             self?.mainView.update(statusCode: statusCode, response: data)
         }
     }
 }
 
-extension MainRequestViewController: MainRequestViewDelegate {    
+extension MainRequestViewController: MainRequestViewDelegate {
     func urlChanged(_ url: String) {
         requestModel.url = url
         mainView.update(buttonEnabled: requestModel.isValid())
@@ -61,7 +62,21 @@ extension MainRequestViewController: MainRequestViewDelegate {
         
         let popoverPresentationController = methodPopoverViewController.popoverPresentationController
         popoverPresentationController?.sourceView = sender
-        popoverPresentationController?.sourceRect = CGRect(x: 0, y: 0, width: sender.frame.size.width, height: sender.frame.size.height)
+        popoverPresentationController?.sourceRect = sender.bounds
+    }
+    
+    func showResponseCodePopover(sender: UIView) {
+        guard let responseCode = responseCode, let responseDefinition = HTTPStatusCodes(rawValue: responseCode)?.responseDefinition else { return }
+        let responseCodePopoverViewController = TextPopoverViewController(popoverText: responseDefinition)
+        responseCodePopoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
+        responseCodePopoverViewController.preferredContentSize = CGSize(width: 200, height: 200)
+        
+        self.present(responseCodePopoverViewController, animated: true, completion: nil)
+        
+        let popoverPresentationController = responseCodePopoverViewController.popoverPresentationController
+        popoverPresentationController?.sourceView = sender
+        popoverPresentationController?.permittedArrowDirections = [UIPopoverArrowDirection.up]
+        popoverPresentationController?.sourceRect = sender.bounds
     }
     
     func showBodyView() {

@@ -5,6 +5,7 @@ protocol MainRequestViewDelegate: class {
     func showBodyView()
     func showHeadersView()
     func showMethodPopover(sender: UIView)
+    func showResponseCodePopover(sender: UIView)
     func urlChanged(_ url: String)
 }
 
@@ -17,7 +18,8 @@ class MainRequestView: UIView, UITextFieldDelegate {
     private let bodyButton = UIButton()
     private let responseCodeLabel = UILabel()
     private let responseTitleLabel = UILabel()
-    private let stackView = UIStackView()
+    private let buttonStackView = UIStackView()
+    private let responseStackView = UIStackView()
     private let responseView = UITextView()
     private let urlTextField = UITextField()
     private let requestTypePicker = UIPickerView()
@@ -75,14 +77,20 @@ class MainRequestView: UIView, UITextFieldDelegate {
         addSubview(responseView)
         addSubview(urlTextField)
         addSubview(methodButton)
-        addSubview(stackView)
-        addSubview(responseCodeLabel)
-        addSubview(responseTitleLabel)
+        addSubview(buttonStackView)
+        addSubview(responseStackView)
         
-        stackView.addArrangedSubview(headersButton)
-        stackView.addArrangedSubview(bodyButton)
-        stackView.setCustomSpacing(10, after: headersButton)
-
+        buttonStackView.addArrangedSubview(headersButton)
+        buttonStackView.addArrangedSubview(bodyButton)
+        buttonStackView.setCustomSpacing(10, after: headersButton)
+        
+        responseStackView.addArrangedSubview(responseCodeLabel)
+        responseStackView.addArrangedSubview(responseTitleLabel)
+        responseStackView.setCustomSpacing(10, after: responseCodeLabel)
+        
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(responseCodeTapped))
+        responseStackView.addGestureRecognizer(gesture)
+        
         toolbarView.translatesAutoresizingMaskIntoConstraints = false
         toolbarView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         toolbarView.heightAnchor.constraint(equalToConstant: 75).isActive = true
@@ -110,26 +118,23 @@ class MainRequestView: UIView, UITextFieldDelegate {
         
         bodyButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
 
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        stackView.topAnchor.constraint(equalTo: methodButton.bottomAnchor, constant: padding).isActive = true
+        buttonStackView.translatesAutoresizingMaskIntoConstraints = false
+        buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
+        buttonStackView.topAnchor.constraint(equalTo: methodButton.bottomAnchor, constant: padding).isActive = true
         
-        responseCodeLabel.translatesAutoresizingMaskIntoConstraints = false
-        responseCodeLabel.trailingAnchor.constraint(equalTo: responseTitleLabel.leadingAnchor, constant: -padding).isActive = true
-        responseCodeLabel.firstBaselineAnchor.constraint(equalTo: stackView.firstBaselineAnchor).isActive = true
-//        responseCodeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        responseTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        responseTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
-        responseTitleLabel.firstBaselineAnchor.constraint(equalTo: responseCodeLabel.firstBaselineAnchor).isActive = true
+        responseStackView.translatesAutoresizingMaskIntoConstraints = false
+        responseStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
+        responseStackView.firstBaselineAnchor.constraint(equalTo: buttonStackView.firstBaselineAnchor).isActive = true
         
         responseView.translatesAutoresizingMaskIntoConstraints = false
-        responseView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: padding).isActive = true
+        responseView.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: padding).isActive = true
         responseView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
         responseView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
         responseView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
         
         update(buttonEnabled: false)
+        
+        urlTextField.text = "https://postman-echo.com/get"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -175,6 +180,11 @@ class MainRequestView: UIView, UITextFieldDelegate {
     @objc
     private func methodButtonTapped() {
         delegate?.showMethodPopover(sender: methodButton)
+    }
+    
+    @objc
+    private func responseCodeTapped() {
+        delegate?.showResponseCodePopover(sender: responseCodeLabel)
     }
     
     func update(errorResponse: String?) {
