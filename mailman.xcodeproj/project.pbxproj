@@ -31,6 +31,7 @@
 		CC8104382195FB8900C74148 /* RequestModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1CE21934031000A0CE8 /* RequestModelTests.swift */; };
 		CC81043A219B3A3D00C74148 /* MethodPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */; };
 		CC81043C219B4B4300C74148 /* MethodPopoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */; };
+		CC873AA5219C6C2A004D8016 /* HTTPStatusCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC873AA4219C6C2A004D8016 /* HTTPStatusCodes.swift */; };
 		CC8A6390213850D3009DFC50 /* URLSessionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */; };
 		CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A6391213868B3009DFC50 /* MockURLSession.swift */; };
 		CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* Header.swift */; };
@@ -86,6 +87,7 @@
 		CC8104252195EF4B00C74148 /* RequestHeadersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewModelTests.swift; sourceTree = "<group>"; };
 		CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodPopoverViewController.swift; sourceTree = "<group>"; };
 		CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodPopoverCell.swift; sourceTree = "<group>"; };
+		CC873AA4219C6C2A004D8016 /* HTTPStatusCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatusCodes.swift; sourceTree = "<group>"; };
 		CC8A63892135C116009DFC50 /* NetworkRequestModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestModelTests.swift; sourceTree = "<group>"; };
 		CC8A638F213850D3009DFC50 /* URLSessionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionProtocol.swift; sourceTree = "<group>"; };
 		CC8A6391213868B3009DFC50 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			isa = PBXGroup;
 			children = (
 				CC70D1C421344CDC0043C201 /* RequestData.swift */,
+				CC873AA4219C6C2A004D8016 /* HTTPStatusCodes.swift */,
 				CC2DF1CC218B8625000A0CE8 /* RequestDataTests.swift */,
 				CC1FBEE721481C0D00DBF93D /* RequestModel.swift */,
 				CC2DF1CE21934031000A0CE8 /* RequestModelTests.swift */,
@@ -382,6 +385,7 @@
 				CC80163C20D954F1008C84A9 /* MainRequestView.swift in Sources */,
 				CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */,
 				CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */,
+				CC873AA5219C6C2A004D8016 /* HTTPStatusCodes.swift in Sources */,
 				CC55B40B20A09DF500C34B4D /* MainRequestViewController.swift in Sources */,
 				CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */,
 				CC22FA1C212F1F8A000BC613 /* ToolbarViewController.swift in Sources */,

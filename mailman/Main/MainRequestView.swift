@@ -16,6 +16,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
     private let headersButton = UIButton()
     private let bodyButton = UIButton()
     private let responseCodeLabel = UILabel()
+    private let responseTitleLabel = UILabel()
     private let stackView = UIStackView()
     private let responseView = UITextView()
     private let urlTextField = UITextField()
@@ -58,6 +59,9 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseCodeLabel.font = UIFont.systemFont(ofSize: 20)
         responseCodeLabel.textColor = UIColor.green
         
+        responseTitleLabel.font = UIFont.systemFont(ofSize: 20)
+        responseTitleLabel.textColor = .white
+        
         methodButton.addTarget(self, action: #selector(methodButtonTapped), for: .touchUpInside)
         methodButton.setTitle("GET", for: .normal)
         methodButton.backgroundColor = .orange
@@ -73,6 +77,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
         addSubview(methodButton)
         addSubview(stackView)
         addSubview(responseCodeLabel)
+        addSubview(responseTitleLabel)
         
         stackView.addArrangedSubview(headersButton)
         stackView.addArrangedSubview(bodyButton)
@@ -110,9 +115,13 @@ class MainRequestView: UIView, UITextFieldDelegate {
         stackView.topAnchor.constraint(equalTo: methodButton.bottomAnchor, constant: padding).isActive = true
         
         responseCodeLabel.translatesAutoresizingMaskIntoConstraints = false
-        responseCodeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 10).isActive = true
+        responseCodeLabel.trailingAnchor.constraint(equalTo: responseTitleLabel.leadingAnchor, constant: -padding).isActive = true
         responseCodeLabel.firstBaselineAnchor.constraint(equalTo: stackView.firstBaselineAnchor).isActive = true
-        responseCodeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+//        responseCodeLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        responseTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        responseTitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
+        responseTitleLabel.firstBaselineAnchor.constraint(equalTo: responseCodeLabel.firstBaselineAnchor).isActive = true
         
         responseView.translatesAutoresizingMaskIntoConstraints = false
         responseView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: padding).isActive = true
@@ -172,14 +181,16 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseView.text = errorResponse
     }
     
-    func update(statusCode: String?, response: Any?) {
+    func update(statusCode: Int?, response: Any?) {
         switch (statusCode, response) {
         case (.some(let statusCode), .none):
-            responseCodeLabel.text = statusCode
+            responseCodeLabel.text = String(statusCode)
+            responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
         case (.none, .some(let response)):
             responseView.text = "\(response)"
         case (.some(let statusCode), .some(let response)):
-            responseCodeLabel.text = statusCode
+            responseCodeLabel.text = String(statusCode)
+            responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
             responseView.text = "\(response)"
         default:
             responseView.text = ""
