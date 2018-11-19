@@ -13,10 +13,4 @@ public class MockNetworkRequestServiceDelegate: NetworkRequestServiceDelegate {
         self.urlResponse = urlResponse
         self.data = data
     }
-    
-    func clearValues() {
-        self.error = nil
-        self.urlResponse = nil
-        self.data = nil
-    }
 }
