@@ -196,13 +196,18 @@ class MainRequestView: UIView, UITextFieldDelegate {
         case (.some(let statusCode), .none):
             responseCodeLabel.text = String(statusCode)
             responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
+            responseView.text = ""
         case (.none, .some(let response)):
+            responseCodeLabel.text = ""
+            responseTitleLabel.text = ""
             responseView.text = "\(response)"
         case (.some(let statusCode), .some(let response)):
             responseCodeLabel.text = String(statusCode)
             responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
             responseView.text = "\(response)"
         default:
+            responseCodeLabel.text = ""
+            responseTitleLabel.text = ""
             responseView.text = ""
         }
     }
