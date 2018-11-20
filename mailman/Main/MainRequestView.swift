@@ -1,5 +1,4 @@
 import UIKit
-import Highlightr
 
 protocol MainRequestViewDelegate: class {
     func send()
@@ -70,9 +69,6 @@ class MainRequestView: UIView, UITextFieldDelegate {
         methodButton.backgroundColor = .orange
         methodButton.layer.cornerRadius = 5
         
-        responseView.font = UIFont.systemFont(ofSize: 20)
-        responseView.isEditable = false
-        
         addSubview(toolbarView)
         addSubview(sendButton)
         addSubview(responseView)
@@ -139,10 +135,6 @@ class MainRequestView: UIView, UITextFieldDelegate {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-//
-//    func setSubmitEnabled(_ enabled: Bool) {
-//        update(buttonEnabled: enabled)
-//    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text,
@@ -222,26 +214,5 @@ class MainRequestView: UIView, UITextFieldDelegate {
     
     func update(method: String?) {
         methodButton.setTitle(method, for: .normal)
-    }
-}
-
-class JSONHighlighter {
-    private static var highlightr: Highlightr? {
-        let thing = Highlightr()
-        thing?.setTheme(to: "paraiso-dark")
-        thing?.theme.codeFont = UIFont.monospacedDigitSystemFont(ofSize: 20, weight: .regular)
-        return thing
-    }
-    
-    private static func string(forDictionary dictionary: [String:Any]) -> String {
-        let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
-        return String(data: data!, encoding: .utf8)!
-    }
-    
-    static func format(json: [String:Any]?) -> NSAttributedString? {
-        guard let json = json else { return nil }
-        
-        let jsonString = string(forDictionary: json)
-        return highlightr?.highlight(jsonString, as: "json")
     }
 }
