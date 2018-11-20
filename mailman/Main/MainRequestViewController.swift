@@ -32,7 +32,7 @@ extension MainRequestViewController: NetworkRequestServiceDelegate {
         }
     }
     
-    func responseRetrieved(urlResponse: URLResponse, data: Any?) {
+    func responseRetrieved(urlResponse: URLResponse, data: [String:Any]?) {
         DispatchQueue.main.async { [weak self] in
             let httpResponse = urlResponse as! HTTPURLResponse
             let statusCode = httpResponse.statusCode

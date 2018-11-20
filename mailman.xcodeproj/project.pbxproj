@@ -38,6 +38,8 @@
 		CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A6391213868B3009DFC50 /* MockURLSession.swift */; };
 		CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* Header.swift */; };
 		CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */; };
+		CCDCF7DF21A4644900ED74B4 /* Highlightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */; };
+		CCDCF7E021A4644900ED74B4 /* Highlightr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CCE73BA8214FF28C00EEBB09 /* RequestHeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewController.swift */; };
 		CCE73BAC214FF2DF00EEBB09 /* RequestHeaderTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE73BAB214FF2DF00EEBB09 /* RequestHeaderTableCell.swift */; };
 /* End PBXBuildFile section */
@@ -57,7 +59,42 @@
 			remoteGlobalIDString = CC55B3D220A09D1500C34B4D;
 			remoteInfo = mailman;
 		};
+		CCDCF7DB21A4638600ED74B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8C2FB1C21F39118F00469D0D;
+			remoteInfo = "Highlightr-iOS";
+		};
+		CCDCF7DD21A4638600ED74B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8CD1AE161F391713000FDA02;
+			remoteInfo = "Highlightr-macOS";
+		};
+		CCDCF7E121A4644900ED74B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 8C2FB1C11F39118F00469D0D;
+			remoteInfo = "Highlightr-iOS";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CCDCF7E321A4644900ED74B4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CCDCF7E021A4644900ED74B4 /* Highlightr.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		CC1C4BF5212F424000869C6F /* NetworkRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestService.swift; sourceTree = "<group>"; };
@@ -97,6 +134,7 @@
 		CC8A6391213868B3009DFC50 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		CC9B84B7215D2AC5001A5C41 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestServiceDelegate.swift; sourceTree = "<group>"; };
+		CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Highlightr.xcodeproj; path = Carthage/Checkouts/Highlightr/Highlightr.xcodeproj; sourceTree = "<group>"; };
 		CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewController.swift; sourceTree = "<group>"; };
 		CCE73BAB214FF2DF00EEBB09 /* RequestHeaderTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeaderTableCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -106,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCDCF7DF21A4644900ED74B4 /* Highlightr.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,6 +168,7 @@
 		CC55B3CA20A09D1500C34B4D = {
 			isa = PBXGroup;
 			children = (
+				CCDCF7D521A4637500ED74B4 /* Frameworks */,
 				CC55B3D520A09D1500C34B4D /* mailman */,
 				CC55B3ED20A09D1700C34B4D /* mailmanTests */,
 				CC55B3F820A09D1700C34B4D /* mailmanUITests */,
@@ -251,6 +291,23 @@
 			path = Toolbar;
 			sourceTree = "<group>";
 		};
+		CCDCF7D521A4637500ED74B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCDCF7D721A4638600ED74B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */,
+				CCDCF7DE21A4638600ED74B4 /* Highlightr.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,10 +318,12 @@
 				CC55B3CF20A09D1500C34B4D /* Sources */,
 				CC55B3D020A09D1500C34B4D /* Frameworks */,
 				CC55B3D120A09D1500C34B4D /* Resources */,
+				CCDCF7E321A4644900ED74B4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CCDCF7E221A4644900ED74B4 /* PBXTargetDependency */,
 			);
 			name = mailman;
 			productName = mailman;
@@ -341,6 +400,12 @@
 			mainGroup = CC55B3CA20A09D1500C34B4D;
 			productRefGroup = CC55B3D420A09D1500C34B4D /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = CCDCF7D721A4638600ED74B4 /* Products */;
+					ProjectRef = CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				CC55B3D220A09D1500C34B4D /* mailman */,
@@ -349,6 +414,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Highlightr.framework;
+			remoteRef = CCDCF7DB21A4638600ED74B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		CCDCF7DE21A4638600ED74B4 /* Highlightr.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Highlightr.framework;
+			remoteRef = CCDCF7DD21A4638600ED74B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CC55B3D120A09D1500C34B4D /* Resources */ = {
@@ -441,6 +523,11 @@
 			isa = PBXTargetDependency;
 			target = CC55B3D220A09D1500C34B4D /* mailman */;
 			targetProxy = CC55B3F620A09D1700C34B4D /* PBXContainerItemProxy */;
+		};
+		CCDCF7E221A4644900ED74B4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Highlightr-iOS";
+			targetProxy = CCDCF7E121A4644900ED74B4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -573,6 +660,7 @@
 		CC55B3FF20A09D1700C34B4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CNTXQYQXTB;
@@ -591,6 +679,7 @@
 		CC55B40020A09D1700C34B4D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CNTXQYQXTB;
