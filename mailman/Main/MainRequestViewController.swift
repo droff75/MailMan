@@ -10,6 +10,8 @@ class MainRequestViewController: UIViewController {
         mainView = MainRequestView()
         requestModel = RequestModel(networkService: service)
         super.init(nibName: nil, bundle: nil)
+
+        requestModel.url = "https://postman-echo.com/get"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -19,7 +21,8 @@ class MainRequestViewController: UIViewController {
     override func loadView() {
         service.delegate = self
         mainView.delegate = self
-        
+        mainView.update(url: requestModel.url)
+        mainView.update(buttonEnabled: requestModel.isValid())
         view = mainView
     }
 }

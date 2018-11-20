@@ -134,17 +134,15 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
         
         update(buttonEnabled: false)
-        
-        urlTextField.text = "https://postman-echo.com/get"
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    func setSubmitEnabled(_ enabled: Bool) {
-        update(buttonEnabled: enabled)
-    }
+//
+//    func setSubmitEnabled(_ enabled: Bool) {
+//        update(buttonEnabled: enabled)
+//    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text,
@@ -161,6 +159,10 @@ class MainRequestView: UIView, UITextFieldDelegate {
         urlTextField.resignFirstResponder()
         sendButtonTapped()
         return true
+    }
+    
+    func update(url: String) {
+        urlTextField.text = url
     }
     
     @objc
