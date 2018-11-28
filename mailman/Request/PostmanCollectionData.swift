@@ -1,5 +1,27 @@
 import Foundation
 
+struct PostmanCollection: Codable, Equatable {
+    let info: PostmanInfo
+    let item: [PostmanItem]
+}
+
+struct PostmanInfo: Codable, Equatable {
+    let postmanId: String
+    let name: String
+    let schema: String
+    
+    enum CodingKeys: String, CodingKey {
+        case postmanId = "_postman_id"
+        case name
+        case schema
+    }
+}
+
+struct PostmanItem: Codable, Equatable {
+    let name: String
+    let request: RequestData
+}
+
 struct RequestData: Codable, Equatable {
     let url: PostmanUrl?
     let method: Method?
