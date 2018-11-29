@@ -7,6 +7,7 @@ protocol MainRequestViewDelegate: class {
     func showMethodPopover(sender: UIView)
     func showResponseCodePopover(sender: UIView)
     func urlChanged(_ url: String)
+    func importSelected()
 }
 
 class MainRequestView: UIView, UITextFieldDelegate {
@@ -28,6 +29,8 @@ class MainRequestView: UIView, UITextFieldDelegate {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        toolbarView.delegate = self
         
         backgroundColor = .black
         
@@ -215,4 +218,10 @@ class MainRequestView: UIView, UITextFieldDelegate {
     func update(method: String?) {
         methodButton.setTitle(method, for: .normal)
     }
+}
+
+extension MainRequestView: ToolbarViewDelegate {
+    func importSelected() {
+        delegate?.importSelected()
+    }    
 }

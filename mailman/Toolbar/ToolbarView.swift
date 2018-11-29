@@ -1,6 +1,13 @@
 import UIKit
+import MobileCoreServices
+
+protocol ToolbarViewDelegate: class {
+    func importSelected()
+}
 
 class ToolbarView: UIView {
+    weak var delegate: ToolbarViewDelegate?
+    
     private let newButton = UIButton()
     private let importButton = UIButton()
     private let stackView = UIStackView()
@@ -15,8 +22,9 @@ class ToolbarView: UIView {
         newButton.layer.cornerRadius = 5
 
         importButton.setTitle("Import", for: .normal)
-        importButton.backgroundColor = .gray
-        importButton.layer.cornerRadius = 5
+        importButton.backgroundColor = .orange
+        importButton.addTarget(self, action: #selector(importButtonTapped), for: .touchUpInside)
+        importButton.layer.cornerRadius = 5        
 
         labelView.text = "MailMan App"
         labelView.textColor = .white
@@ -45,10 +53,14 @@ class ToolbarView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     @objc
     private func newButtonTapped() {
         
     }
     
-    
+    @objc
+    private func importButtonTapped() {
+        delegate?.importSelected()
+    }    
 }

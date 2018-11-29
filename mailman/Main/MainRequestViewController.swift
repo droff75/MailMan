@@ -1,4 +1,5 @@
 import UIKit
+import MobileCoreServices
 
 class MainRequestViewController: UIViewController {    
     private let service = NetworkRequestService()
@@ -100,6 +101,13 @@ extension MainRequestViewController: MainRequestViewDelegate {
         self.present(navController, animated: true, completion: nil)
     }
     
+    func importSelected() {
+        let importMenu = UIDocumentPickerViewController(documentTypes: [kUTTypeJSON as String], in: .import)
+        importMenu.delegate = self
+        importMenu.modalPresentationStyle = .formSheet
+        self.show(importMenu, sender: nil)
+    }
+    
     @objc
     private func headersDoneButtonTapped() {
         UIApplication.shared.sendAction(#selector(resignFirstResponder), to: nil, from: nil, for: nil)
@@ -136,4 +144,7 @@ extension MainRequestViewController: MethodPopoverViewControllerDelegate {
     }
 }
 
+extension MainRequestViewController: UIDocumentPickerDelegate {
+    
+}
 

@@ -22,8 +22,6 @@ class PostmanCollectionDataTests: XCTestCase {
         let itemData = PostmanItem(name: "test post", request: requestData)
         let infoData = PostmanInfo(postmanId: "020b0e16-4d90-4312-8935-18474de30244", name: "test", schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json")
         
-        
         return PostmanCollection(info: infoData, item: [itemData])
-    }
-    
+    }    
 }
