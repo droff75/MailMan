@@ -156,10 +156,6 @@ class MainRequestView: UIView, UITextFieldDelegate {
         return true
     }
     
-    func update(url: String) {
-        urlTextField.text = url
-    }
-    
     @objc
     private func sendButtonTapped() {
         delegate?.send()
@@ -194,19 +190,19 @@ class MainRequestView: UIView, UITextFieldDelegate {
         case (.some(let statusCode), .none):
             responseCodeLabel.text = String(statusCode)
             responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
-            responseView.text = ""
+            responseView.text = nil
         case (.none, .some(let response)):
-            responseCodeLabel.text = ""
-            responseTitleLabel.text = ""
+            responseCodeLabel.text = nil
+            responseTitleLabel.text = nil
             responseView.attributedText = JSONHighlighter.format(json: response)
         case (.some(let statusCode), .some(let response)):
             responseCodeLabel.text = String(statusCode)
             responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
             responseView.attributedText = JSONHighlighter.format(json: response)
         default:
-            responseCodeLabel.text = ""
-            responseTitleLabel.text = ""
-            responseView.text = ""
+            responseCodeLabel.text = nil
+            responseTitleLabel.text = nil
+            responseView.text = nil
         }
     }
     
@@ -217,6 +213,14 @@ class MainRequestView: UIView, UITextFieldDelegate {
     
     func update(method: String?) {
         methodButton.setTitle(method, for: .normal)
+    }
+    
+    func update(url: String?) {
+        urlTextField.text = url
+    }
+    
+    func clearResponse() {
+        update(statusCode: nil, response: nil)
     }
 }
 

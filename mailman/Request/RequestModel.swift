@@ -3,14 +3,21 @@ import Foundation
 class RequestModel {
     
     private let networkService: NetworkRequestService
-    
-    init(networkService: NetworkRequestService = NetworkRequestService()) {
-        self.networkService = networkService
-    }
     var headers: [Header] = []
     var method: Method = .get
     var url: String = ""
     var body: String?
+    
+    init(requestData: RequestData? = nil, networkService: NetworkRequestService = NetworkRequestService()) {
+        self.networkService = networkService
+        
+        if let requestData = requestData {
+            headers = requestData.headers ?? []
+            method = requestData.method ?? .get
+            url = requestData.url?.raw ?? ""
+            body = requestData.body?.raw
+        }
+    }
     
     func sendRequest(success: @escaping (URLResponse, [String:Any]?)->(), error: @escaping (Error)->())  {
         guard let urlRequest = urlRequest() else { return }

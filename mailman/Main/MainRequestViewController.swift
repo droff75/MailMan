@@ -142,11 +142,14 @@ extension MainRequestViewController: MethodPopoverViewControllerDelegate {
 
 extension MainRequestViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        print(try? String(contentsOfFile: urls[0].path))
-        
         guard let data = try? Data(contentsOf: urls[0], options: []) else { return }
-        let jsonData = try? JSONDecoder().decode(PostmanCollection.self, from: data)
-        print()
+        let postmanCollection = try? JSONDecoder().decode(PostmanCollection.self, from: data)
+        if let requestData = postmanCollection?.item.first?.request {
+            requestModel = RequestModel(requestData: requestData)
+            mainView.update(url: requestModel.url)
+            mainView.update(method: requestModel.method.rawValue)
+            mainView.clearResponse()
+        }
     }
 }
 
