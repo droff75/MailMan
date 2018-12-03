@@ -1,36 +1,30 @@
 import Foundation
 
-protocol NetworkRequestServiceDelegate: class {
-    func errorRetrieved(error: Error)
-    func responseRetrieved(urlResponse: URLResponse, data: [String:Any]?)
-}
-
-class NetworkRequestService {    
-    weak var delegate: NetworkRequestServiceDelegate?
-    
+class NetworkRequestService {
     private let session: URLSessionProtocol
     
     init(session: URLSessionProtocol = URLSession.shared) {
         self.session = session
     }
     
-    func sendRequest(_ request: URLRequest) {        
-        let dataTask = session.dataTask(with: request, completionHandler: completion)
+    func sendRequest(_ request: URLRequest, handleSuccess: @escaping (URLResponse, [String:Any]?)->() = {_,_ in }, handleError: @escaping (Error)->() = {_ in }) {
+        let dataTask = session.dataTask(with: request) { [weak self] data, response, error in
+            if let error = error {
+                handleError(error)
+            } else if let data = data, let response = response {
+                handleSuccess(response, self?.parseJsonResponse(data: data))
+            }
+        }
         dataTask.resume()
     }
     
-    func completion(data: Data?, urlResponse: URLResponse?, error: Error?) {
-        if let error = error {
-            delegate?.errorRetrieved(error: error)
-        } else if let data = data, let urlResponse = urlResponse {
-            var jsonResponse: [String:Any]?
-            do {
-                jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
-            } catch let parsingError {
-                print("Error", parsingError)
-            }
-            delegate?.responseRetrieved(urlResponse: urlResponse, data: jsonResponse)
-
+    private func parseJsonResponse(data: Data) -> [String:Any]? {
+        var jsonResponse: [String:Any]?
+        do {
+            jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any]
+        } catch let parsingError {
+            print("Error", parsingError)
         }
+        return jsonResponse
     }
 }

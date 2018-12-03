@@ -20,29 +20,10 @@ class MainRequestViewController: UIViewController {
     }
     
     override func loadView() {
-        service.delegate = self
         mainView.delegate = self
         mainView.update(url: requestModel.url)
         mainView.update(buttonEnabled: requestModel.isValid())
         view = mainView
-    }
-}
-
-extension MainRequestViewController: NetworkRequestServiceDelegate {    
-    func errorRetrieved(error: Error) {
-        DispatchQueue.main.async { [weak self] in
-            let stringError = error.localizedDescription
-            self?.mainView.update(errorResponse: stringError)
-        }
-    }
-    
-    func responseRetrieved(urlResponse: URLResponse, data: [String:Any]?) {
-        DispatchQueue.main.async { [weak self] in
-            let httpResponse = urlResponse as! HTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            self?.responseCode = statusCode
-            self?.mainView.update(statusCode: statusCode, response: data)
-        }
     }
 }
 
@@ -53,7 +34,22 @@ extension MainRequestViewController: MainRequestViewDelegate {
     }
     
     func send() {
-        requestModel.sendRequest()
+        func handleSuccess(response: URLResponse, data: [String : Any]?) {
+            DispatchQueue.main.async { [weak self] in
+                let httpResponse = response as! HTTPURLResponse
+                let statusCode = httpResponse.statusCode
+                self?.responseCode = statusCode
+                self?.mainView.update(statusCode: statusCode, response: data)
+            }
+        }
+        
+        func handleError(error: Error) {
+            DispatchQueue.main.async { [weak self] in
+                let stringError = error.localizedDescription
+                self?.mainView.update(errorResponse: stringError)
+            }
+        }
+        requestModel.sendRequest(success: handleSuccess, error: handleError)
     }
     
     func showMethodPopover(sender: UIView) {
@@ -145,6 +141,12 @@ extension MainRequestViewController: MethodPopoverViewControllerDelegate {
 }
 
 extension MainRequestViewController: UIDocumentPickerDelegate {
-    
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        print(try? String(contentsOfFile: urls[0].path))
+        
+        guard let data = try? Data(contentsOf: urls[0], options: []) else { return }
+        let jsonData = try? JSONDecoder().decode(PostmanCollection.self, from: data)
+        print()
+    }
 }
 

@@ -12,9 +12,9 @@ class RequestModel {
     var url: String = ""
     var body: String?
     
-    func sendRequest() {
+    func sendRequest(success: @escaping (URLResponse, [String:Any]?)->(), error: @escaping (Error)->())  {
         guard let urlRequest = urlRequest() else { return }
-        networkService.sendRequest(urlRequest)
+        networkService.sendRequest(urlRequest, handleSuccess: success, handleError: error)
     }
     
     func urlRequest() -> URLRequest? {
@@ -37,8 +37,7 @@ class RequestModel {
             if let key = header.key, !key.isEmpty {
                 headersDictionary[key] = header.value ?? ""
             }
-        }
-        
+        }        
         return headersDictionary
     }
 }

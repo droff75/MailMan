@@ -1,6 +1,6 @@
 import Foundation
 
-public class MockNetworkRequestServiceDelegate: NetworkRequestServiceDelegate {
+public class MockNetworkRequestServiceDelegate {
     var error: Error? = nil
     var urlResponse: URLResponse? = nil
     var data: [String:Any]? = nil

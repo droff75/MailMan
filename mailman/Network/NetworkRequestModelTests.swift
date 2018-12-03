@@ -2,62 +2,69 @@
 import XCTest
 
 class NetworkRequestModelTests: XCTestCase {
-    var session: MockURLSession!
+    var mockSession: MockURLSession!
     
     override func setUp() {
         super.setUp()
-        session = MockURLSession()
+        mockSession = MockURLSession()
     }
     
     func testWhenSendRequestReceivesValidRequestDataTheCorrectURLIsUsed() {
-        let subject = NetworkRequestService(session: session)
+        let subject = NetworkRequestService(session: mockSession)
         let request = URLRequest(url: URL(string: "test.url")!)
         
         subject.sendRequest(request)
         
-        XCTAssertEqual(session.lastURL?.url, request.url)
+        XCTAssertEqual(mockSession.lastURL?.url, request.url)
     }
     
     func testWhenSendRequestCalledRequestIsStarted() {
-        let subject = NetworkRequestService(session: session)
+        let subject = NetworkRequestService(session: mockSession)
         let dataTask = MockURLSessionDataTask()
         let request = URLRequest(url: URL(string: "test.url")!)
-        session.nextDataTask = dataTask
+        mockSession.nextDataTask = dataTask
         
         subject.sendRequest(request)
         
         XCTAssert(dataTask.resumeWasCalled)
     }
     
-    func testWhenCompletionCalledWithValidDataAndResponseThenCorrectDelegateFunctionIsCalled() {
-        let service = NetworkRequestService(session: session)
+    func testWhenSendRequestIsCalledHandleSuccessPassesTheExpectedData() {
+        let service = NetworkRequestService(session: mockSession)
         let testDelegate = MockNetworkRequestServiceDelegate()
-        service.delegate = testDelegate
+        let expectation = XCTestExpectation(description: "Response")
+        let expectedData = "{\"test\":\"test1\"}".data(using: .utf8)
+        let expectedUrlResponse = URLResponse.init(url: URL(string: "http://test.url")!, mimeType: "testMimeType", expectedContentLength: 1, textEncodingName: "testEncoding")
         
-        let data = "{\"test\":\"test1\"}".data(using: .utf8)
-        let urlResponse = URLResponse.init(url: URL(string: "http://test.url")!, mimeType: "testMimeType", expectedContentLength: 1, textEncodingName: "testEncoding")
-        let error = Error?.init(nilLiteral: ())
+        mockSession.response = expectedUrlResponse
+        mockSession.data = expectedData
         
-        service.completion(data: data, urlResponse: urlResponse, error: error)
-        XCTAssertNotNil(testDelegate.data)
-        XCTAssertNotNil(testDelegate.urlResponse)
-        XCTAssertNil(testDelegate.error)
+        var request = URLRequest(url: URL(string: "test.url")!)
+        
+        func handleSuccess(response: URLResponse, json: [String:Any]?) {
+            let actualData = try? JSONSerialization.data(withJSONObject: json!, options: [])
+            XCTAssertEqual(response, expectedUrlResponse)
+            XCTAssertEqual(actualData, expectedData)
+            expectation.fulfill()
+        }
+        
+        service.sendRequest(request, handleSuccess: handleSuccess)
     }
     
-    func testWhenCompletionCalledWithErrorThenCorrectDelegateFunctionIsCalled() {
-        let service = NetworkRequestService(session: session)
+    func testWhenSendRequestIsCalledHandleErrorPassesTheExpectedData() {
+        let service = NetworkRequestService(session: mockSession)
         let testDelegate = MockNetworkRequestServiceDelegate()
-        service.delegate = testDelegate
+        let expectedError = NSError.init(domain: "testDomain", code: 999, userInfo: nil)
+        let expectation = XCTestExpectation(description: "Response")
         
-        let data = Data?.init(nilLiteral: ())
-        let urlResponse = URLResponse?.init(nilLiteral: ())
-        let error = NSError.init(domain: "testDomain", code: 999, userInfo: nil)
+        mockSession.error = expectedError
         
-        service.completion(data: data, urlResponse: urlResponse, error: error)
+        var request = URLRequest(url: URL(string: "test.url")!)
         
-        XCTAssertNil(testDelegate.data)
-        XCTAssertNil(testDelegate.urlResponse)
-        XCTAssertNotNil(testDelegate.error)
+        func handleError(error: Error) {
+            XCTAssertEqual(error as NSError, expectedError)
+            expectation.fulfill()
+        }
     }
     
 }
