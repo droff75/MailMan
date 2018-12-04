@@ -99,8 +99,13 @@ extension MainView: ToolbarViewDelegate {
     }
     
     func showPostmanCollectionSelected() {
-        constraint?.constant = collectionViewWidth
-        UIView.animate(withDuration: 1) { [weak self] in
+        guard let constraint = constraint else { return }
+        if constraint.constant > 0 {
+            constraint.constant = 0
+        } else {
+            constraint.constant = collectionViewWidth
+        }
+        UIView.animate(withDuration: 0.3) { [weak self] in
             self?.layoutIfNeeded()
         }
     }
