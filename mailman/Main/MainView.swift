@@ -58,7 +58,7 @@ class MainView: UIView, UITextFieldDelegate {
         responseView.topAnchor.constraint(equalTo: requestView.bottomAnchor, constant: padding).isActive = true
         responseView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding).isActive = true
         responseView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding).isActive = true
-        responseView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding).isActive = true
+        responseView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
         
         update(buttonEnabled: false)
     }
