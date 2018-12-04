@@ -3,6 +3,7 @@ import MobileCoreServices
 
 protocol ToolbarViewDelegate: class {
     func importSelected()
+    func showPostmanCollectionSelected()
 }
 
 class ToolbarView: UIView {
@@ -18,7 +19,7 @@ class ToolbarView: UIView {
         
         backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        newButton.setTitle("New", for: .normal)
+        newButton.setTitle("Collections", for: .normal)
         newButton.backgroundColor = .orange
         newButton.addTarget(self, action: #selector(newButtonTapped), for: .touchUpInside)
         newButton.layer.cornerRadius = 5
@@ -58,7 +59,7 @@ class ToolbarView: UIView {
     
     @objc
     private func newButtonTapped() {
-        
+        delegate?.showPostmanCollectionSelected()
     }
     
     @objc

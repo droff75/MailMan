@@ -13,7 +13,8 @@ class MainView: UIView, UITextFieldDelegate {
     private let requestView = RequestView()
     private let responseView = UITextView()
     private let padding: CGFloat = 10
-    private let collectionViewWidth: CGFloat = 200
+    private let collectionViewWidth: CGFloat = 256
+    fileprivate var constraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,9 +42,10 @@ class MainView: UIView, UITextFieldDelegate {
         postmanCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         postmanCollectionView.widthAnchor.constraint(equalToConstant: collectionViewWidth).isActive = true
         
+        constraint = contentView.leadingAnchor.constraint(equalTo: leadingAnchor)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor).isActive = true
-        contentView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        constraint?.isActive = true
         contentView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
@@ -94,7 +96,14 @@ class MainView: UIView, UITextFieldDelegate {
 extension MainView: ToolbarViewDelegate {
     func importSelected() {
         delegate?.importSelected()
-    }    
+    }
+    
+    func showPostmanCollectionSelected() {
+        constraint?.constant = collectionViewWidth
+        UIView.animate(withDuration: 1) { [weak self] in
+            self?.layoutIfNeeded()
+        }
+    }
 }
 
 extension MainView: RequestViewDelegate {
