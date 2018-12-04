@@ -8,9 +8,12 @@ class MainView: UIView, UITextFieldDelegate {
     weak var delegate: MainViewDelegate?
     
     private let toolbarView = ToolbarView()
+    private let postmanCollectionView = PostmanCollectionView()
+    private let contentView = UIView()
     private let requestView = RequestView()
     private let responseView = UITextView()
     private let padding: CGFloat = 10
+    private let collectionViewWidth: CGFloat = 200
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,8 +24,10 @@ class MainView: UIView, UITextFieldDelegate {
         requestView.delegate = self
         
         addSubview(toolbarView)
-        addSubview(requestView)
-        addSubview(responseView)
+        addSubview(postmanCollectionView)
+        addSubview(contentView)
+        contentView.addSubview(requestView)
+        contentView.addSubview(responseView)
         
         toolbarView.translatesAutoresizingMaskIntoConstraints = false
         toolbarView.topAnchor.constraint(equalTo: topAnchor).isActive = true
@@ -30,16 +35,28 @@ class MainView: UIView, UITextFieldDelegate {
         toolbarView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         toolbarView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
+        postmanCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        postmanCollectionView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor).isActive = true
+        postmanCollectionView.trailingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
+        postmanCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        postmanCollectionView.widthAnchor.constraint(equalToConstant: collectionViewWidth).isActive = true
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor).isActive = true
+        contentView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+
         requestView.translatesAutoresizingMaskIntoConstraints = false
-        requestView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor, constant: padding).isActive = true
-        requestView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
-        requestView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
+        requestView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding).isActive = true
+        requestView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding).isActive = true
+        requestView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding).isActive = true
         
         responseView.translatesAutoresizingMaskIntoConstraints = false
         responseView.topAnchor.constraint(equalTo: requestView.bottomAnchor, constant: padding).isActive = true
-        responseView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
-        responseView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
-        responseView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
+        responseView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: padding).isActive = true
+        responseView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -padding).isActive = true
+        responseView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -padding).isActive = true
         
         update(buttonEnabled: false)
     }

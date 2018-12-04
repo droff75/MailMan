@@ -38,6 +38,7 @@
 		CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* Header.swift */; };
 		CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */; };
 		CCD7D46021B6E3150007ECAA /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7D45F21B6E3150007ECAA /* RequestView.swift */; };
+		CCD7D46221B70A670007ECAA /* PostmanCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7D46121B70A670007ECAA /* PostmanCollectionView.swift */; };
 		CCDCF7DF21A4644900ED74B4 /* Highlightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */; };
 		CCDCF7E021A4644900ED74B4 /* Highlightr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CCDCF7E621A4985C00ED74B4 /* JSONHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDCF7E521A4985C00ED74B4 /* JSONHighlighter.swift */; };
@@ -135,6 +136,7 @@
 		CC9B84B7215D2AC5001A5C41 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestServiceDelegate.swift; sourceTree = "<group>"; };
 		CCD7D45F21B6E3150007ECAA /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
+		CCD7D46121B70A670007ECAA /* PostmanCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanCollectionView.swift; sourceTree = "<group>"; };
 		CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Highlightr.xcodeproj; path = Carthage/Checkouts/Highlightr/Highlightr.xcodeproj; sourceTree = "<group>"; };
 		CCDCF7E521A4985C00ED74B4 /* JSONHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHighlighter.swift; sourceTree = "<group>"; };
 		CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				CC80163B20D954F1008C84A9 /* MainView.swift */,
+				CCD7D46121B70A670007ECAA /* PostmanCollectionView.swift */,
 				CC55B40A20A09DF500C34B4D /* MainRequestViewController.swift */,
 				CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */,
 				CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */,
@@ -482,6 +485,7 @@
 				CC22FA1A212F1F5E000BC613 /* ToolbarView.swift in Sources */,
 				CC873AA7219C9750004D8016 /* TextPopoverViewController.swift in Sources */,
 				CC1C4BF6212F424000869C6F /* NetworkRequestService.swift in Sources */,
+				CCD7D46221B70A670007ECAA /* PostmanCollectionView.swift in Sources */,
 				CC80163C20D954F1008C84A9 /* MainView.swift in Sources */,
 				CCD7D46021B6E3150007ECAA /* RequestView.swift in Sources */,
 				CC873AA9219C982E004D8016 /* TextPopoverView.swift in Sources */,
