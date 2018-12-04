@@ -37,6 +37,7 @@
 		CC8A6392213868B3009DFC50 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A6391213868B3009DFC50 /* MockURLSession.swift */; };
 		CC9B84B8215D2AC5001A5C41 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9B84B7215D2AC5001A5C41 /* Header.swift */; };
 		CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */; };
+		CCD7D46021B6E3150007ECAA /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD7D45F21B6E3150007ECAA /* RequestView.swift */; };
 		CCDCF7DF21A4644900ED74B4 /* Highlightr.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */; };
 		CCDCF7E021A4644900ED74B4 /* Highlightr.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CCDCF7DC21A4638600ED74B4 /* Highlightr.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		CCDCF7E621A4985C00ED74B4 /* JSONHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDCF7E521A4985C00ED74B4 /* JSONHighlighter.swift */; };
@@ -133,6 +134,7 @@
 		CC8A6391213868B3009DFC50 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		CC9B84B7215D2AC5001A5C41 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		CCA2D871214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequestServiceDelegate.swift; sourceTree = "<group>"; };
+		CCD7D45F21B6E3150007ECAA /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
 		CCDCF7D621A4638600ED74B4 /* Highlightr.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Highlightr.xcodeproj; path = Carthage/Checkouts/Highlightr/Highlightr.xcodeproj; sourceTree = "<group>"; };
 		CCDCF7E521A4985C00ED74B4 /* JSONHighlighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHighlighter.swift; sourceTree = "<group>"; };
 		CCE73BA7214FF28C00EEBB09 /* RequestHeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +235,7 @@
 				CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */,
 				CC873AA6219C9750004D8016 /* TextPopoverViewController.swift */,
 				CC873AA8219C982E004D8016 /* TextPopoverView.swift */,
+				CCD7D45F21B6E3150007ECAA /* RequestView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				CC873AA7219C9750004D8016 /* TextPopoverViewController.swift in Sources */,
 				CC1C4BF6212F424000869C6F /* NetworkRequestService.swift in Sources */,
 				CC80163C20D954F1008C84A9 /* MainView.swift in Sources */,
+				CCD7D46021B6E3150007ECAA /* RequestView.swift in Sources */,
 				CC873AA9219C982E004D8016 /* TextPopoverView.swift in Sources */,
 				CCDCF7E621A4985C00ED74B4 /* JSONHighlighter.swift in Sources */,
 				CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */,
