@@ -1,6 +1,6 @@
 import UIKit
 
-public enum HTTPStatusCodes: Int {
+public enum HTTPStatusCode: Int {
     // 100 Informational
     case `continue` = 100
     case switchingProtocols = 101

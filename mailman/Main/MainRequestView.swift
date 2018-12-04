@@ -185,19 +185,19 @@ class MainRequestView: UIView, UITextFieldDelegate {
         responseView.text = errorResponse
     }
     
-    func update(statusCode: Int?, response: [String:Any]?) {
+    func update(statusCode: HTTPStatusCode?, response: [String:Any]?) {
         switch (statusCode, response) {
         case (.some(let statusCode), .none):
-            responseCodeLabel.text = String(statusCode)
-            responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
+            responseCodeLabel.text = String(statusCode.rawValue)
+            responseTitleLabel.text = statusCode.responseTitle
             responseView.text = nil
         case (.none, .some(let response)):
             responseCodeLabel.text = nil
             responseTitleLabel.text = nil
             responseView.attributedText = JSONHighlighter.format(json: response)
         case (.some(let statusCode), .some(let response)):
-            responseCodeLabel.text = String(statusCode)
-            responseTitleLabel.text = HTTPStatusCodes(rawValue: statusCode)?.responseTitle
+            responseCodeLabel.text = String(statusCode.rawValue)
+            responseTitleLabel.text = statusCode.responseTitle
             responseView.attributedText = JSONHighlighter.format(json: response)
         default:
             responseCodeLabel.text = nil

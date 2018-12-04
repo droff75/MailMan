@@ -5,7 +5,7 @@ class MainRequestViewController: UIViewController {
     private let service = NetworkRequestService()
     private var mainView: MainRequestView
     fileprivate var requestModel: RequestModel
-    fileprivate var responseCode: Int?
+    fileprivate var responseCode: HTTPStatusCode?
     
     init() {
         mainView = MainRequestView()
@@ -37,7 +37,8 @@ extension MainRequestViewController: MainRequestViewDelegate {
         func handleSuccess(response: URLResponse, data: [String : Any]?) {
             DispatchQueue.main.async { [weak self] in
                 let httpResponse = response as! HTTPURLResponse
-                let statusCode = httpResponse.statusCode
+                let statusCode = HTTPStatusCode(rawValue: httpResponse.statusCode)
+                
                 self?.responseCode = statusCode
                 self?.mainView.update(statusCode: statusCode, response: data)
             }
@@ -66,8 +67,8 @@ extension MainRequestViewController: MainRequestViewDelegate {
     }
     
     func showResponseCodePopover(sender: UIView) {
-        guard let responseCode = responseCode, let responseDefinition = HTTPStatusCodes(rawValue: responseCode)?.responseDefinition else { return }
-        let responseCodePopoverViewController = TextPopoverViewController(popoverText: responseDefinition)
+        guard let responseCode = responseCode else { return }
+        let responseCodePopoverViewController = TextPopoverViewController(popoverText: responseCode.responseDefinition)
         responseCodePopoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
         responseCodePopoverViewController.preferredContentSize = CGSize(width: 200, height: 200)
         
