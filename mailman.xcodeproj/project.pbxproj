@@ -22,7 +22,7 @@
 		CC55B40B20A09DF500C34B4D /* MainRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC55B40A20A09DF500C34B4D /* MainRequestViewController.swift */; };
 		CC65743A21AEF4E900DB634E /* testJson.json in Resources */ = {isa = PBXBuildFile; fileRef = CC65743921AEF4E900DB634E /* testJson.json */; };
 		CC70D1C521344CDC0043C201 /* PostmanCollectionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC70D1C421344CDC0043C201 /* PostmanCollectionData.swift */; };
-		CC80163C20D954F1008C84A9 /* MainRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80163B20D954F1008C84A9 /* MainRequestView.swift */; };
+		CC80163C20D954F1008C84A9 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC80163B20D954F1008C84A9 /* MainView.swift */; };
 		CC8104242195EE9500C74148 /* RequestHeadersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8104232195EE9500C74148 /* RequestHeadersViewModel.swift */; };
 		CC8104322195FB1D00C74148 /* PostmanCollectionDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2DF1CC218B8625000A0CE8 /* PostmanCollectionDataTests.swift */; };
 		CC8104332195FB3A00C74148 /* NetworkRequestModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8A63892135C116009DFC50 /* NetworkRequestModelTests.swift */; };
@@ -120,7 +120,7 @@
 		CC55B40A20A09DF500C34B4D /* MainRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequestViewController.swift; sourceTree = "<group>"; };
 		CC65743921AEF4E900DB634E /* testJson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testJson.json; sourceTree = SOURCE_ROOT; };
 		CC70D1C421344CDC0043C201 /* PostmanCollectionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanCollectionData.swift; sourceTree = "<group>"; };
-		CC80163B20D954F1008C84A9 /* MainRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRequestView.swift; sourceTree = "<group>"; };
+		CC80163B20D954F1008C84A9 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		CC8104232195EE9500C74148 /* RequestHeadersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewModel.swift; sourceTree = "<group>"; };
 		CC8104252195EF4B00C74148 /* RequestHeadersViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHeadersViewModelTests.swift; sourceTree = "<group>"; };
 		CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MethodPopoverViewController.swift; sourceTree = "<group>"; };
@@ -227,7 +227,7 @@
 		CC8104272195F92000C74148 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				CC80163B20D954F1008C84A9 /* MainRequestView.swift */,
+				CC80163B20D954F1008C84A9 /* MainView.swift */,
 				CC55B40A20A09DF500C34B4D /* MainRequestViewController.swift */,
 				CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */,
 				CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */,
@@ -479,7 +479,7 @@
 				CC22FA1A212F1F5E000BC613 /* ToolbarView.swift in Sources */,
 				CC873AA7219C9750004D8016 /* TextPopoverViewController.swift in Sources */,
 				CC1C4BF6212F424000869C6F /* NetworkRequestService.swift in Sources */,
-				CC80163C20D954F1008C84A9 /* MainRequestView.swift in Sources */,
+				CC80163C20D954F1008C84A9 /* MainView.swift in Sources */,
 				CC873AA9219C982E004D8016 /* TextPopoverView.swift in Sources */,
 				CCDCF7E621A4985C00ED74B4 /* JSONHighlighter.swift in Sources */,
 				CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */,

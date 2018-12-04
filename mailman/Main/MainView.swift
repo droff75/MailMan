@@ -1,6 +1,6 @@
 import UIKit
 
-protocol MainRequestViewDelegate: class {
+protocol MainViewDelegate: class {
     func send()
     func showBodyView()
     func showHeadersView()
@@ -10,8 +10,8 @@ protocol MainRequestViewDelegate: class {
     func importSelected()
 }
 
-class MainRequestView: UIView, UITextFieldDelegate {
-    weak var delegate: MainRequestViewDelegate?
+class MainView: UIView, UITextFieldDelegate {
+    weak var delegate: MainViewDelegate?
     
     private let toolbarView = ToolbarView()
     private let sendButton = UIButton()
@@ -224,7 +224,7 @@ class MainRequestView: UIView, UITextFieldDelegate {
     }
 }
 
-extension MainRequestView: ToolbarViewDelegate {
+extension MainView: ToolbarViewDelegate {
     func importSelected() {
         delegate?.importSelected()
     }    

@@ -3,12 +3,12 @@ import MobileCoreServices
 
 class MainRequestViewController: UIViewController {    
     private let service = NetworkRequestService()
-    private var mainView: MainRequestView
+    private var mainView: MainView
     fileprivate var requestModel: RequestModel
     fileprivate var responseCode: HTTPStatusCode?
     
     init() {
-        mainView = MainRequestView()
+        mainView = MainView()
         requestModel = RequestModel(networkService: service)
         super.init(nibName: nil, bundle: nil)
 
@@ -27,7 +27,7 @@ class MainRequestViewController: UIViewController {
     }
 }
 
-extension MainRequestViewController: MainRequestViewDelegate {
+extension MainRequestViewController: MainViewDelegate {
     func urlChanged(_ url: String) {
         requestModel.url = url
         mainView.update(buttonEnabled: requestModel.isValid())
