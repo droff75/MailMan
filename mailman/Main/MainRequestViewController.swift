@@ -6,6 +6,7 @@ class MainRequestViewController: UIViewController {
     private var mainView: MainView
     fileprivate var requestModel: RequestModel
     fileprivate var responseCode: HTTPStatusCode?
+    fileprivate var postmanCollections: [PostmanCollection] = []
     
     init() {
         mainView = MainView()
@@ -25,9 +26,21 @@ class MainRequestViewController: UIViewController {
         mainView.update(buttonEnabled: requestModel.isValid())
         view = mainView
     }
+    
+    private func update(from requestData: RequestData) {
+        requestModel = RequestModel(requestData: requestData)
+        mainView.update(url: requestModel.url)
+        mainView.update(method: requestModel.method.rawValue)
+        mainView.clearResponse()
+    }
 }
 
 extension MainRequestViewController: MainViewDelegate {
+    func requestSelected(at indexPath: IndexPath) {
+        let selectedRequest = postmanCollections[indexPath.section].item[indexPath.row].request
+        update(from: selectedRequest)
+    }
+    
     func urlChanged(_ url: String) {
         requestModel.url = url
         mainView.update(buttonEnabled: requestModel.isValid())
@@ -143,20 +156,14 @@ extension MainRequestViewController: MethodPopoverViewControllerDelegate {
 
 extension MainRequestViewController: UIDocumentPickerDelegate {    
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        guard let data = try? Data(contentsOf: urls[0], options: []),
-            let postmanCollection = try? JSONDecoder().decode(PostmanCollection.self, from: data)  else {
-                mainView.update(postmanCollections: [])
-                return
-        }
+        guard let data = try? Data(contentsOf: urls[0], options: []) else { return }
         
-        mainView.update(postmanCollections: [postmanCollection])
-        
-        if let requestData = postmanCollection.item.first?.request {
-            requestModel = RequestModel(requestData: requestData)
-            mainView.update(url: requestModel.url)
-            mainView.update(method: requestModel.method.rawValue)
-            mainView.clearResponse()
+        if let postmanCollection = try? JSONDecoder().decode(PostmanCollection.self, from: data) {
+            self.postmanCollections = [postmanCollection]
+        } else {
+            self.postmanCollections = []
         }
+        mainView.update(postmanCollections: postmanCollections)
     }
 }
 

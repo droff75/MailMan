@@ -232,8 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				CC80163B20D954F1008C84A9 /* MainView.swift */,
-				CCD7D46121B70A670007ECAA /* PostmanCollectionView.swift */,
 				CC55B40A20A09DF500C34B4D /* MainRequestViewController.swift */,
+				CCD7D46121B70A670007ECAA /* PostmanCollectionView.swift */,
 				CC810439219B3A3D00C74148 /* MethodPopoverViewController.swift */,
 				CC81043B219B4B4300C74148 /* MethodPopoverCell.swift */,
 				CC873AA6219C9750004D8016 /* TextPopoverViewController.swift */,

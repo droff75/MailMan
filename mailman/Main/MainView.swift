@@ -1,6 +1,6 @@
 import UIKit
 
-protocol MainViewDelegate: RequestViewDelegate {
+protocol MainViewDelegate: RequestViewDelegate, PostmanCollectionViewDelegate {
     func importSelected()
 }
 
@@ -23,6 +23,7 @@ class MainView: UIView, UITextFieldDelegate {
         
         toolbarView.delegate = self
         requestView.delegate = self
+        postmanCollectionView.delegate = self
         
         addSubview(toolbarView)
         addSubview(postmanCollectionView)
@@ -139,4 +140,10 @@ extension MainView: RequestViewDelegate {
     func urlChanged(_ url: String) {
         delegate?.urlChanged(url)
     }    
+}
+
+extension MainView: PostmanCollectionViewDelegate {
+    func requestSelected(at indexPath: IndexPath) {
+        delegate?.requestSelected(at: indexPath)
+    }
 }

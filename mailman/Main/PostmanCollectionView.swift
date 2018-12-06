@@ -1,6 +1,12 @@
 import UIKit
 
+protocol PostmanCollectionViewDelegate: class {
+    func requestSelected(at indexPath: IndexPath)
+}
+
 class PostmanCollectionView: UIView {
+    weak var delegate: PostmanCollectionViewDelegate?
+    
     private let noCollectionsLabel = UILabel()
     private let tableView = UITableView()
     private var collections: [PostmanCollection] = []
@@ -68,5 +74,9 @@ extension PostmanCollectionView: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return collections[section].info.name
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.requestSelected(at: indexPath)
     }
 }
