@@ -88,6 +88,10 @@ class MainView: UIView, UITextFieldDelegate {
         requestView.update(url: url)
     }
     
+    func update(postmanCollections: [PostmanCollection]) {
+        postmanCollectionView.update(collections: postmanCollections)
+    }
+    
     func clearResponse() {
         update(statusCode: nil, response: nil)
     }
@@ -134,7 +138,5 @@ extension MainView: RequestViewDelegate {
     
     func urlChanged(_ url: String) {
         delegate?.urlChanged(url)
-    }
-    
-    
+    }    
 }
