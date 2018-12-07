@@ -59,7 +59,7 @@ class PostmanCollectionView: UIView {
 extension PostmanCollectionView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))!
-        cell.textLabel?.text = collections[indexPath.section].item[indexPath.row].name
+//        cell.textLabel?.text = collections[indexPath.section].item[indexPath.row].name
         return cell
     }
     
