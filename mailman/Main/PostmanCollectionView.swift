@@ -9,7 +9,7 @@ class PostmanCollectionView: UIView {
     
     private let noCollectionsLabel = UILabel()
     private let tableView = UITableView()
-    private var collections: [PostmanCollection] = []
+    fileprivate var viewModel: PostmanCollectionViewModel?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,12 +46,12 @@ class PostmanCollectionView: UIView {
     }
     
     func update(collections: [PostmanCollection]) {
-        self.collections = collections
+        viewModel = PostmanCollectionViewModel(postmanCollections: collections)
         updateView()
     }
     
     private func updateView() {
-        tableView.isHidden = collections.count == 0
+        tableView.isHidden = viewModel == nil
         tableView.reloadData()
     }
 }
@@ -59,21 +59,23 @@ class PostmanCollectionView: UIView {
 extension PostmanCollectionView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))!
-//        cell.textLabel?.text = collections[indexPath.section].item[indexPath.row].name
+        if let rowData = viewModel?.data(for: indexPath) {
+            cell.textLabel?.text = rowData.name
+        }
+        
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        let count = collections.count
-        return count
+        return viewModel?.numberOfSections ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return collections[section].items.count
+        return viewModel?.numberOfRows(inSection: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return collections[section].info.name
+        return "" //collections[section].info.name
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

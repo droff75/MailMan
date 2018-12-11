@@ -16,36 +16,34 @@ class PostmanCollectionViewModelTests: XCTestCase {
         XCTAssertEqual(model.data(for: IndexPath(row: 1, section: 0)), CellData(type: .folder("testFolder2"), indent: 1))
         XCTAssertEqual(model.data(for: IndexPath(row: 2, section: 0)), CellData(type: .request(expectedRequestData), indent: 1))
     }
-}
-class PostmanCollectionViewDataTests: XCTestCase {
     
-    func testCorrectCellDataReturnedFromPostmanCollection() {
-        let info = PostmanInfo(postmanId: "123", name: "test", schema: "test")
-        let expectedRequestData = PostmanRequest(name: "testRequest", request: RequestData(url: PostmanUrl(raw: "test.url", httpProtocol: nil, host: nil, path: nil), method: .get, body: nil, headers: nil))
-        let requestItem = Item.request(expectedRequestData)
+    func testNumberOfSectionsReturnsCorrectValue() {
+        let postmanInfo = PostmanInfo(postmanId: "", name: "", schema: "")
+        let collection = PostmanCollection(info: postmanInfo, items: [])
         
-        let nestedRequest = Item.request(expectedRequestData)
-        let child3NestedFolder = Item.folder(PostmanFolder(name: "testFolder6", items: [nestedRequest]))
-        let child2NestedFolder = Item.folder(PostmanFolder(name: "testFolder5", items: [child3NestedFolder]))
-        let child1NestedFolder = Item.folder(PostmanFolder(name: "testFolder4", items: [child2NestedFolder]))
-        let parentNestedFolder = Item.folder(PostmanFolder(name: "testFolder3", items: [child1NestedFolder]))
-        let emptyFolderItem = Item.folder(PostmanFolder(name: "testFolder2", items: []))
-        let folderItem = Item.folder(PostmanFolder(name: "testFolder", items: [emptyFolderItem,requestItem, parentNestedFolder]))
-        let collection = PostmanCollection(info: info, items: [folderItem])
+        XCTAssertEqual(PostmanCollectionViewModel(postmanCollections: []).numberOfSections, 0)
+        XCTAssertEqual(PostmanCollectionViewModel(postmanCollections: [collection, collection]).numberOfSections, 2)
+        XCTAssertEqual(PostmanCollectionViewModel(postmanCollections: [collection, collection, collection, collection]).numberOfSections, 4)
+    }
+    
+    func testNumberOfRowsInSectionReturnsCorrectValue() {
+        let postmanInfo = PostmanInfo(postmanId: "", name: "", schema: "")
+        let item = Item.folder(PostmanFolder(name: "", items: []))
+        let collectionFourItems = PostmanCollection(info: postmanInfo, items: [item, item, item, item])
+        let collectionSevenItems = PostmanCollection(info: postmanInfo, items: [item, item, item, item, item, item, item,])
         
+        let testObject = PostmanCollectionViewModel(postmanCollections: [collectionFourItems,collectionSevenItems])
         
-        let expectedRows = [CellData(type: .folder("testFolder"), indent: 0),
-                            CellData(type: .folder("testFolder2"), indent: 1),
-                            CellData(type: .request(expectedRequestData), indent: 1),
-                            CellData(type: .folder("testFolder3"), indent: 1),
-                            CellData(type: .folder("testFolder4"), indent: 2),
-                            CellData(type: .folder("testFolder5"), indent: 3),
-                            CellData(type: .folder("testFolder6"), indent: 4),
-                            CellData(type: .request(expectedRequestData), indent: 5)]
-
-        let testObject = PostmanCollectionViewData(postmanCollection: collection)
+        XCTAssertEqual(testObject.numberOfRows(inSection: 0), 4)
+        XCTAssertEqual(testObject.numberOfRows(inSection: 1), 7)
+    
+    }
+    
+    func testNumberOfRowsInSectionReturns0WhenInitializedWithEmptyArray() {
+        let testObject = PostmanCollectionViewModel(postmanCollections: [])
         
-        XCTAssertEqual(testObject.sectionTitle, collection.info.name)
-        XCTAssertEqual(testObject.rows, expectedRows)
+        XCTAssertEqual(testObject.numberOfRows(inSection: 0), 0)        
     }
 }
+
+

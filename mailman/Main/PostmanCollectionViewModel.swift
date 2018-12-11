@@ -10,6 +10,15 @@ struct PostmanCollectionViewModel {
     func data(for indexPath: IndexPath) -> CellData {
         return collectionData[indexPath.section].rows[indexPath.row]
     }
+    
+    func numberOfRows(inSection section: Int) -> Int {
+        guard section < collectionData.count else { return 0 }
+        return collectionData[section].rows.count
+    }
+    
+    var numberOfSections: Int {
+        return collectionData.count
+    }
 }
 
 struct PostmanCollectionViewData: Equatable {
@@ -41,6 +50,14 @@ struct PostmanCollectionViewData: Equatable {
 struct CellData: Equatable {
     let type: RowType
     let indent: Int
+    var name: String {
+        switch type {
+        case .folder(let name):
+            return name
+        case .request(let request):
+            return request.name
+        }
+    }
 }
 
 enum RowType: Equatable {
