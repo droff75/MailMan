@@ -23,12 +23,25 @@ class PostmanCollectionViewDataTests: XCTestCase {
         let info = PostmanInfo(postmanId: "123", name: "test", schema: "test")
         let expectedRequestData = PostmanRequest(name: "testRequest", request: RequestData(url: PostmanUrl(raw: "test.url", httpProtocol: nil, host: nil, path: nil), method: .get, body: nil, headers: nil))
         let requestItem = Item.request(expectedRequestData)
+        
+        let nestedRequest = Item.request(expectedRequestData)
+        let child3NestedFolder = Item.folder(PostmanFolder(name: "testFolder6", items: [nestedRequest]))
+        let child2NestedFolder = Item.folder(PostmanFolder(name: "testFolder5", items: [child3NestedFolder]))
+        let child1NestedFolder = Item.folder(PostmanFolder(name: "testFolder4", items: [child2NestedFolder]))
+        let parentNestedFolder = Item.folder(PostmanFolder(name: "testFolder3", items: [child1NestedFolder]))
         let emptyFolderItem = Item.folder(PostmanFolder(name: "testFolder2", items: []))
-        let folderItem = Item.folder(PostmanFolder(name: "testFolder", items: [emptyFolderItem,requestItem]))
+        let folderItem = Item.folder(PostmanFolder(name: "testFolder", items: [emptyFolderItem,requestItem, parentNestedFolder]))
         let collection = PostmanCollection(info: info, items: [folderItem])
+        
+        
         let expectedRows = [CellData(type: .folder("testFolder"), indent: 0),
                             CellData(type: .folder("testFolder2"), indent: 1),
-                            CellData(type: .request(expectedRequestData), indent: 1)]
+                            CellData(type: .request(expectedRequestData), indent: 1),
+                            CellData(type: .folder("testFolder3"), indent: 1),
+                            CellData(type: .folder("testFolder4"), indent: 2),
+                            CellData(type: .folder("testFolder5"), indent: 3),
+                            CellData(type: .folder("testFolder6"), indent: 4),
+                            CellData(type: .request(expectedRequestData), indent: 5)]
 
         let testObject = PostmanCollectionViewData(postmanCollection: collection)
         

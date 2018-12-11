@@ -7,7 +7,7 @@ struct PostmanCollectionViewModel {
         collectionData = postmanCollections.map(PostmanCollectionViewData.init)
     }
     
-    func data(for indexPath: IndexPath) -> CellData {        
+    func data(for indexPath: IndexPath) -> CellData {
         return collectionData[indexPath.section].rows[indexPath.row]
     }
 }
