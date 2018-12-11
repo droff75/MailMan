@@ -7,17 +7,27 @@ struct PostmanCollectionViewModel {
         collectionData = postmanCollections.map(PostmanCollectionViewData.init)
     }
     
-    func data(for indexPath: IndexPath) -> CellData {
-        return collectionData[indexPath.section].rows[indexPath.row]
+    func data(for indexPath: IndexPath) -> CellData? {
+        guard let sectionViewData = viewData(forSection: indexPath.section),
+            indexPath.row < sectionViewData.rows.count else { return nil }
+        return sectionViewData.rows[indexPath.row]
     }
     
     func numberOfRows(inSection section: Int) -> Int {
-        guard section < collectionData.count else { return 0 }
-        return collectionData[section].rows.count
+        return viewData(forSection: section)?.rows.count ?? 0
+    }
+    
+    func title(forSection section: Int) -> String? {
+        return viewData(forSection: section)?.sectionTitle
     }
     
     var numberOfSections: Int {
         return collectionData.count
+    }
+    
+    private func viewData(forSection section: Int) -> PostmanCollectionViewData? {
+        guard section < collectionData.count else { return nil }
+        return collectionData[section]
     }
 }
 

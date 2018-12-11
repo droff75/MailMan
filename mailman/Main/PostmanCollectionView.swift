@@ -60,7 +60,13 @@ extension PostmanCollectionView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: UITableViewCell.self))!
         if let rowData = viewModel?.data(for: indexPath) {
-            cell.textLabel?.text = rowData.name
+            let indentSpaces = Array(repeating: " ", count: rowData.indent * 4).joined()
+            cell.textLabel?.text = indentSpaces + rowData.name
+            if case RowType.folder(_) = rowData.type {
+                cell.backgroundColor = .lightGray
+            } else {
+                cell.backgroundColor = .white
+            }
         }
         
         return cell
@@ -75,7 +81,7 @@ extension PostmanCollectionView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "" //collections[section].info.name
+        return viewModel?.title(forSection: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
