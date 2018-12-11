@@ -22,12 +22,12 @@ class PostmanCollectionDataTests: XCTestCase {
         let headers = [Header(key: "key1", value: "value1"), Header(key: "key2", value: "value2"), Header(key: "key3", value: "value3"), Header(key: "Content-Type", value: "application/json")]
         let postRequestData = RequestData(url: postPostmanUrl, method: .post, body: postBody, headers: headers)
         let getRequestData = RequestData(url: getPostmanUrl, method: .get, body: getBody, headers: [])
-        let fourthItem = Item.postmanItem(PostmanItem(name: "test post", request: postRequestData))
-        let thirdItem = Item.postmanItem(PostmanItem(name: "test get", request: getRequestData))
-        let secondItem = Item.folder(PostmanFolder(name: "Test Folder 2", item: [thirdItem]))
-        let firstItem = Item.folder(PostmanFolder(name: "Test Folder 1", item: [secondItem, fourthItem]))
+        let fourthItem = Item.request(PostmanRequest(name: "test post", request: postRequestData))
+        let thirdItem = Item.request(PostmanRequest(name: "test get", request: getRequestData))
+        let secondItem = Item.folder(PostmanFolder(name: "Test Folder 2", items: [thirdItem]))
+        let firstItem = Item.folder(PostmanFolder(name: "Test Folder 1", items: [secondItem, fourthItem]))
         let infoData = PostmanInfo(postmanId: "020b0e16-4d90-4312-8935-18474de30244", name: "test", schema: "https://schema.getpostman.com/json/collection/v2.1.0/collection.json")
         
-        return PostmanCollection(info: infoData, item: [firstItem])
+        return PostmanCollection(info: infoData, items: [firstItem])
     }    
 }

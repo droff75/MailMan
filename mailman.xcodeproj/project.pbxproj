@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC0079AF21BEC81F006CFCA7 /* PostmanCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0079AE21BEC81F006CFCA7 /* PostmanCollectionViewModel.swift */; };
+		CC0079B221BECBD7006CFCA7 /* PostmanCollectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0079B121BECBD7006CFCA7 /* PostmanCollectionViewModelTests.swift */; };
 		CC1C4BF6212F424000869C6F /* NetworkRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1C4BF5212F424000869C6F /* NetworkRequestService.swift */; };
 		CC1FBEE42142D8D100DBF93D /* RequestBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1FBEE32142D8D100DBF93D /* RequestBodyView.swift */; };
 		CC1FBEE62142D8FF00DBF93D /* RequestBodyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC1FBEE52142D8FF00DBF93D /* RequestBodyViewController.swift */; };
@@ -99,6 +101,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		CC0079AE21BEC81F006CFCA7 /* PostmanCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanCollectionViewModel.swift; sourceTree = "<group>"; };
+		CC0079B121BECBD7006CFCA7 /* PostmanCollectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostmanCollectionViewModelTests.swift; sourceTree = "<group>"; };
 		CC1C4BF5212F424000869C6F /* NetworkRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestService.swift; sourceTree = "<group>"; };
 		CC1FBEE32142D8D100DBF93D /* RequestBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBodyView.swift; sourceTree = "<group>"; };
 		CC1FBEE52142D8FF00DBF93D /* RequestBodyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestBodyViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +243,8 @@
 				CC873AA6219C9750004D8016 /* TextPopoverViewController.swift */,
 				CC873AA8219C982E004D8016 /* TextPopoverView.swift */,
 				CCD7D45F21B6E3150007ECAA /* RequestView.swift */,
+				CC0079AE21BEC81F006CFCA7 /* PostmanCollectionViewModel.swift */,
+				CC0079B121BECBD7006CFCA7 /* PostmanCollectionViewModelTests.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 				CCD7D46021B6E3150007ECAA /* RequestView.swift in Sources */,
 				CC873AA9219C982E004D8016 /* TextPopoverView.swift in Sources */,
 				CCDCF7E621A4985C00ED74B4 /* JSONHighlighter.swift in Sources */,
+				CC0079AF21BEC81F006CFCA7 /* PostmanCollectionViewModel.swift in Sources */,
 				CCA2D872214AA7F9008FD431 /* MockNetworkRequestServiceDelegate.swift in Sources */,
 				CC55B3DF20A09D1500C34B4D /* mailman.xcdatamodeld in Sources */,
 				CC873AA5219C6C2A004D8016 /* HTTPStatusCode.swift in Sources */,
@@ -512,6 +519,7 @@
 			files = (
 				CC8104332195FB3A00C74148 /* NetworkRequestModelTests.swift in Sources */,
 				CC8104372195FB7D00C74148 /* RequestHeadersViewModelTests.swift in Sources */,
+				CC0079B221BECBD7006CFCA7 /* PostmanCollectionViewModelTests.swift in Sources */,
 				CC8104322195FB1D00C74148 /* PostmanCollectionDataTests.swift in Sources */,
 				CC55B3EF20A09D1700C34B4D /* mailmanTests.swift in Sources */,
 				CC8104382195FB8900C74148 /* RequestModelTests.swift in Sources */,

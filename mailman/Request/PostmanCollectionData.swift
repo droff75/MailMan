@@ -1,39 +1,13 @@
 import Foundation
 
-enum Item: Codable, Equatable{
-    case folder(PostmanFolder)
-    case postmanItem(PostmanItem)
-    case unknown
-
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        
-        if let folder = try? container.decode(PostmanFolder.self) {
-            self = .folder(folder)
-        } else if let item = try? container.decode(PostmanItem.self) {
-            self = .postmanItem(item)
-        } else {
-            self = .unknown
-        }
-    }
-    
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        
-        switch self {
-        case .folder(let postmanFolder):
-            try container.encode(postmanFolder)
-        case .postmanItem(let postmanItem):
-            try container.encode(postmanItem)
-        default:
-            break
-        }
-    }
-}
-
 struct PostmanCollection: Codable, Equatable {
     let info: PostmanInfo
-    let item: [Item]
+    let items: [Item]
+    
+    enum CodingKeys: String, CodingKey {
+        case info
+        case items = "item"
+    }
 }
 
 struct PostmanInfo: Codable, Equatable {
@@ -48,14 +22,50 @@ struct PostmanInfo: Codable, Equatable {
     }
 }
 
-struct PostmanItem: Codable, Equatable {
+enum Item: Codable, Equatable{
+    case folder(PostmanFolder)
+    case request(PostmanRequest)
+    case unknown
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        
+        if let folder = try? container.decode(PostmanFolder.self) {
+            self = .folder(folder)
+        } else if let item = try? container.decode(PostmanRequest.self) {
+            self = .request(item)
+        } else {
+            self = .unknown
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        
+        switch self {
+        case .folder(let postmanFolder):
+            try container.encode(postmanFolder)
+        case .request(let postmanItem):
+            try container.encode(postmanItem)
+        default:
+            break
+        }
+    }
+}
+
+struct PostmanRequest: Codable, Equatable {
     let name: String
     let request: RequestData
 }
 
 struct PostmanFolder: Codable, Equatable {
     let name: String
-    let item: [Item]
+    let items: [Item]
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case items = "item"
+    }
 }
 
 struct RequestData: Codable, Equatable {
