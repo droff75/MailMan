@@ -143,7 +143,7 @@ extension MainView: RequestViewDelegate {
 }
 
 extension MainView: PostmanCollectionViewDelegate {
-    func requestSelected(at indexPath: IndexPath) {
-        delegate?.requestSelected(at: indexPath)
+    func requestSelected(request: RequestData) {
+        delegate?.requestSelected(request: request)
     }
 }

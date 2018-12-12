@@ -1,7 +1,7 @@
 import UIKit
 
 protocol PostmanCollectionViewDelegate: class {
-    func requestSelected(at indexPath: IndexPath)
+    func requestSelected(request: RequestData)
 }
 
 class PostmanCollectionView: UIView {
@@ -85,6 +85,12 @@ extension PostmanCollectionView: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.requestSelected(at: indexPath)
+        if let rowData = viewModel?.data(for: indexPath) {
+            if case RowType.request(let postmanRequest) = rowData.type {
+                delegate?.requestSelected(request: postmanRequest.request)
+            } else {
+                //do folder thing
+            }
+        }
     }
 }

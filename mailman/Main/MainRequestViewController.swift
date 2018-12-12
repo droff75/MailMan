@@ -36,9 +36,8 @@ class MainRequestViewController: UIViewController {
 }
 
 extension MainRequestViewController: MainViewDelegate {
-    func requestSelected(at indexPath: IndexPath) {
-//        let selectedRequest = postmanCollections[indexPath.section].item[indexPath.row].request
-//        update(from: selectedRequest)
+    func requestSelected(request: RequestData) {
+        update(from: request)
     }
     
     func urlChanged(_ url: String) {
