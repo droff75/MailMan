@@ -97,7 +97,6 @@ class RequestHeaderTableCell: UITableViewCell {
 }
 
 extension RequestHeaderTableCell: UITextFieldDelegate {
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         let header = Header(key: keyTextField.text, value: valueTextField.text)
         delegate?.headerUpdated(header, cell: self)

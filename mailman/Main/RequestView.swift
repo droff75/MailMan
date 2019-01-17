@@ -184,6 +184,11 @@ extension RequestView: UITextFieldDelegate {
         return true
     }
     
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        delegate?.urlChanged("")
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         urlTextField.resignFirstResponder()
         sendButtonTapped()

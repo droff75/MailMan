@@ -3,18 +3,18 @@ import Highlightr
 
 class JSONHighlighter {
     private static var highlightr: Highlightr? {
-        let thing = Highlightr()
-        thing?.setTheme(to: "paraiso-dark")
+        let highlighter = Highlightr()
+        highlighter?.setTheme(to: "xcode")
         if let font = UIFont(name: "Menlo", size: 20) {
-            thing?.theme.codeFont = font
+            highlighter?.theme.codeFont = font
         }
-        return thing
+        return highlighter
     }
     
     private static func string(forDictionary dictionary: [String:Any]) -> String {
         let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
-        let thing = String(data: data!, encoding: .utf8)!
-        return thing
+        let stringData = String(data: data!, encoding: .utf8)!
+        return stringData
     }
     
     static func format(json: [String:Any]?) -> NSAttributedString? {

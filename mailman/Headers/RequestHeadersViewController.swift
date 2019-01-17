@@ -11,6 +11,7 @@ class RequestHeadersViewController: UITableViewController {
     
     init(headers: [Header] = []) {
         self.headers = headers.count > 0 ? headers : [Header.empty]
+        if headers.count == 1 && headers[0] != Header.empty { self.headers.append(Header.empty)}
         super.init(nibName: nil, bundle: nil)
     }
     
