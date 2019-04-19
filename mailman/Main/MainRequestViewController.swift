@@ -95,7 +95,10 @@ extension MainRequestViewController: MainViewDelegate {
     func showBodyView() {
         let bodyViewController = RequestBodyViewController(requestModel: requestModel)
         bodyViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(bodyDoneButtonTapped))
+        bodyViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(bodyCancelButtonTapped))
+        
         let navController = UINavigationController(rootViewController: bodyViewController)
+        navController.modalPresentationStyle = .formSheet
         
         self.present(navController, animated: true, completion: nil)
     }
@@ -106,6 +109,7 @@ extension MainRequestViewController: MainViewDelegate {
         headersViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(headersDoneButtonTapped))
         headersViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(headersCancelButtonTapped))
         let navController = UINavigationController(rootViewController: headersViewController)
+        navController.modalPresentationStyle = .formSheet
         
         self.present(navController, animated: true, completion: nil)
     }
@@ -130,6 +134,11 @@ extension MainRequestViewController: MainViewDelegate {
     
     @objc
     private func bodyDoneButtonTapped() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc
+    private func bodyCancelButtonTapped() {
         dismiss(animated: true, completion: nil)
     }
 }

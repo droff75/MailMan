@@ -21,7 +21,7 @@ class RequestHeaderTableCell: UITableViewCell {
         backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         selectionStyle = .none
         
-        let image = UIImage(named: "x-mark-3-128")
+        let image = UIImage(named: "icons8-delete-filled-50")
         removeRowButton.setImage(image, for: .normal)
         removeRowButton.addTarget(self, action: #selector(removeRowTapped), for: .touchUpInside)
         
@@ -60,8 +60,8 @@ class RequestHeaderTableCell: UITableViewCell {
         valueTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         textFieldStackView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        textFieldStackView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        textFieldStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        textFieldStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
         textFieldStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         textFieldStackView.trailingAnchor.constraint(equalTo: removeRowButton.leadingAnchor, constant: -10).isActive = true
         textFieldStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true

@@ -19,7 +19,7 @@ class MainView: UIView, UITextFieldDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = .black
+//        backgroundColor = .black
         
         toolbarView.delegate = self
         requestView.delegate = self
@@ -31,11 +31,15 @@ class MainView: UIView, UITextFieldDelegate {
         contentView.addSubview(requestView)
         contentView.addSubview(responseView)
         
+        postmanCollectionView.isHidden = true
+        
+        let safeAreaMargins = self.safeAreaLayoutGuide
+        
         toolbarView.translatesAutoresizingMaskIntoConstraints = false
-        toolbarView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        toolbarView.heightAnchor.constraint(equalToConstant: 75).isActive = true
-        toolbarView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        toolbarView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        toolbarView.topAnchor.constraint(equalTo: safeAreaMargins.topAnchor).isActive = true
+        toolbarView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        toolbarView.leadingAnchor.constraint(equalTo: safeAreaMargins.leadingAnchor).isActive = true
+        toolbarView.trailingAnchor.constraint(equalTo: safeAreaMargins.trailingAnchor).isActive = true
         
         postmanCollectionView.translatesAutoresizingMaskIntoConstraints = false
         postmanCollectionView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor).isActive = true
@@ -43,11 +47,11 @@ class MainView: UIView, UITextFieldDelegate {
         postmanCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         postmanCollectionView.widthAnchor.constraint(equalToConstant: collectionViewWidth).isActive = true
         
-        constraint = contentView.leadingAnchor.constraint(equalTo: leadingAnchor)
+        constraint = contentView.leadingAnchor.constraint(equalTo: safeAreaMargins.leadingAnchor)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor).isActive = true
         constraint?.isActive = true
-        contentView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        contentView.trailingAnchor.constraint(equalTo: safeAreaMargins.trailingAnchor).isActive = true
         contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
 
         requestView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,6 +116,11 @@ extension MainView: ToolbarViewDelegate {
         }
         UIView.animate(withDuration: 0.3) { [weak self] in
             self?.layoutIfNeeded()
+            if let strongSelf = self, strongSelf.postmanCollectionView.isHidden {
+                strongSelf.postmanCollectionView.isHidden = false
+            } else if let strongSelf = self {
+                strongSelf.postmanCollectionView.isHidden = true
+            }
         }
     }
 }

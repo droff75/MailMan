@@ -33,20 +33,25 @@ class RequestView: UIView {
         urlTextField.layer.cornerRadius = 5
         urlTextField.clearButtonMode = .whileEditing
         urlTextField.autocapitalizationType = .none
-        
+        urlTextField.setLeftPaddingPoints(5)
+        urlTextField.setContentHuggingPriority(.fittingSizeLevel, for: .horizontal)
         urlTextField.delegate = self
         
         sendButton.setTitle("SEND", for: .normal)
+        sendButton.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
         sendButton.backgroundColor = .orange
         sendButton.layer.cornerRadius = 5
+        sendButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         headersButton.setTitle("HEADERS", for: .normal)
+        headersButton.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         headersButton.addTarget(self, action: #selector(headersButtonTapped), for: .touchUpInside)
         headersButton.backgroundColor = .orange
         headersButton.layer.cornerRadius = 5
         
         bodyButton.setTitle("BODY", for: .normal)
+        bodyButton.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         bodyButton.addTarget(self, action: #selector(bodyButtonTapped), for: .touchUpInside)
         bodyButton.backgroundColor = .orange
         bodyButton.layer.cornerRadius = 5
@@ -59,8 +64,10 @@ class RequestView: UIView {
         
         methodButton.addTarget(self, action: #selector(methodButtonTapped), for: .touchUpInside)
         methodButton.setTitle("GET", for: .normal)
+        methodButton.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
         methodButton.backgroundColor = .orange
         methodButton.layer.cornerRadius = 5
+        methodButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         
         addSubview(methodButton)
         addSubview(urlTextField)
@@ -80,7 +87,6 @@ class RequestView: UIView {
         responseStackView.addGestureRecognizer(gesture)
         
         methodButton.translatesAutoresizingMaskIntoConstraints = false
-        methodButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         methodButton.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         methodButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
         methodButton.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
@@ -92,13 +98,8 @@ class RequestView: UIView {
         
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.leadingAnchor.constraint(equalTo: urlTextField.trailingAnchor, constant: padding).isActive = true
-        sendButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         sendButton.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         sendButton.firstBaselineAnchor.constraint(equalTo: urlTextField.firstBaselineAnchor).isActive = true
-        
-        headersButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        bodyButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         buttonStackView.translatesAutoresizingMaskIntoConstraints = false
         buttonStackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -193,5 +194,18 @@ extension RequestView: UITextFieldDelegate {
         urlTextField.resignFirstResponder()
         sendButtonTapped()
         return true
+    }
+}
+
+extension UITextField {
+    func setLeftPaddingPoints(_ amount:CGFloat){
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    func setRightPaddingPoints(_ amount:CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
     }
 }

@@ -9,7 +9,7 @@ protocol ToolbarViewDelegate: class {
 class ToolbarView: UIView {
     weak var delegate: ToolbarViewDelegate?
     
-    private let newButton = UIButton()
+    private let collectionButton = UIButton()
     private let importButton = UIButton()
     private let stackView = UIStackView()
     private let labelView = UILabel()
@@ -19,38 +19,60 @@ class ToolbarView: UIView {
         
         backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
-        newButton.setTitle("Collections", for: .normal)
-        newButton.backgroundColor = .orange
-        newButton.addTarget(self, action: #selector(newButtonTapped), for: .touchUpInside)
-        newButton.layer.cornerRadius = 5
+        if UIDevice.current.model == "iPhone" {
+            let collectionImage = UIImage(named: "icons8-chevron-right-filled-50")
+            let importImage = UIImage(named: "icons8-download-50")
+            collectionButton.setImage(collectionImage, for: .normal)
+            collectionButton.imageView?.contentMode = .scaleAspectFit
+            
+            importButton.setImage(importImage, for: .normal)
+            importButton.imageView?.contentMode = .scaleAspectFit
+            
+            collectionButton.translatesAutoresizingMaskIntoConstraints = false
+            collectionButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+            
+            importButton.translatesAutoresizingMaskIntoConstraints = false
+            importButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        } else {
+            collectionButton.backgroundColor = .orange
+            collectionButton.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+            collectionButton.setTitle("Collections", for: .normal)
+            collectionButton.layer.cornerRadius = 5
 
-        importButton.setTitle("Import", for: .normal)
-        importButton.backgroundColor = .orange
+            importButton.backgroundColor = .orange
+            importButton.contentEdgeInsets = UIEdgeInsets.init(top: 5, left: 5, bottom: 5, right: 5)
+            importButton.setTitle("Import", for: .normal)
+            importButton.layer.cornerRadius = 5
+        }
+        
+        collectionButton.addTarget(self, action: #selector(newButtonTapped), for: .touchUpInside)
+        
         importButton.addTarget(self, action: #selector(importButtonTapped), for: .touchUpInside)
-        importButton.layer.cornerRadius = 5        
 
-        labelView.text = "MailMan App"
+        labelView.text = "MailMan"
         labelView.textColor = .white
         labelView.font = UIFont.systemFont(ofSize: 30)
         
         addSubview(labelView)
         addSubview(stackView)
         
-        stackView.addArrangedSubview(newButton)
+        stackView.addArrangedSubview(collectionButton)
         stackView.addArrangedSubview(importButton)
-        stackView.setCustomSpacing(10, after: newButton)
-        
-        newButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        
-        importButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 10
         
         labelView.translatesAutoresizingMaskIntoConstraints = false
         labelView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         labelView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
+        stackView.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

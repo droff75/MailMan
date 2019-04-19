@@ -20,12 +20,13 @@ class RequestBodyView: UIView {
         self.addSubview(textView)
         
         textView.font = UIFont.systemFont(ofSize: 20)
-        
+    
+        let margins = self.safeAreaLayoutGuide
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.topAnchor.constraint(equalTo: topAnchor, constant: padding*2).isActive = true
-        textView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding).isActive = true
-        textView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding).isActive = true
-        textView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding).isActive = true
+        textView.topAnchor.constraint(equalTo: margins.topAnchor, constant: padding*2).isActive = true
+        textView.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        textView.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
+        textView.bottomAnchor.constraint(equalTo: margins.bottomAnchor).isActive = true
         
         textView.becomeFirstResponder()
     }
