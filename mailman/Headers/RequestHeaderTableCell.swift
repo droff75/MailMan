@@ -24,6 +24,7 @@ class RequestHeaderTableCell: UITableViewCell {
         let image = UIImage(named: "icons8-delete-filled-50")
         removeRowButton.setImage(image, for: .normal)
         removeRowButton.addTarget(self, action: #selector(removeRowTapped), for: .touchUpInside)
+        removeRowButton.imageView?.contentMode = .scaleAspectFit
         
         keyTextField.backgroundColor = .white
         keyTextField.placeholder = "Enter Key"
@@ -32,6 +33,7 @@ class RequestHeaderTableCell: UITableViewCell {
         keyTextField.layer.cornerRadius = 5
         keyTextField.clearButtonMode = .whileEditing
         keyTextField.autocapitalizationType = .none
+        keyTextField.setLeftPaddingPoints(5)
         
         valueTextField.backgroundColor = .white
         valueTextField.placeholder = "Enter Value"
@@ -40,6 +42,7 @@ class RequestHeaderTableCell: UITableViewCell {
         valueTextField.layer.cornerRadius = 5
         valueTextField.clearButtonMode = .whileEditing
         valueTextField.autocapitalizationType = .none
+        valueTextField.setLeftPaddingPoints(5)
         
         keyTextField.delegate = self
         valueTextField.delegate = self
@@ -53,23 +56,18 @@ class RequestHeaderTableCell: UITableViewCell {
         textFieldStackView.distribution = .fillEqually
         textFieldStackView.alignment = .center
         
-        keyTextField.translatesAutoresizingMaskIntoConstraints = false
-        keyTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        valueTextField.translatesAutoresizingMaskIntoConstraints = false
-        valueTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
         textFieldStackView.translatesAutoresizingMaskIntoConstraints = false
         textFieldStackView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
         textFieldStackView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
         textFieldStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         textFieldStackView.trailingAnchor.constraint(equalTo: removeRowButton.leadingAnchor, constant: -10).isActive = true
-        textFieldStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         removeRowButton.translatesAutoresizingMaskIntoConstraints = false
         removeRowButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
-        removeRowButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        removeRowButton.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        removeRowButton.topAnchor.constraint(equalTo: topAnchor, constant: 5).isActive = true
+        removeRowButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        removeRowButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        removeRowButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
         removeRowButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
     }
     

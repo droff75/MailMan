@@ -20,6 +20,10 @@ class MainRequestViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func loadView() {
         mainView.delegate = self
         mainView.update(url: requestModel.url)

@@ -13,6 +13,7 @@ class ToolbarView: UIView {
     private let importButton = UIButton()
     private let stackView = UIStackView()
     private let labelView = UILabel()
+    private var collectionImage: UIImage?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +21,7 @@ class ToolbarView: UIView {
         backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
         if UIDevice.current.model == "iPhone" {
-            let collectionImage = UIImage(named: "icons8-chevron-right-filled-50")
+            collectionImage = UIImage(named: "icons8-chevron-right-filled-50")
             let importImage = UIImage(named: "icons8-download-50")
             collectionButton.setImage(collectionImage, for: .normal)
             collectionButton.imageView?.contentMode = .scaleAspectFit
@@ -45,7 +46,7 @@ class ToolbarView: UIView {
             importButton.layer.cornerRadius = 5
         }
         
-        collectionButton.addTarget(self, action: #selector(newButtonTapped), for: .touchUpInside)
+        collectionButton.addTarget(self, action: #selector(collectionButtonTapped), for: .touchUpInside)
         
         importButton.addTarget(self, action: #selector(importButtonTapped), for: .touchUpInside)
 
@@ -80,7 +81,14 @@ class ToolbarView: UIView {
     }
     
     @objc
-    private func newButtonTapped() {
+    private func collectionButtonTapped() {
+        if collectionImage == UIImage(named: "icons8-chevron-left-filled-50") {
+            collectionImage = UIImage(named: "icons8-chevron-right-filled-50")
+            collectionButton.setImage(collectionImage, for: .normal)
+        } else {
+            collectionImage = UIImage(named: "icons8-chevron-left-filled-50")
+            collectionButton.setImage(collectionImage, for: .normal)
+        }
         delegate?.showPostmanCollectionSelected()
     }
     
