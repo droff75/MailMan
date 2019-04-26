@@ -82,12 +82,14 @@ class ToolbarView: UIView {
     
     @objc
     private func collectionButtonTapped() {
-        if collectionImage == UIImage(named: "icons8-chevron-left-filled-50") {
-            collectionImage = UIImage(named: "icons8-chevron-right-filled-50")
-            collectionButton.setImage(collectionImage, for: .normal)
-        } else {
-            collectionImage = UIImage(named: "icons8-chevron-left-filled-50")
-            collectionButton.setImage(collectionImage, for: .normal)
+        if UIDevice.current.model == "iPhone" {
+            if collectionImage == UIImage(named: "icons8-chevron-left-filled-50") {
+                collectionImage = UIImage(named: "icons8-chevron-right-filled-50")
+                collectionButton.setImage(collectionImage, for: .normal)
+            } else {
+                collectionImage = UIImage(named: "icons8-chevron-left-filled-50")
+                collectionButton.setImage(collectionImage, for: .normal)
+            }
         }
         delegate?.showPostmanCollectionSelected()
     }

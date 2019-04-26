@@ -15,11 +15,11 @@ class MainView: UIView, UITextFieldDelegate {
     private let padding: CGFloat = 10
     private let collectionViewWidth: CGFloat = 256
     fileprivate var constraint: NSLayoutConstraint?
+    private var postmanCollectionViewBottomConstraint: NSLayoutConstraint?
+    private var contentViewBottomConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-//        backgroundColor = .black
         
         toolbarView.delegate = self
         requestView.delegate = self
@@ -32,6 +32,8 @@ class MainView: UIView, UITextFieldDelegate {
         contentView.addSubview(responseView)
         
         postmanCollectionView.isHidden = true
+        responseView.autocorrectionType = .no
+        responseView.isEditable = false
         
         let safeAreaMargins = self.safeAreaLayoutGuide
         
@@ -41,18 +43,20 @@ class MainView: UIView, UITextFieldDelegate {
         toolbarView.leadingAnchor.constraint(equalTo: safeAreaMargins.leadingAnchor).isActive = true
         toolbarView.trailingAnchor.constraint(equalTo: safeAreaMargins.trailingAnchor).isActive = true
         
+        postmanCollectionViewBottomConstraint = postmanCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
         postmanCollectionView.translatesAutoresizingMaskIntoConstraints = false
         postmanCollectionView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor).isActive = true
         postmanCollectionView.trailingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
-        postmanCollectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        postmanCollectionViewBottomConstraint?.isActive = true
         postmanCollectionView.widthAnchor.constraint(equalToConstant: collectionViewWidth).isActive = true
         
         constraint = contentView.leadingAnchor.constraint(equalTo: safeAreaMargins.leadingAnchor)
+        contentViewBottomConstraint = contentView.bottomAnchor.constraint(equalTo: bottomAnchor)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: toolbarView.bottomAnchor).isActive = true
         constraint?.isActive = true
         contentView.trailingAnchor.constraint(equalTo: safeAreaMargins.trailingAnchor).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        contentViewBottomConstraint?.isActive = true
 
         requestView.translatesAutoresizingMaskIntoConstraints = false
         requestView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: padding).isActive = true
@@ -99,6 +103,18 @@ class MainView: UIView, UITextFieldDelegate {
     
     func clearResponse() {
         update(statusCode: nil, response: nil)
+    }
+    
+    func adjustViewForToolbar(toolbarHeight: CGFloat) {
+        postmanCollectionViewBottomConstraint?.constant = -toolbarHeight
+        contentViewBottomConstraint?.constant = -toolbarHeight
+        self.layoutIfNeeded()
+    }
+    
+    func adjustViewForKeyboardDismissed() {
+        postmanCollectionViewBottomConstraint?.constant = 0
+        contentViewBottomConstraint?.constant = 0
+        self.layoutIfNeeded()
     }
 }
 

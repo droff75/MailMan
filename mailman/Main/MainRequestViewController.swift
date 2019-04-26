@@ -4,6 +4,8 @@ import MobileCoreServices
 class MainRequestViewController: UIViewController {    
     private let service = NetworkRequestService()
     private var mainView: MainView
+    private var hasKeyboard: Bool?
+    private let notificationCenter = NotificationCenter.default
     fileprivate var requestModel: RequestModel
     fileprivate var responseCode: HTTPStatusCode?
     fileprivate var postmanCollections: [PostmanCollection] = []
@@ -12,7 +14,10 @@ class MainRequestViewController: UIViewController {
         mainView = MainView()
         requestModel = RequestModel(networkService: service)
         super.init(nibName: nil, bundle: nil)
-
+        
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(keyboardDidDismiss), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        
         requestModel.url = "https://postman-echo.com/get"
     }
     
@@ -36,6 +41,28 @@ class MainRequestViewController: UIViewController {
         mainView.update(url: requestModel.url)
         mainView.update(method: requestModel.method.rawValue)
         mainView.clearResponse()
+    }
+    
+    @objc
+    func keyboardDidShow(notification: NSNotification) {
+        let userInfo = notification.userInfo
+        let keyboardFrame = userInfo?[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        let keyboard = self.view.convert(keyboardFrame, from: self.view.window)
+        let height = self.view.frame.size.height
+        let toolbarHeight = height - keyboard.origin.y
+        
+        if keyboard.origin.y + keyboard.size.height > height {
+            self.hasKeyboard = true
+            self.mainView.adjustViewForToolbar(toolbarHeight: toolbarHeight)
+        } else {
+            self.hasKeyboard = false
+            self.mainView.adjustViewForToolbar(toolbarHeight: toolbarHeight)
+        }
+    }
+    
+    @objc
+    func keyboardDidDismiss() {
+        mainView.adjustViewForKeyboardDismissed()
     }
 }
 
@@ -87,12 +114,13 @@ extension MainRequestViewController: MainViewDelegate {
         let responseCodePopoverViewController = TextPopoverViewController(popoverText: responseCode.responseDefinition)
         responseCodePopoverViewController.modalPresentationStyle = UIModalPresentationStyle.popover
         responseCodePopoverViewController.preferredContentSize = CGSize(width: 200, height: 200)
+        responseCodePopoverViewController.popoverPresentationController?.delegate = self
         
         self.present(responseCodePopoverViewController, animated: true, completion: nil)
         
         let popoverPresentationController = responseCodePopoverViewController.popoverPresentationController
         popoverPresentationController?.sourceView = sender
-        popoverPresentationController?.permittedArrowDirections = [UIPopoverArrowDirection.up]
+        popoverPresentationController?.permittedArrowDirections = .up
         popoverPresentationController?.sourceRect = sender.bounds
     }
     
@@ -176,6 +204,12 @@ extension MainRequestViewController: UIDocumentPickerDelegate {
             self.postmanCollections = []
         }
         mainView.update(postmanCollections: postmanCollections)
+    }
+}
+
+extension MainRequestViewController: UIPopoverPresentationControllerDelegate {
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
 }
 
