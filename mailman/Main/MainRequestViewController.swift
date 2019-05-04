@@ -9,16 +9,23 @@ class MainRequestViewController: UIViewController {
     fileprivate var requestModel: RequestModel
     fileprivate var responseCode: HTTPStatusCode?
     fileprivate var postmanCollections: [PostmanCollection] = []
+    fileprivate let userDefaults: UserDefaults
     
     init() {
         mainView = MainView()
         requestModel = RequestModel(networkService: service)
+        userDefaults = UserDefaults.standard
         super.init(nibName: nil, bundle: nil)
         
         notificationCenter.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardDidDismiss), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         
         requestModel.url = "https://postman-echo.com/get"
+        
+        if let persistedCollections = userDefaults.data(forKey: "PostmanCollections") {
+            parsePostmanCollection(collection: persistedCollections)
+        }
+        mainView.update(postmanCollections: postmanCollections)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,6 +70,14 @@ class MainRequestViewController: UIViewController {
     @objc
     func keyboardDidDismiss() {
         mainView.adjustViewForKeyboardDismissed()
+    }
+    
+    func parsePostmanCollection(collection: Data) {
+        if let postmanCollection = try? JSONDecoder().decode(PostmanCollection.self, from: collection) {
+            self.postmanCollections = [postmanCollection]
+        } else {
+            self.postmanCollections = []
+        }
     }
 }
 
@@ -194,16 +209,13 @@ extension MainRequestViewController: MethodPopoverViewControllerDelegate {
     }
 }
 
-extension MainRequestViewController: UIDocumentPickerDelegate {    
+extension MainRequestViewController: UIDocumentPickerDelegate {
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let data = try? Data(contentsOf: urls[0], options: []) else { return }
         
-        if let postmanCollection = try? JSONDecoder().decode(PostmanCollection.self, from: data) {
-            self.postmanCollections = [postmanCollection]
-        } else {
-            self.postmanCollections = []
-        }
+        _ = parsePostmanCollection(collection: data)
         mainView.update(postmanCollections: postmanCollections)
+        userDefaults.set(data, forKey: "PostmanCollections")
     }
 }
 
