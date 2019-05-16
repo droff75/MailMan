@@ -12,7 +12,11 @@ class NetworkRequestService {
             if let error = error {
                 handleError(error)
             } else if let data = data, let response = response {
-                handleSuccess(response, self?.parseJsonResponse(data: data))
+                if let parsedJson = self?.parseJsonResponse(data: data) {
+                    handleSuccess(response, parsedJson)
+                } else {
+                    handleSuccess(response, ["Response":String(data: data, encoding: .utf8) ?? ""])
+                }
             }
         }
         dataTask.resume()
