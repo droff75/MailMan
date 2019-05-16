@@ -20,8 +20,6 @@ class MainRequestViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(keyboardDidShow), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         notificationCenter.addObserver(self, selector: #selector(keyboardDidDismiss), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
         
-        requestModel.url = "https://postman-echo.com/get"
-        
         if let persistedCollections = userDefaults.data(forKey: "PostmanCollections") {
             parsePostmanCollection(collection: persistedCollections)
         }
