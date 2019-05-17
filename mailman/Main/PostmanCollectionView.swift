@@ -21,6 +21,7 @@ class PostmanCollectionView: UIView {
         noCollectionsLabel.numberOfLines = 0
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: String(describing: UITableViewCell.self))
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -51,7 +52,7 @@ class PostmanCollectionView: UIView {
     }
     
     private func updateView() {
-        tableView.isHidden = viewModel == nil
+        tableView.isHidden = viewModel?.numberOfSections == 0
         tableView.reloadData()
     }
 }

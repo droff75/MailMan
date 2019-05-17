@@ -10,6 +10,7 @@ class MethodPopoverViewController: UITableViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        self.tableView.separatorStyle = .none
     }
     
     required init?(coder aDecoder: NSCoder) {
