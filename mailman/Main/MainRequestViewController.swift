@@ -45,6 +45,7 @@ class MainRequestViewController: UIViewController {
         requestModel = RequestModel(requestData: requestData)
         mainView.update(url: requestModel.url)
         mainView.update(method: requestModel.method.rawValue)
+        mainView.update(buttonEnabled: requestModel.isValid())
         mainView.clearResponse()
     }
     
