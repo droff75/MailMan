@@ -15,7 +15,11 @@ class NetworkRequestService {
                 if let parsedJson = self?.parseJsonResponse(data: data) {
                     handleSuccess(response, parsedJson)
                 } else {
-                    handleSuccess(response, ["Response":String(data: data, encoding: .utf8) ?? ""])
+                    if data.count > 0 {
+                        handleSuccess(response, ["Response":String(data: data, encoding: .utf8) ?? ""])
+                    } else {
+                        handleSuccess(response, nil)
+                    }
                 }
             }
         }
